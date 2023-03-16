@@ -7,7 +7,11 @@ export const websitePerspectiveBg =
 
 export const imagesBaseURL = "https://image.tmdb.org/t/p";
 
-export const iconsBaseURL = "https://img.icons8.com/fluency-systems-regular";
+export const outlinedIconsBaseURL =
+  "https://img.icons8.com/fluency-systems-regular";
+
+export const filledIconsBaseURL =
+  "https://img.icons8.com/fluency-systems-filled";
 
 export const themeOptions = [
   {

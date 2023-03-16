@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { useRouteLoaderData } from "react-router-dom";
+import { useRouteLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
 import RoundedButton from "./RoundedButton";
@@ -7,23 +9,30 @@ import Heading from "./Heading";
 import Pill from "./Pill";
 import Rating from "./Rating";
 
+// Constants
+import { serverBaseURL } from "../constants/constants";
+
 // Context
 import { ThemeContext } from "../context/ThemeContext";
+import { AuthContext } from "../context/AuthContext";
 
 // Helpers
 import { getImageURL } from "../helpers/getImageURL";
-import { getIconURL } from "../helpers/getIconURL";
 
 // Utils
 import { toHoursAndMinutes, getFullDate } from "../utils/DateTime";
 
 const MovieHero = ({ movie, director }) => {
   const { theme } = useContext(ThemeContext);
+  const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const genres = useRouteLoaderData("app").genres;
 
   const [movieGenres, setMovieGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInFavoriteList, setIsInFavoriteList] = useState(false);
+  const [isInWatchlist, setIsInWatchlist] = useState(false);
 
   const backgroundRef = useCallback(
     (node) => {
@@ -70,6 +79,201 @@ const MovieHero = ({ movie, director }) => {
     setMovieGenres(movieGenres);
   };
 
+  useEffect(() => {
+    checkFavoriteList(movie.id);
+    checkWatchlist(movie.id);
+  }, []);
+
+  const addToFavoriteList = async () => {
+    try {
+      const response = await fetch(
+        `${serverBaseURL}/api/user/favorites/${movie.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        setIsInFavoriteList(true);
+        toast.success(data.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
+  const addToWatchlist = async () => {
+    try {
+      const response = await fetch(
+        `${serverBaseURL}/api/user/watchlist/${movie.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        setIsInWatchlist(true);
+        toast.success(data.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
+  const removeFromFavoriteList = async () => {
+    try {
+      const response = await fetch(
+        `${serverBaseURL}/api/user/favorites/${movie.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        setIsInFavoriteList(false);
+        toast.success(data.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
+  const removeFromWatchlist = async () => {
+    try {
+      const response = await fetch(
+        `${serverBaseURL}/api/user/watchlist/${movie.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        setIsInWatchlist(false);
+        toast.success(data.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
+  const checkFavoriteList = async (movieId) => {
+    try {
+      const response = await fetch(`${serverBaseURL}/api/user/favorites`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.ok) {
+        const result = data.favoriteList.some((movie) => movie.id === movieId);
+        setIsInFavoriteList(result);
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error({ message: error.message });
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
+  const checkWatchlist = async (movieId) => {
+    try {
+      const response = await fetch(`${serverBaseURL}/api/user/watchlist`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.ok) {
+        const result = data.watchlist.some((movie) => movie.id === movieId);
+        setIsInWatchlist(result);
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error({ message: error.message });
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+      });
+    }
+  };
+
   return (
     <div className="relative min-h-screen mt-[60px]">
       <div
@@ -111,16 +315,66 @@ const MovieHero = ({ movie, director }) => {
                 <span className="font-semibold">User Score</span>
               </div>
               <div className="flex gap-4 items-center justify-center lg:justify-start">
-                <RoundedButton
-                  icon="hearts"
-                  alt="Add to favorites"
-                  hasShadow={true}
-                />
-                <RoundedButton
-                  icon="bookmark-ribbon--v1"
-                  alt="Add to watchlist"
-                  hasShadow={true}
-                />
+                {isInFavoriteList ? (
+                  <RoundedButton
+                    onClick={
+                      isAuthenticated
+                        ? removeFromFavoriteList
+                        : () => navigate("login")
+                    }
+                    alt="Remove from favorites"
+                    icon="like"
+                    iconType="filled"
+                    hasShadow={true}
+                    tooltip="Remove from favorites"
+                  />
+                ) : (
+                  <RoundedButton
+                    alt="Add to favorites"
+                    onClick={
+                      isAuthenticated
+                        ? addToFavoriteList
+                        : () => navigate("/login")
+                    }
+                    icon="like"
+                    hasShadow={true}
+                    tooltip={
+                      isAuthenticated
+                        ? "Add to favorites"
+                        : "Log in to add this movie to your favorite list"
+                    }
+                  />
+                )}
+                {isInWatchlist ? (
+                  <RoundedButton
+                    alt="Remove from watchlist"
+                    onClick={
+                      isAuthenticated
+                        ? removeFromWatchlist
+                        : () => navigate("/login")
+                    }
+                    icon="bookmark-ribbon--v1"
+                    iconType="filled"
+                    hasShadow={true}
+                    tooltip="Remove from watchlist"
+                  />
+                ) : (
+                  <RoundedButton
+                    alt="Add to watchlist"
+                    onClick={
+                      isAuthenticated
+                        ? addToWatchlist
+                        : () => navigate("/login")
+                    }
+                    icon="bookmark-ribbon--v1"
+                    hasShadow={true}
+                    tooltip={
+                      isAuthenticated
+                        ? "Add to watchlist"
+                        : "Log in to add this movie to your watchlist"
+                    }
+                  />
+                )}
               </div>
             </div>
             <div className="flex flex-col gap-4">

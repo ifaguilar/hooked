@@ -7,7 +7,7 @@ const MenuItem = ({ icon, text, isActive = false, onClick = null }) => (
   <div
     className={`${
       isActive ? "active" : ""
-    } flex items-center gap-4 p-4 hover:bg-neutral-900/5 dark:hover:bg-white/5 cursor-pointer`}
+    } flex items-center gap-4 p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer`}
     onClick={onClick}
   >
     <img className="icon" src={getIconURL(icon)} alt="Icon" />

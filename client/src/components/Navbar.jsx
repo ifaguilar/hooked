@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // Components
 import Avatar from "./Avatar";
@@ -106,20 +106,27 @@ const Navbar = ({
 
               <Separator />
 
-              <Link to="/favorites">
-                <MenuItem
-                  icon={"hearts"}
-                  text="Favorites"
-                  onClick={handleClick}
-                />
-              </Link>
-              <Link to="/watchlist">
-                <MenuItem
-                  icon={"bookmark-ribbon--v1"}
-                  text="Watchlist"
-                  onClick={handleClick}
-                />
-              </Link>
+              <NavLink to="/favorites">
+                {({ isActive }) => (
+                  <MenuItem
+                    icon={"hearts"}
+                    text="Favorites"
+                    onClick={handleClick}
+                    isActive={isActive}
+                  />
+                )}
+              </NavLink>
+
+              <NavLink to="/watchlist">
+                {({ isActive }) => (
+                  <MenuItem
+                    icon={"bookmark-ribbon--v1"}
+                    text="Watchlist"
+                    onClick={handleClick}
+                    isActive={isActive}
+                  />
+                )}
+              </NavLink>
 
               <Separator />
 

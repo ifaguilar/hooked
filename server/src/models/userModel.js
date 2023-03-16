@@ -23,6 +23,18 @@ const userSchema = mongoose.Schema(
         return getRandomItem(defaultAvatars);
       },
     },
+    favoriteList: [
+      {
+        type: Number,
+        required: true,
+      },
+    ],
+    watchlist: [
+      {
+        type: Number,
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );
