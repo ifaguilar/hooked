@@ -80,8 +80,10 @@ const MovieHero = ({ movie, director }) => {
   };
 
   useEffect(() => {
-    checkFavoriteList(movie.id);
-    checkWatchlist(movie.id);
+    if (isAuthenticated) {
+      checkFavoriteList(movie.id);
+      checkWatchlist(movie.id);
+    }
   }, []);
 
   const addToFavoriteList = async () => {
