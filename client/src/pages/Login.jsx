@@ -28,10 +28,10 @@ const Login = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const sessionExpired = location.state?.sessionExpired;
+    const isTokenValid = location.state?.isTokenValid;
 
-    if (sessionExpired) {
-      toast.error("Your session has expired due to inactivity. Log in again.", {
+    if (!isTokenValid) {
+      toast.error("Please, log in.", {
         position: "bottom-right",
         className:
           "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",

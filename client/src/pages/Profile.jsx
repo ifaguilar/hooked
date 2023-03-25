@@ -25,7 +25,7 @@ const Profile = () => {
         <Navigate
           to="/login"
           state={{
-            sessionExpired: true,
+            isTokenValid: false,
           }}
         />
       </div>
