@@ -21,6 +21,8 @@
 
 ## Tech Stack
 
+In this project, I'm using the MERN stack, which consists of the following technologies:
+
 - MongoDB: A NoSQL document database that provides scalability and flexibility for building modern applications.
 
 - Express.js: A fast, minimalist web framework for Node.js.
@@ -35,11 +37,13 @@ You can check out the live version of the app [here](https://hooked-app.netlify.
 
 ## Screenshots
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Homepage" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859211/hooked/screenshot-1.png" alt="Homepage" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Search" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859372/hooked/screenshot-2.png" alt="Movie Details" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Movie Details" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859210/hooked/screenshot-3.png" alt="Top Cast" />
+
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859211/hooked/screenshot-4.png" alt="Search" />
 
 ## Dependencies
 
