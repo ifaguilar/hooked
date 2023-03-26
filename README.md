@@ -1,8 +1,9 @@
-<div style="text-align: center">
+<div align="center">
     <picture>
         <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679857376/hooked/hooked-logo-white.png">
         <img alt="Hooked" src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked-logo-dark.png">
     </picture>
+    <br>
     <br>
     <p>Hooked is a movie app that allows users to search and browse movies, view details about a movie, and save movies to their watchlist or favorite list. All this is possible thanks to <a href="https://themoviedb.org">TMDB API</a>.</p>
     <hr>
@@ -20,13 +21,13 @@
 
 ## Tech Stack
 
-- MongoDB:
+- MongoDB: A NoSQL document database that provides scalability and flexibility for building modern applications.
 
 - Express.js: A fast, minimalist web framework for Node.js.
 
 - React.js: A JavaScript library for building user interfaces.
 
-- Node.js:
+- Node.js: A powerful JavaScript runtime for building fast, scalable, and cross-platform applications using a single language.
 
 ## Demo
 
