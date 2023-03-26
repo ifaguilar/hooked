@@ -1,33 +1,69 @@
-# Hooked App
+<div style="text-align: center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679857376/hooked/hooked-logo-white.png">
+        <img alt="Hooked" src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked-logo-dark.png">
+    </picture>
+    <br>
+    <p>Hooked is a movie app that allows users to search and browse movies, view details about a movie, and save movies to their watchlist or favorite list. All this is possible thanks to <a href="https://themoviedb.org">TMDB API</a>.</p>
+    <hr>
+</div>
 
-This is a movie app project built with the MERN (MongoDB, Express, React, Node.js) stack and the TMDB (The Movie Database) API. It allows users to search and browse movies, view details about a movie, and save their favorite movies to a watchlist.
+## Features
 
-## Installation
+- Browse movies by genres and categories (popular, top rated and upcoming).
 
-Clone the repository and navigate to the project root directory. Then, install the dependencies for both the `client` and `server` folders using the following command:
+- Search for movies by title.
 
-    npm install
+- View movie details such as overview, duration, top cast, trailers, and user score.
 
-## Usage
+- Add movies to watchlist or favorite list for future reference.
 
-### Starting the Server
+## Tech Stack
 
-Navigate to the `server` folder and start the server using the following command:
+- MongoDB:
 
-    npm run dev
+- Express.js: A fast, minimalist web framework for Node.js.
 
-The server will start running on `http://localhost:3000`.
+- React.js: A JavaScript library for building user interfaces.
 
-### Starting the Client
+- Node.js:
 
-Navigate to the `client` folder and start the client using the following command:
+## Demo
 
-    npm run dev
+You can check out the live version of the app [here](https://hooked-app.netlify.app).
 
-The client will start running on `http://localhost:5000`.
+## Screenshots
 
-## API Key
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Homepage" />
 
-To use the TMDB API, you will need to obtain an API key from their [website](https://www.themoviedb.org/documentation/api) and set it as an environment variable in the .env file in the server folder:
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Search" />
 
-    TMDB_API_KEY=your_api_key_here
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked.png" alt="Movie Details" />
+
+## Dependencies
+
+Here are the main libraries and dependencies used in this project:
+
+- React Router DOM: A routing library for React applications.
+
+- Formik: A form library for React.
+
+- Yup: A JavaScript schema validation library.
+
+- react-toastify: A notification library for React.
+
+- Swiper.js: A modern slider library.
+
+- Mongoose: An object modeling tool for MongoDB.
+
+- express-validator: A set of express.js middlewares that wraps validator.js validator and sanitizer functions.
+
+- node-fetch: A light-weight module that brings window.fetch to Node.js.
+
+- dotenv: A zero-dependency module that loads environment variables from a .env file.
+
+- CORS: A Node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+- bcrypt: A library for hashing passwords.
+
+- jsonwebtoken: A library for generating JSON web tokens (JWTs).

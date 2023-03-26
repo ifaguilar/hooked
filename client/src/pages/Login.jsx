@@ -30,7 +30,7 @@ const Login = () => {
   useEffect(() => {
     const isTokenValid = location.state?.isTokenValid;
 
-    if (!isTokenValid) {
+    if (isTokenValid === false) {
       toast.error("Please, log in.", {
         position: "bottom-right",
         className:
