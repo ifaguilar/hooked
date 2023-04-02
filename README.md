@@ -37,13 +37,13 @@ You can check out the live version of the app [here](https://hooked-app.netlify.
 
 ## Screenshots
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859211/hooked/screenshot-1.png" alt="Homepage" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680460219/hooked/screenshot-1.png" alt="Homepage" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859372/hooked/screenshot-2.png" alt="Movie Details" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680460218/hooked/screenshot-2.png" alt="Movie Details" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859210/hooked/screenshot-3.png" alt="Top Cast" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680460217/hooked/screenshot-3.png" alt="Top Cast" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679859211/hooked/screenshot-4.png" alt="Search" />
+<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680460386/hooked/screenshot-4.png" alt="Search" />
 
 ## Dependencies
 
