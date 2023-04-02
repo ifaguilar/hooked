@@ -4,7 +4,7 @@ import React from "react";
 import { getImageURL } from "../helpers/getImageURL";
 
 const PersonCard = ({ person }) => (
-  <div className="w-full rounded-2xl overflow-hidden shadow-md border border-neutral-900/5 dark:border-white/5">
+  <div className="w-full rounded-2xl overflow-hidden shadow-md border border-transparent dark:border-white/10">
     <div className=" aspect-square">
       {person.profile_path ? (
         <img

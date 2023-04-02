@@ -100,7 +100,7 @@ const Movie = () => {
                   if (video.type === "Trailer") {
                     return (
                       <SwiperSlide className="video" key={video.id}>
-                        <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
+                        <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-md">
                           <iframe
                             className="w-full h-full"
                             src={`${youtubeBaseURL}${video.key}`}

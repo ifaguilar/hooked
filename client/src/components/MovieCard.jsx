@@ -14,7 +14,7 @@ const MovieCard = ({ movie }) => {
   return (
     <Link
       to={`/movie/${movie.id}`}
-      className="relative block w-full rounded-2xl overflow-hidden shadow-md border border-neutral-900/5 dark:border-white/5"
+      className="relative block w-full rounded-2xl overflow-hidden shadow-md border border-transparent dark:border-white/10"
     >
       {movie.poster_path ? (
         <img

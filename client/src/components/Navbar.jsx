@@ -70,7 +70,7 @@ const Navbar = ({
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between px-4 py-[6px] shadow-md bg-white dark:bg-neutral-900">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between px-4 py-[6px] shadow-lg bg-white dark:bg-neutral-900">
       <div className="flex items-center gap-4">
         <RoundedButton
           onClick={() => handleClick("sidebar")}
