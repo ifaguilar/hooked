@@ -2,33 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-  @apply text-neutral-900/90 dark:text-white/90 max-w-prose;
+p,
+li {
+  @apply max-w-prose text-neutral-800 dark:text-neutral-300;
 }
 
-label {
-  @apply font-semibold text-sm uppercase text-neutral-900/60 dark:text-white/60;
+label,
+.label {
+  @apply font-semibold text-sm uppercase text-neutral-500 dark:text-neutral-400;
+}
+
+.logo {
+  @apply w-auto h-5 opacity-20 brightness-0 hover:opacity-100 hover:brightness-100 dark:invert dark:hover:invert-0 transition;
 }
 
 .icon {
   filter: brightness(0);
-  opacity: 0.91;
 }
 
 .icon-white,
 .dark .icon {
   filter: brightness(0) invert(1);
-  opacity: 1;
 }
 
-.active > span {
-  @apply text-red-600;
-}
-
-.active > .icon,
-.dark .active > .icon {
-  filter: unset;
-  opacity: 1;
+.active {
+  @apply bg-neutral-200 dark:bg-neutral-950 !important;
 }
 
 .swiper {
@@ -53,11 +51,11 @@ label {
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply text-red-600 bg-white dark:bg-neutral-900 top-0 w-12 m-0 h-full !important;
+  @apply text-red-600 bg-white dark:bg-neutral-950 top-0 w-12 m-0 h-full !important;
 }
 
 .swiper-pagination-bullet {
-  @apply bg-neutral-900 dark:bg-white !important;
+  @apply bg-neutral-950 dark:bg-white !important;
 }
 
 .swiper-pagination-bullet-active {
@@ -73,21 +71,13 @@ label {
 }
 
 .Toastify__close-button > svg {
-  @apply text-neutral-900 dark:text-white;
+  @apply text-neutral-950 dark:text-white;
 }
 
 .Toastify__toast-body {
   @apply font-sans;
 }
 
-.text-small {
-  @apply text-sm whitespace-nowrap text-ellipsis overflow-hidden text-neutral-900/90 dark:text-white/90;
-}
-
-.text-medium {
-  @apply font-semibold text-base whitespace-nowrap text-ellipsis overflow-hidden;
-}
-
-.text-large {
-  @apply font-semibold text-lg whitespace-nowrap text-ellipsis overflow-hidden;
+.text-overflow {
+  @apply whitespace-nowrap text-ellipsis overflow-hidden;
 }

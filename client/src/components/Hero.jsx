@@ -34,8 +34,8 @@ const Hero = ({ movie }) => {
                 movie.backdrop_path
               )}`)
             : theme === "light"
-            ? (node.style.backgroundColor = "#f3f3f3")
-            : (node.style.backgroundColor = "#171717");
+            ? (node.style.backgroundColor = "#ffffff")
+            : (node.style.backgroundColor = "#0a0a0a");
         }
       }
     },
@@ -75,7 +75,7 @@ const Hero = ({ movie }) => {
         }`}
         ref={backgroundRef}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950"></div>
       </div>
       <div className="absolute inset-0 h-[90vh] flex items-end container mx-auto px-4 lg:px-8 py-32">
         <div className="flex flex-col gap-12 max-w-prose">

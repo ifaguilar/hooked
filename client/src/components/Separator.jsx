@@ -1,7 +1,7 @@
 import React from "react";
 
 const Separator = () => (
-  <div className="my-4 border-t border-neutral-900/10 dark:border-white/10"></div>
+  <div className="my-4 border-t border-neutral-200 dark:border-neutral-800"></div>
 );
 
 export default Separator;

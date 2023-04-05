@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 
@@ -10,22 +10,36 @@ import { AuthContext } from "../context/AuthContext";
 
 const Profile = () => {
   const { user, isTokenValid } = useLoaderData();
-
+  const [wasLoggedIn, setWasLoggedIn] = useState(false);
   const { isAuthenticated, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!isTokenValid) {
+    const token = localStorage.getItem("token");
+
+    if (token !== null && !isTokenValid) {
+      setWasLoggedIn(true);
       logout();
     }
   }, []);
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && wasLoggedIn) {
     return (
       <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
         <Navigate
           to="/login"
           state={{
-            isTokenValid: false,
+            wasLoggedIn: true,
+          }}
+        />
+      </div>
+    );
+  } else if (!isAuthenticated && !wasLoggedIn) {
+    return (
+      <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
+        <Navigate
+          to="/login"
+          state={{
+            wasLoggedIn: false,
           }}
         />
       </div>

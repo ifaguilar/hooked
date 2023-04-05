@@ -52,7 +52,7 @@ const Favorites = () => {
         toast.success(data.message, {
           position: "bottom-right",
           className:
-            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
         });
       } else {
         throw new Error(data.message);
@@ -62,7 +62,7 @@ const Favorites = () => {
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };

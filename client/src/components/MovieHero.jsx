@@ -44,8 +44,8 @@ const MovieHero = ({ movie, director }) => {
                 movie.backdrop_path
               )}`)
             : theme === "light"
-            ? (node.style.backgroundColor = "#f3f3f3")
-            : (node.style.backgroundColor = "#171717");
+            ? (node.style.backgroundColor = "#ffffff")
+            : (node.style.backgroundColor = "#0a0a0a");
         }
       }
     },
@@ -106,7 +106,7 @@ const MovieHero = ({ movie, director }) => {
         toast.success(data.message, {
           position: "bottom-right",
           className:
-            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
         });
       } else {
         throw new Error(data.message);
@@ -116,7 +116,7 @@ const MovieHero = ({ movie, director }) => {
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };
@@ -141,7 +141,7 @@ const MovieHero = ({ movie, director }) => {
         toast.success(data.message, {
           position: "bottom-right",
           className:
-            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
         });
       } else {
         throw new Error(data.message);
@@ -151,7 +151,7 @@ const MovieHero = ({ movie, director }) => {
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };
@@ -284,7 +284,7 @@ const MovieHero = ({ movie, director }) => {
         }`}
         ref={backgroundRef}
       >
-        <div className="backdrop-blur-md absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-900"></div>
+        <div className="backdrop-blur-md absolute inset-0 bg-gradient-to-t from-white to-white/10 dark:from-neutral-950 dark:to-neutral-950/10"></div>
       </div>
       <div className="relative w-full h-full container mx-auto px-4 lg:px-8 py-32">
         <div className="flex flex-col gap-12 lg:grid lg:gap-24 lg:grid-cols-[1fr_2fr] lg:items-start">
@@ -297,7 +297,7 @@ const MovieHero = ({ movie, director }) => {
                   alt={movie.title}
                 />
               ) : (
-                <div className="w-full h-full bg-[#f3f3f3] dark:bg-[#232323]"></div>
+                <div className="w-full h-full bg-neutral-200 dark:bg-neutral-800"></div>
               )}
             </div>
           </div>
@@ -386,7 +386,7 @@ const MovieHero = ({ movie, director }) => {
             <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
               <div className="flex flex-col gap-4">
                 <Heading size="md">Details</Heading>
-                <ul className="flex flex-col gap-4 text-neutral-900/80 dark:text-white/80">
+                <ul className="flex flex-col gap-4">
                   <li>Director: {director?.name || "Unknow"}</li>
                   <li>Duration: {toHoursAndMinutes(movie.runtime)}</li>
                   <li>Release Date: {getFullDate(movie.release_date)}</li>

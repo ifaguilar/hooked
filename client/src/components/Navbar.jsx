@@ -93,7 +93,7 @@ const Navbar = ({
             <Dropdown isOpen={isMenuOpen}>
               <Link to="/profile">
                 <div
-                  className="flex items-center gap-4 p-4 hover:bg-neutral-900/5 dark:hover:bg-white/5"
+                  className="flex items-center gap-4 p-4 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   onClick={handleClick}
                 >
                   <Avatar src={user.avatar} />

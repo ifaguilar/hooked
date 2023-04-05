@@ -36,7 +36,7 @@ const Rating = ({ voteAverage, releaseDate }) => {
         <circle
           className={`${
             isInTheFuture(releaseDate)
-              ? "stroke-white/20"
+              ? "stroke-neutral-700"
               : percentage > 60
               ? "stroke-green-900"
               : percentage > 40
@@ -63,7 +63,7 @@ const Rating = ({ voteAverage, releaseDate }) => {
         ></circle>
       </svg>
       <div className="absolute top-0 left-0 w-[60px] h-[60px] flex items-center justify-center">
-        {isInTheFuture && voteAverage === 0 ? (
+        {isInTheFuture(releaseDate) && voteAverage === 0 ? (
           <span className="text-white font-semibold text-sm">NR</span>
         ) : (
           <span className="text-white font-semibold text-sm">

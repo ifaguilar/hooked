@@ -17,7 +17,6 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
       } fixed top-[60px] bottom-0 left-0 w-64 z-50 py-8 overflow-y-scroll shadow-lg bg-white dark:bg-neutral-900 transition`}
     >
       <MenuHeading>Categories</MenuHeading>
-
       {categories.map((category) => {
         const categoryName = category.name.toLowerCase().replace(" ", "-");
 
@@ -37,11 +36,8 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
           </NavLink>
         );
       })}
-
       <Separator />
-
       <MenuHeading>Genres</MenuHeading>
-
       {genres.map((genre) => {
         const genreName = genre.name.toLowerCase().replace(" ", "-");
 

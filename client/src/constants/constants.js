@@ -3,7 +3,7 @@ export const serverBaseURL = import.meta.env.VITE_SERVER_BASE_URL;
 export const youtubeBaseURL = "https://www.youtube.com/embed/";
 
 export const websitePerspectiveBg =
-  "https://res.cloudinary.com/dz0brhzsu/image/upload/v1678337967/hooked/website-perspective.png";
+  "https://res.cloudinary.com/dz0brhzsu/image/upload/v1680726353/hooked/website-perspective.png";
 
 export const imagesBaseURL = "https://image.tmdb.org/t/p";
 

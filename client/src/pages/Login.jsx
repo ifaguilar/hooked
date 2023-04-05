@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,18 +23,37 @@ import { loginSchema } from "../helpers/validationSchema";
 const Login = () => {
   const { theme } = useContext(ThemeContext);
   const { isAuthenticated, login } = useContext(AuthContext);
-
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const isTokenValid = location.state?.isTokenValid;
+  const backgroundRef = useCallback((node) => {
+    if (node !== null) {
+      node.style.backgroundImage = `url(${websitePerspectiveBg})`;
+    }
+  });
 
-    if (isTokenValid === false) {
-      toast.error("Please, log in.", {
+  useEffect(() => {
+    let preloaderImage = document.createElement("img");
+
+    preloaderImage.src = websitePerspectiveBg;
+
+    preloaderImage.addEventListener("load", (event) => {
+      setIsLoading(false);
+      preloaderImage = null;
+    });
+
+    return () => removeEventListener("load", preloaderImage);
+  }, []);
+
+  useEffect(() => {
+    const wasLoggedIn = location.state?.wasLoggedIn;
+
+    if (wasLoggedIn === true) {
+      toast.error("Your session has expired. Please, log in again.", {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   }, []);
@@ -85,25 +104,27 @@ const Login = () => {
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };
 
   if (isAuthenticated) {
     return (
-      <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
+      <div className="relative min-h-screen bg-white dark:bg-neutral-950">
         <Navigate to="/" />
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
+    <div className="relative min-h-screen font-medium bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white">
       <div className="absolute inset-0 lg:grid lg:grid-cols-2">
         <div
-          className="hidden lg:block bg-cover bg-no-repeat bg-center"
-          style={{ backgroundImage: `url('${websitePerspectiveBg}')` }}
+          className={`hidden lg:block bg-cover bg-no-repeat bg-center ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          ref={backgroundRef}
         ></div>
         <div className="flex flex-col items-center justify-center gap-16 h-full px-4 lg:px-8">
           <Logo />

@@ -89,7 +89,7 @@ const App = () => {
   };
 
   return (
-    <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
+    <div className="relative min-h-screen font-medium bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white">
       {navigation.state === "loading" && <Spinner position="fixed" />}
       <div
         ref={overlayRef}
