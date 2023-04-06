@@ -91,7 +91,7 @@ const Navbar = ({
             <Avatar src={user.avatar} onClick={() => handleClick("menu")} />
 
             <Dropdown isOpen={isMenuOpen}>
-              <Link to="/profile">
+              <Link to="/settings">
                 <div
                   className="flex items-center gap-4 p-4 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   onClick={handleClick}

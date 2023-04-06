@@ -27,7 +27,7 @@ import SearchPage from "./pages/Search";
 import MoviePage from "./pages/Movie";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
-import ProfilePage from "./pages/Profile";
+import SettingsPage from "./pages/Settings";
 import FavoritesPage from "./pages/Favorites";
 import WatchlistPage from "./pages/Watchlist";
 
@@ -61,8 +61,8 @@ const router = createBrowserRouter(
           loader: trendingMovies,
         },
         {
-          path: "/profile",
-          element: <ProfilePage />,
+          path: "/settings",
+          element: <SettingsPage />,
           loader: userDetails,
         },
         {

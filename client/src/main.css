@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  color-scheme: dark;
-}
-
 p,
 li {
   @apply max-w-prose text-neutral-800 dark:text-neutral-300;
+}
+
+.highlighted {
+  @apply font-semibold text-neutral-950 dark:text-white;
 }
 
 label,
