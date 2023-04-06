@@ -8,8 +8,8 @@ const Tabs = ({ tabList }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="flex flex-col md:flex-row md:flex-grow gap-4 lg:gap-8">
-      <div className="w-full md:w-64 py-8 rounded-lg shadow-2xl bg-white dark:bg-neutral-900">
+    <div className="flex flex-col gap-4 md:flex-row md:flex-grow lg:gap-8">
+      <div className="w-full py-8 bg-white rounded-lg shadow-2xl md:w-64 dark:bg-neutral-900">
         <MenuHeading>Settings</MenuHeading>
         {tabList.map((tab, index) => (
           <MenuItem

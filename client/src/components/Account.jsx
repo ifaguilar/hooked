@@ -17,7 +17,7 @@ const Account = () => {
           anytime you want. However, please keep in mind that if you choose to
           do so:
         </p>
-        <ul className="flex flex-col gap-4 list-disc list-inside pl-8">
+        <ul className="flex flex-col gap-4 pl-8 list-disc list-inside">
           <li>
             Your account and all associated data will be deleted permanently
             from our servers.
