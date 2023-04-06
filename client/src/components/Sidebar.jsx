@@ -14,7 +14,7 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
     <div
       className={`${
         isOpen ? "translate-x-0" : "-translate-x-64"
-      } fixed top-[60px] bottom-0 left-0 w-64 z-50 py-8 overflow-y-scroll shadow-lg bg-white dark:bg-neutral-900 transition`}
+      } fixed top-[60px] bottom-0 left-0 w-64 z-50 py-8 overflow-y-scroll dark:[color-scheme:dark] shadow-lg bg-white dark:bg-neutral-900 transition`}
     >
       <MenuHeading>Categories</MenuHeading>
       {categories.map((category) => {
