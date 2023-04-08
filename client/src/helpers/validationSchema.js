@@ -36,3 +36,19 @@ export const personalInfoSchema = Yup.object({
     "Please enter a location with at least 3 characters."
   ),
 });
+
+export const securitySchema = Yup.object({
+  email: Yup.string()
+    .email("Please enter a valid email.")
+    .required("Email is required."),
+
+  newPassword: Yup.string().min(
+    8,
+    "Please enter a password with at least 8 characters."
+  ),
+
+  confirmNewPassword: Yup.string().oneOf(
+    [Yup.ref("newPassword")],
+    "Passwords must match."
+  ),
+});

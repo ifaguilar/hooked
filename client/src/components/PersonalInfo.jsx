@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Components
@@ -13,10 +13,15 @@ import DatePicker from "./DatePicker";
 // Constants
 import { GENDER_OPTIONS, SERVER_BASE_URL } from "../constants/constants";
 
+// Context
+import { AuthContext } from "../context/AuthContext";
+
 // Helpers
 import { personalInfoSchema } from "../helpers/validationSchema";
 
 const PersonalInfo = ({ name, avatar, location, gender, birthDate }) => {
+  const { logout } = useContext(AuthContext);
+
   const handleSubmit = async (values, submitProps) => {
     try {
       const response = await fetch(
@@ -148,7 +153,6 @@ const PersonalInfo = ({ name, avatar, location, gender, birthDate }) => {
           </Form>
         )}
       </Formik>
-      <ToastContainer />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 // Controllers
 import { fetchMovieDetails } from "./movieController.js";
 
@@ -91,24 +93,39 @@ export const updateSecurity = async (req, res) => {
       });
     }
 
-    const { email, password } = req.body;
+    const { email, currentPassword, newPassword } = req.body;
 
-    const emailInUse = await User.findOne({ email }).select("email");
+    if (user.email !== email) {
+      console.log(user);
+      const emailInUse = await User.findOne({ email }).select("email");
 
-    if (emailInUse) {
-      return res.status(409).json({
-        ok: false,
-        message: "Email is already in use.",
-      });
+      if (emailInUse) {
+        return res.status(409).json({
+          ok: false,
+          message: "Email is already in use.",
+        });
+      }
+
+      user.email = email;
+      await user.save();
     }
 
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    if (currentPassword !== "" && newPassword !== "") {
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
 
-    user.email = email;
-    user.password = hashedPassword;
+      if (!isMatch) {
+        return res.status(401).json({
+          ok: false,
+          message:
+            "The current password you entered is invalid. Please try again.",
+        });
+      }
 
-    await user.save();
+      const saltRounds = 10;
+      const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
+      user.password = hashedNewPassword;
+      await user.save();
+    }
 
     return res.status(200).json({
       ok: true,
