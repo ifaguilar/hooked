@@ -72,3 +72,5 @@ Here are the main libraries and dependencies used in this project:
 - bcrypt: A library for hashing passwords.
 
 - jsonwebtoken: A library for generating JSON web tokens (JWTs).
+
+- Cloudinary: A cloud-based image and video management platform that provides a set of APIs for uploading, storing, transforming, and delivering media files.

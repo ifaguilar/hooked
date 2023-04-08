@@ -7,7 +7,7 @@ const SearchBox = ({ setSearchTerm }) => {
   return (
     <div className="flex justify-center">
       <div className="relative w-full max-w-lg">
-        <div className="z-50 absolute top-0 left-0 w-[60px] h-[60px] flex items-center justify-center pointer-events-none opacity-[0.36] dark:opacity-[0.55]">
+        <div className="z-10 absolute top-0 left-0 w-[60px] h-[60px] flex items-center justify-center pointer-events-none opacity-[0.36] dark:opacity-[0.55]">
           <img className="icon" src={getIconURL("search")} alt="Search" />
         </div>
         <input

@@ -17,6 +17,7 @@ export const favoriteList = async () => {
       return {
         isTokenValid: true,
         favoriteList: data.favoriteList,
+        count: data.count,
       };
     } else {
       throw new Error(data.message);

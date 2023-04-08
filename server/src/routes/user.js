@@ -10,15 +10,16 @@ import {
   updatePersonalInfo,
   updateSecurity,
   deleteAccount,
+  checkMovie,
 } from "../controllers/userController.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = Router();
 
 router.get("/", verifyToken, getUserDetails);
-
 router.get("/favorites", verifyToken, getFavoriteList);
 router.get("/watchlist", verifyToken, getWatchlist);
+router.get("/check-movie/:movieId", verifyToken, checkMovie);
 
 router.post("/favorites/:movieId", verifyToken, addToFavoriteList);
 router.post("/watchlist/:movieId", verifyToken, addToWatchlist);

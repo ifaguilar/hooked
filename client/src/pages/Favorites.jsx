@@ -20,9 +20,10 @@ import { AuthContext } from "../context/AuthContext";
 import { favoriteList as favoriteListLoader } from "../loaders/favoriteList";
 
 const Favorites = () => {
-  const { favoriteList, isTokenValid } = useLoaderData();
+  const { favoriteList, count, isTokenValid } = useLoaderData();
   const { isAuthenticated, logoutReason, logout } = useContext(AuthContext);
   const [movies, setMovies] = useState(favoriteList);
+  const [counter, setCounter] = useState(count);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const Favorites = () => {
       if (data.ok) {
         const updatedMovies = await favoriteListLoader();
         setMovies(updatedMovies.favoriteList);
+        setCounter(counter - 1);
 
         toast.success(data.message, {
           position: "bottom-right",
@@ -87,7 +89,7 @@ const Favorites = () => {
   return (
     <div className="container mx-auto px-4 lg:px-8 py-32">
       <div className="min-h-[calc(100vh_-_208px)] flex flex-col gap-20">
-        <Heading size="md">Favorites</Heading>
+        <Heading size="md">{`Favorites (${counter})`}</Heading>
         {movies?.length > 0 ? (
           <MovieGrid>
             {movies.map((movie, index) => (

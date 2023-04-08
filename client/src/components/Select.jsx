@@ -6,7 +6,7 @@ import { getIconURL } from "../helpers/getIconURL";
 const Select = ({ options, ...props }) => {
   return (
     <div className="relative">
-      <div className="z-50 absolute top-0 right-0 w-[60px] h-[60px] flex items-center justify-center pointer-events-none opacity-[0.36] dark:opacity-[0.55]">
+      <div className="z-10 absolute top-0 right-0 w-[60px] h-[60px] flex items-center justify-center pointer-events-none opacity-[0.36] dark:opacity-[0.55]">
         <img
           className="icon"
           src={getIconURL("expand-arrow--v1", "outlined", "16")}

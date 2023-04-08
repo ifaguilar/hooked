@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 // Controllers
 import { fetchMovieDetails } from "./movieController.js";
 
+// Helpers
+import { uploadImage } from "../helpers/cloudinary.js";
+
 // Models
 import { User } from "../models/userModel.js";
 
@@ -53,7 +56,14 @@ export const updatePersonalInfo = async (req, res) => {
       });
     }
 
-    const { name, location, gender, birthDate } = req.body;
+    const { name, avatar, location, gender, birthDate } = req.body;
+
+    if (avatar) {
+      const newAvatarUrl = await uploadImage(avatar, "hooked");
+
+      user.avatar = newAvatarUrl;
+      await user.save();
+    }
 
     user.name = name;
     user.location = location;
@@ -173,6 +183,39 @@ export const deleteAccount = async (req, res) => {
   }
 };
 
+export const checkMovie = async (req, res) => {
+  try {
+    const userId = req.user;
+    const movieId = req.params.movieId;
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      return res.status(401).json({
+        ok: false,
+        message: "User does not exists.",
+      });
+    }
+
+    const isInFavoriteList = user.favoriteList.includes(movieId);
+
+    const isInWatchlist = user.watchlist.includes(movieId);
+
+    return res.status(200).json({
+      ok: true,
+      message: "Movie checked successfully.",
+      isInFavoriteList: isInFavoriteList,
+      isInWatchlist: isInWatchlist,
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      ok: false,
+      message: "Something went wrong. Please try again later.",
+    });
+  }
+};
+
 export const getFavoriteList = async (req, res) => {
   try {
     const userId = req.user;
@@ -190,10 +233,13 @@ export const getFavoriteList = async (req, res) => {
       user.favoriteList.map((movieId) => fetchMovieDetails(movieId))
     );
 
+    const count = user.favoriteList.length;
+
     return res.status(200).json({
       ok: true,
       message: "Favorite list retrieved successfully.",
       favoriteList: favoriteList,
+      count: count,
     });
   } catch (error) {
     console.error(error.message);
@@ -221,10 +267,13 @@ export const getWatchlist = async (req, res) => {
       user.watchlist.map((movieId) => fetchMovieDetails(movieId))
     );
 
+    const count = user.watchlist.length;
+
     return res.status(200).json({
       ok: true,
       message: "Watchlist retrieved successfully.",
       watchlist: watchlist,
+      count: count,
     });
   } catch (error) {
     console.error(error.message);

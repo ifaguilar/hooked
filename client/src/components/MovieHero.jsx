@@ -81,8 +81,7 @@ const MovieHero = ({ movie, director }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      checkFavoriteList(movie.id);
-      checkWatchlist(movie.id);
+      checkMovie(movie.id);
     }
   }, []);
 
@@ -264,63 +263,42 @@ const MovieHero = ({ movie, director }) => {
     }
   };
 
-  const checkFavoriteList = async (movieId) => {
+  const checkMovie = async (movieId) => {
     try {
-      const response = await fetch(`${SERVER_BASE_URL}/api/user/favorites`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        `${SERVER_BASE_URL}/api/user/check-movie/${movieId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       const data = await response.json();
 
       if (data.ok) {
-        const result = data.favoriteList.some((movie) => movie.id === movieId);
-        setIsInFavoriteList(result);
+        setIsInFavoriteList(data.isInFavoriteList);
+        setIsInWatchlist(data.isInWatchlist);
       } else {
         throw new Error(data.message);
       }
     } catch (error) {
       if (error.message === "Unauthorized.") {
         logout("Session timeout");
-      }
-
-      console.error({ message: error.message });
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
-      });
-    }
-  };
-
-  const checkWatchlist = async (movieId) => {
-    try {
-      const response = await fetch(`${SERVER_BASE_URL}/api/user/watchlist`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
-      const data = await response.json();
-
-      if (data.ok) {
-        const result = data.watchlist.some((movie) => movie.id === movieId);
-        setIsInWatchlist(result);
+        console.error(error.message);
+        toast.error("Your session has expired. Please, log in again.", {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
       } else {
-        throw new Error(data.message);
+        console.error(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
       }
-    } catch (error) {
-      if (error.message === "Unauthorized.") {
-        logout("Session timeout");
-      }
-
-      console.error({ message: error.message });
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
-      });
     }
   };
 

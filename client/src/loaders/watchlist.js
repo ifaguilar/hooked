@@ -17,6 +17,7 @@ export const watchlist = async () => {
       return {
         isTokenValid: true,
         watchlist: data.watchlist,
+        count: data.count,
       };
     } else {
       throw new Error(data.message);
