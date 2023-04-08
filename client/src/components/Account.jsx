@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
 import Button from "./Button";
 import Heading from "./Heading";
 
+// Constants
+import { SERVER_BASE_URL } from "../constants/constants";
+
+// Context
+import { AuthContext } from "../context/AuthContext";
+
 const Account = () => {
+  const { logout } = useContext(AuthContext);
+
+  const handleClick = async () => {
+    try {
+      const response = await fetch(`${SERVER_BASE_URL}/api/user/account`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.ok) {
+        logout("Account termination");
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+      }
+
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col gap-16">
       <Heading size="md">Account</Heading>
@@ -38,8 +78,11 @@ const Account = () => {
         </p>
       </div>
       <div>
-        <Button variant="primary">Delete Account</Button>
+        <Button variant="primary" onClick={handleClick}>
+          Delete Account
+        </Button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

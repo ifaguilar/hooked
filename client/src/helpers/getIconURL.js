@@ -1,6 +1,6 @@
 import {
-  outlinedIconsBaseURL,
-  filledIconsBaseURL,
+  OUTLINED_ICONS_BASE_URL,
+  FILLED_ICONS_BASE_URL,
 } from "../constants/constants";
 
 export const getIconURL = (
@@ -10,6 +10,6 @@ export const getIconURL = (
   color = "dc2626"
 ) => {
   return `${
-    iconType === "outlined" ? outlinedIconsBaseURL : filledIconsBaseURL
+    iconType === "outlined" ? OUTLINED_ICONS_BASE_URL : FILLED_ICONS_BASE_URL
   }/${size}/${color}/${icon}.png`;
 };

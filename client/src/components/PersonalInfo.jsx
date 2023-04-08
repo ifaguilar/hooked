@@ -1,9 +1,64 @@
 import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
+import Button from "./Button";
 import Heading from "./Heading";
+import Input from "./Input";
+import Select from "./Select";
+import DatePicker from "./DatePicker";
 
-const PersonalInfo = () => {
+// Constants
+import { GENDER_OPTIONS, SERVER_BASE_URL } from "../constants/constants";
+
+// Helpers
+import { personalInfoSchema } from "../helpers/validationSchema";
+
+const PersonalInfo = ({ name, avatar, location, gender, birthDate }) => {
+  const handleSubmit = async (values, submitProps) => {
+    try {
+      const response = await fetch(
+        `${SERVER_BASE_URL}/api/user/personal-info`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(values),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        toast.success(data.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+        submitProps.resetForm({ values });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+      }
+
+      console.error(error.message);
+      toast.error(error.message, {
+        position: "bottom-right",
+        className:
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col gap-16">
       <Heading size="md">Personal Info</Heading>
@@ -15,6 +70,85 @@ const PersonalInfo = () => {
           share your information with third parties without your consent.
         </p>
       </div>
+      <Formik
+        initialValues={{
+          name: name,
+          location: location,
+          gender: gender,
+          birthDate: birthDate,
+        }}
+        validationSchema={personalInfoSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting, dirty }) => (
+          <Form className="flex flex-col gap-8 w-full max-w-sm xl:grid xl:grid-cols-[384px_384px] xl:max-w-none xl:gap-12">
+            <div className="flex flex-col gap-2 xl:max-w-sm">
+              <label htmlFor="name">Name</label>
+
+              <Field name="name">
+                {({ field, meta }) => (
+                  <Input
+                    touched={meta.touched ? meta.touched : false}
+                    error={meta.error ? meta.error : ""}
+                    type="text"
+                    placeholder="Enter your name"
+                    {...field}
+                  />
+                )}
+              </Field>
+
+              <ErrorMessage name="name">
+                {(message) => <span className="text-red-600">{message}</span>}
+              </ErrorMessage>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="location">Location</label>
+
+              <Field name="location">
+                {({ field, meta }) => (
+                  <Input
+                    touched={meta.touched ? meta.touched : false}
+                    error={meta.error ? meta.error : ""}
+                    type="text"
+                    placeholder="Enter your location"
+                    {...field}
+                  />
+                )}
+              </Field>
+
+              <ErrorMessage name="location">
+                {(message) => <span className="text-red-600">{message}</span>}
+              </ErrorMessage>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="gender">Gender</label>
+
+              <Field name="gender">
+                {({ field }) => <Select options={GENDER_OPTIONS} {...field} />}
+              </Field>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="birthDate">Birth Date</label>
+
+              <Field name="birthDate">
+                {({ field }) => <DatePicker {...field} />}
+              </Field>
+            </div>
+
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={isSubmitting || !dirty}
+            >
+              Save Changes
+            </Button>
+          </Form>
+        )}
+      </Formik>
+      <ToastContainer />
     </div>
   );
 };

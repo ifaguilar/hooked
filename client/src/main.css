@@ -85,3 +85,20 @@ label,
 .text-overflow {
   @apply whitespace-nowrap text-ellipsis overflow-hidden;
 }
+
+input {
+  @apply relative;
+}
+
+input[type="date"] {
+  @apply dark:[color-scheme:dark];
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply bg-transparent absolute inset-0 cursor-pointer w-auto h-auto opacity-0;
+}
+
+select {
+  background-position-x: calc(100% - 24px);
+  background-position-y: 50%;
+}

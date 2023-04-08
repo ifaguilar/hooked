@@ -10,7 +10,7 @@ import Pill from "./Pill";
 import Rating from "./Rating";
 
 // Constants
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 // Context
 import { ThemeContext } from "../context/ThemeContext";
@@ -24,7 +24,7 @@ import { toHoursAndMinutes, getFullDate } from "../utils/DateTime";
 
 const MovieHero = ({ movie, director }) => {
   const { theme } = useContext(ThemeContext);
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const genres = useRouteLoaderData("app").genres;
@@ -89,7 +89,7 @@ const MovieHero = ({ movie, director }) => {
   const addToFavoriteList = async () => {
     try {
       const response = await fetch(
-        `${serverBaseURL}/api/user/favorites/${movie.id}`,
+        `${SERVER_BASE_URL}/api/user/favorites/${movie.id}`,
         {
           method: "POST",
           headers: {
@@ -112,19 +112,29 @@ const MovieHero = ({ movie, director }) => {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error(error.message);
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
-      });
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+        console.error(error.message);
+        toast.error("Your session has expired. Please, log in again.", {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      } else {
+        console.error(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      }
     }
   };
 
   const addToWatchlist = async () => {
     try {
       const response = await fetch(
-        `${serverBaseURL}/api/user/watchlist/${movie.id}`,
+        `${SERVER_BASE_URL}/api/user/watchlist/${movie.id}`,
         {
           method: "POST",
           headers: {
@@ -147,19 +157,29 @@ const MovieHero = ({ movie, director }) => {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error(error.message);
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
-      });
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+        console.error(error.message);
+        toast.error("Your session has expired. Please, log in again.", {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      } else {
+        console.error(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      }
     }
   };
 
   const removeFromFavoriteList = async () => {
     try {
       const response = await fetch(
-        `${serverBaseURL}/api/user/favorites/${movie.id}`,
+        `${SERVER_BASE_URL}/api/user/favorites/${movie.id}`,
         {
           method: "DELETE",
           headers: {
@@ -175,25 +195,35 @@ const MovieHero = ({ movie, director }) => {
         toast.success(data.message, {
           position: "bottom-right",
           className:
-            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
         });
       } else {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error(error.message);
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
-      });
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+        console.error(error.message);
+        toast.error("Your session has expired. Please, log in again.", {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      } else {
+        console.error(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      }
     }
   };
 
   const removeFromWatchlist = async () => {
     try {
       const response = await fetch(
-        `${serverBaseURL}/api/user/watchlist/${movie.id}`,
+        `${SERVER_BASE_URL}/api/user/watchlist/${movie.id}`,
         {
           method: "DELETE",
           headers: {
@@ -209,24 +239,34 @@ const MovieHero = ({ movie, director }) => {
         toast.success(data.message, {
           position: "bottom-right",
           className:
-            "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
         });
       } else {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error(error.message);
-      toast.error(error.message, {
-        position: "bottom-right",
-        className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
-      });
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+        console.error(error.message);
+        toast.error("Your session has expired. Please, log in again.", {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      } else {
+        console.error(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          className:
+            "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+        });
+      }
     }
   };
 
   const checkFavoriteList = async (movieId) => {
     try {
-      const response = await fetch(`${serverBaseURL}/api/user/favorites`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/user/favorites`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -241,18 +281,22 @@ const MovieHero = ({ movie, director }) => {
         throw new Error(data.message);
       }
     } catch (error) {
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+      }
+
       console.error({ message: error.message });
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };
 
   const checkWatchlist = async (movieId) => {
     try {
-      const response = await fetch(`${serverBaseURL}/api/user/watchlist`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/user/watchlist`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -267,11 +311,15 @@ const MovieHero = ({ movie, director }) => {
         throw new Error(data.message);
       }
     } catch (error) {
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+      }
+
       console.error({ message: error.message });
       toast.error(error.message, {
         position: "bottom-right",
         className:
-          "text-neutral-900 dark:text-white bg-white dark:bg-neutral-800",
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
   };

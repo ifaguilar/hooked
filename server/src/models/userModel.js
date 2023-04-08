@@ -23,6 +23,21 @@ const userSchema = mongoose.Schema(
         return getRandomItem(defaultAvatars);
       },
     },
+    location: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    gender: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    birthDate: {
+      type: String,
+      required: false,
+      default: "",
+    },
     favoriteList: [
       {
         type: Number,

@@ -7,7 +7,11 @@ import MenuItem from "./MenuItem";
 import Separator from "./Separator";
 
 // Constants
-import { categories, categoryIcons, genreIcons } from "../constants/constants";
+import {
+  CATEGORIES,
+  CATEGORY_ICONS,
+  GENRE_ICONS,
+} from "../constants/constants";
 
 const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
   return (
@@ -17,7 +21,7 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
       } fixed top-[60px] bottom-0 left-0 w-64 z-50 py-8 overflow-y-scroll shadow-lg bg-white dark:bg-neutral-900 transition`}
     >
       <MenuHeading>Categories</MenuHeading>
-      {categories.map((category) => {
+      {CATEGORIES.map((category) => {
         const categoryName = category.name.toLowerCase().replace(" ", "-");
 
         return (
@@ -29,7 +33,7 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
             {({ isActive }) => (
               <MenuItem
                 text={category.name}
-                icon={categoryIcons[categoryName]}
+                icon={CATEGORY_ICONS[categoryName]}
                 isActive={isActive}
               />
             )}
@@ -49,7 +53,7 @@ const Sidebar = ({ genres, isOpen, setSidebarOpen }) => {
           >
             {({ isActive }) => (
               <MenuItem
-                icon={genreIcons[genreName]}
+                icon={GENRE_ICONS[genreName]}
                 text={genre.name}
                 isActive={isActive}
               />

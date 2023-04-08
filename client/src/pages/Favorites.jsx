@@ -11,7 +11,7 @@ import MovieGrid from "../components/MovieGrid";
 import RoundedButton from "../components/RoundedButton";
 
 // Constants
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 // Context
 import { AuthContext } from "../context/AuthContext";
@@ -21,20 +21,20 @@ import { favoriteList as favoriteListLoader } from "../loaders/favoriteList";
 
 const Favorites = () => {
   const { favoriteList, isTokenValid } = useLoaderData();
-  const navigate = useNavigate();
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, logoutReason, logout } = useContext(AuthContext);
   const [movies, setMovies] = useState(favoriteList);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isTokenValid) {
-      logout();
+      logout("Session timeout");
     }
   }, []);
 
   const removeFromFavoriteList = async (movie) => {
     try {
       const response = await fetch(
-        `${serverBaseURL}/api/user/favorites/${movie.id}`,
+        `${SERVER_BASE_URL}/api/user/favorites/${movie.id}`,
         {
           method: "DELETE",
           headers: {
@@ -58,6 +58,10 @@ const Favorites = () => {
         throw new Error(data.message);
       }
     } catch (error) {
+      if (error.message === "Unauthorized.") {
+        logout("Session timeout");
+      }
+
       console.error(error.message);
       toast.error(error.message, {
         position: "bottom-right",
@@ -73,7 +77,7 @@ const Favorites = () => {
         <Navigate
           to="/login"
           state={{
-            sessionExpired: true,
+            logoutReason: logoutReason,
           }}
         />
       </div>

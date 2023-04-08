@@ -1,4 +1,4 @@
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 export const moviesByGenre = async ({ params }, page = 1) => {
   const genreName = params.genreName;
@@ -12,7 +12,7 @@ export const moviesByGenre = async ({ params }, page = 1) => {
 
   try {
     const response = await fetch(
-      `${serverBaseURL}/api/discover/movie/genre/${genreId}?page=${page}`
+      `${SERVER_BASE_URL}/api/discover/movie/genre/${genreId}?page=${page}`
     );
 
     const data = await response.json();

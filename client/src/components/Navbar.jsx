@@ -12,7 +12,7 @@ import RoundedButton from "./RoundedButton";
 import Separator from "./Separator";
 
 // Constants
-import { themeOptions } from "../constants/constants";
+import { THEME_OPTIONS } from "../constants/constants";
 
 // Context
 import { ThemeContext } from "../context/ThemeContext";
@@ -56,7 +56,7 @@ const Navbar = ({
       <Dropdown isOpen={isThemeOpen}>
         <MenuHeading>Change Theme</MenuHeading>
 
-        {themeOptions.map((option) => (
+        {THEME_OPTIONS.map((option) => (
           <MenuItem
             key={option.name}
             icon={option.icon}

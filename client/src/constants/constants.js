@@ -1,19 +1,34 @@
-export const serverBaseURL = import.meta.env.VITE_SERVER_BASE_URL;
+export const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
-export const youtubeBaseURL = "https://www.youtube.com/embed/";
+export const YOUTUBE_BASE_URL = "https://www.youtube.com/embed/";
 
-export const websitePerspectiveBg =
+export const WEBSITE_PERSPECTIVE_BG =
   "https://res.cloudinary.com/dz0brhzsu/image/upload/v1680726353/hooked/website-perspective.png";
 
-export const imagesBaseURL = "https://image.tmdb.org/t/p";
+export const IMAGES_BASE_URL = "https://image.tmdb.org/t/p";
 
-export const outlinedIconsBaseURL =
+export const OUTLINED_ICONS_BASE_URL =
   "https://img.icons8.com/fluency-systems-regular";
 
-export const filledIconsBaseURL =
+export const FILLED_ICONS_BASE_URL =
   "https://img.icons8.com/fluency-systems-filled";
 
-export const themeOptions = [
+export const GENDER_OPTIONS = [
+  {
+    name: "Select a gender",
+    value: "",
+  },
+  {
+    name: "Male",
+    value: "male",
+  },
+  {
+    name: "Female",
+    value: "female",
+  },
+];
+
+export const THEME_OPTIONS = [
   {
     name: "Light",
     icon: "sun",
@@ -28,7 +43,7 @@ export const themeOptions = [
   },
 ];
 
-export const categories = [
+export const CATEGORIES = [
   {
     id: 1,
     name: "Popular",
@@ -46,13 +61,13 @@ export const categories = [
   },
 ];
 
-export const categoryIcons = {
+export const CATEGORY_ICONS = {
   popular: "popcorn",
   "top-rated": "star--v1",
   upcoming: "calendar--v1",
 };
 
-export const genreIcons = {
+export const GENRE_ICONS = {
   action: "action",
   adventure: "adventure",
   animation: "animation",
@@ -74,7 +89,7 @@ export const genreIcons = {
   western: "western",
 };
 
-export const attributions = [
+export const ATTRIBUTIONS = [
   {
     name: "tmdb",
     url: "https://themoviedb.org",

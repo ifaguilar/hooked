@@ -1,8 +1,8 @@
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 export const trendingMovies = async () => {
   try {
-    const response = await fetch(`${serverBaseURL}/api/trending/`);
+    const response = await fetch(`${SERVER_BASE_URL}/api/trending/`);
 
     return response.json();
   } catch (error) {

@@ -15,7 +15,7 @@ import MovieCard from "../components/MovieCard";
 import PersonCard from "../components/PersonCard";
 
 // Constants
-import { youtubeBaseURL } from "../constants/constants";
+import { YOUTUBE_BASE_URL } from "../constants/constants";
 
 const Movie = () => {
   const { movie, cast, crew, videos, recommendations } = useLoaderData();
@@ -103,7 +103,7 @@ const Movie = () => {
                         <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-md">
                           <iframe
                             className="w-full h-full"
-                            src={`${youtubeBaseURL}${video.key}`}
+                            src={`${YOUTUBE_BASE_URL}${video.key}`}
                             title={video.name}
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
                             allowFullScreen

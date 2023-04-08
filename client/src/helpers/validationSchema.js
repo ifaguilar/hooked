@@ -25,3 +25,14 @@ export const signupSchema = Yup.object({
     .oneOf([Yup.ref("password")], "Passwords must match.")
     .required("Confirm Password is required."),
 });
+
+export const personalInfoSchema = Yup.object({
+  name: Yup.string()
+    .min(3, "Please enter a name with at least 3 characters.")
+    .required("Name is required."),
+
+  location: Yup.string().min(
+    3,
+    "Please enter a location with at least 3 characters."
+  ),
+});

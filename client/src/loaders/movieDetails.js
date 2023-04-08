@@ -1,24 +1,24 @@
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 export const movieDetails = async ({ params }) => {
   const movieId = params.movieId;
 
   try {
-    let response = await fetch(`${serverBaseURL}/api/movie/${movieId}`);
+    let response = await fetch(`${SERVER_BASE_URL}/api/movie/${movieId}`);
     let data = await response.json();
     const movie = data.movie;
 
-    response = await fetch(`${serverBaseURL}/api/movie/${movieId}/credits`);
+    response = await fetch(`${SERVER_BASE_URL}/api/movie/${movieId}/credits`);
     data = await response.json();
     const cast = data.cast;
     const crew = data.crew;
 
-    response = await fetch(`${serverBaseURL}/api/movie/${movieId}/videos`);
+    response = await fetch(`${SERVER_BASE_URL}/api/movie/${movieId}/videos`);
     data = await response.json();
     const videos = data.videos;
 
     response = await fetch(
-      `${serverBaseURL}/api/movie/${movieId}/recommendations`
+      `${SERVER_BASE_URL}/api/movie/${movieId}/recommendations`
     );
     data = await response.json();
     const recommendations = data.recommendations;

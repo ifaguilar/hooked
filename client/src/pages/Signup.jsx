@@ -10,7 +10,10 @@ import Input from "../components/Input";
 import Logo from "../components/Logo";
 
 // Constants
-import { serverBaseURL, websitePerspectiveBg } from "../constants/constants";
+import {
+  SERVER_BASE_URL,
+  WEBSITE_PERSPECTIVE_BG,
+} from "../constants/constants";
 
 // Context
 import { ThemeContext } from "../context/ThemeContext";
@@ -28,14 +31,14 @@ const Signup = () => {
 
   const backgroundRef = useCallback((node) => {
     if (node !== null) {
-      node.style.backgroundImage = `url(${websitePerspectiveBg})`;
+      node.style.backgroundImage = `url(${WEBSITE_PERSPECTIVE_BG})`;
     }
   });
 
   useEffect(() => {
     let preloaderImage = document.createElement("img");
 
-    preloaderImage.src = websitePerspectiveBg;
+    preloaderImage.src = WEBSITE_PERSPECTIVE_BG;
 
     preloaderImage.addEventListener("load", (event) => {
       setIsLoading(false);
@@ -70,7 +73,7 @@ const Signup = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const response = await fetch(`${serverBaseURL}/api/auth/signup`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

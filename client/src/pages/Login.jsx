@@ -10,7 +10,10 @@ import Input from "../components/Input";
 import Logo from "../components/Logo";
 
 // Constants
-import { serverBaseURL, websitePerspectiveBg } from "../constants/constants";
+import {
+  SERVER_BASE_URL,
+  WEBSITE_PERSPECTIVE_BG,
+} from "../constants/constants";
 
 // Context
 import { ThemeContext } from "../context/ThemeContext";
@@ -22,21 +25,21 @@ import { loginSchema } from "../helpers/validationSchema";
 
 const Login = () => {
   const { theme } = useContext(ThemeContext);
-  const { isAuthenticated, login } = useContext(AuthContext);
+  const { isAuthenticated, setLogoutReason, login } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
   const backgroundRef = useCallback((node) => {
     if (node !== null) {
-      node.style.backgroundImage = `url(${websitePerspectiveBg})`;
+      node.style.backgroundImage = `url(${WEBSITE_PERSPECTIVE_BG})`;
     }
   });
 
   useEffect(() => {
     let preloaderImage = document.createElement("img");
 
-    preloaderImage.src = websitePerspectiveBg;
+    preloaderImage.src = WEBSITE_PERSPECTIVE_BG;
 
     preloaderImage.addEventListener("load", (event) => {
       setIsLoading(false);
@@ -47,15 +50,25 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    const wasLoggedIn = location.state?.wasLoggedIn;
+    const logoutReason = location.state?.logoutReason;
 
-    if (wasLoggedIn === true) {
+    if (logoutReason === "Session timeout") {
       toast.error("Your session has expired. Please, log in again.", {
         position: "bottom-right",
         className:
           "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
       });
     }
+
+    if (logoutReason === "Account termination") {
+      toast.success("Account deleted successfully.", {
+        position: "bottom-right",
+        className:
+          "text-neutral-950 dark:text-white bg-white dark:bg-neutral-900",
+      });
+    }
+
+    setLogoutReason("");
   }, []);
 
   useEffect(() => {
@@ -83,7 +96,7 @@ const Login = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const response = await fetch(`${serverBaseURL}/api/auth/login`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

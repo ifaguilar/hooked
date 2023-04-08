@@ -9,7 +9,7 @@ import SearchBox from "../components/SearchBox";
 import Spinner from "../components/Spinner";
 
 // Constants
-import { serverBaseURL } from "../constants/constants";
+import { SERVER_BASE_URL } from "../constants/constants";
 
 const Search = () => {
   const { movies } = useLoaderData();
@@ -24,7 +24,7 @@ const Search = () => {
     };
 
     try {
-      const response = await fetch(`${serverBaseURL}/api/search/`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/search/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

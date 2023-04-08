@@ -20,12 +20,132 @@ export const getUserDetails = async (req, res) => {
     return res.status(200).json({
       ok: true,
       message: "User details retrieved successfully.",
+      userDetails: {
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        location: user.location,
+        gender: user.gender,
+        birthDate: user.birthDate,
+      },
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      ok: false,
+      message: "Something went wrong. Please try again later.",
+    });
+  }
+};
+
+export const updatePersonalInfo = async (req, res) => {
+  try {
+    const userId = req.user;
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      return res.status(401).json({
+        ok: false,
+        message: "User does not exists.",
+      });
+    }
+
+    const { name, location, gender, birthDate } = req.body;
+
+    user.name = name;
+    user.location = location;
+    user.gender = gender;
+    user.birthDate = birthDate;
+
+    await user.save();
+
+    return res.status(200).json({
+      ok: true,
+      message: "Personal info updated successfully.",
       user: {
-        id: user._id,
         name: user.name,
         email: user.email,
         avatar: user.avatar,
       },
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      ok: false,
+      message: "Something went wrong. Please try again later.",
+    });
+  }
+};
+
+export const updateSecurity = async (req, res) => {
+  try {
+    const userId = req.user;
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      return res.status(401).json({
+        ok: false,
+        message: "User does not exists.",
+      });
+    }
+
+    const { email, password } = req.body;
+
+    const emailInUse = await User.findOne({ email }).select("email");
+
+    if (emailInUse) {
+      return res.status(409).json({
+        ok: false,
+        message: "Email is already in use.",
+      });
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    user.email = email;
+    user.password = hashedPassword;
+
+    await user.save();
+
+    return res.status(200).json({
+      ok: true,
+      message: "Security updated successfully.",
+      user: {
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      ok: false,
+      message: "Something went wrong. Please try again later.",
+    });
+  }
+};
+
+export const deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user;
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      return res.status(401).json({
+        ok: false,
+        message: "User does not exists.",
+      });
+    }
+
+    await User.findByIdAndDelete(user._id);
+
+    return res.status(200).json({
+      ok: true,
+      message: "Account deleted successfully.",
     });
   } catch (error) {
     console.error(error.message);

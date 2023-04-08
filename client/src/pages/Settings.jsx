@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 
@@ -12,39 +12,22 @@ import Tabs from "../components/Tabs";
 import { AuthContext } from "../context/AuthContext";
 
 const Settings = () => {
-  const { user, isTokenValid } = useLoaderData();
-  const [wasLoggedIn, setWasLoggedIn] = useState(false);
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { userDetails, isTokenValid } = useLoaderData();
+  const { isAuthenticated, logoutReason, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token !== null && !isTokenValid) {
-      setWasLoggedIn(true);
-      logout();
-    } else if (token !== null && isTokenValid) {
-      localStorage.setItem("user", JSON.stringify(user));
+    if (!isTokenValid) {
+      logout("Session timeout");
     }
   }, []);
 
-  if (!isAuthenticated && wasLoggedIn) {
+  if (!isAuthenticated) {
     return (
       <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
         <Navigate
           to="/login"
           state={{
-            wasLoggedIn: true,
-          }}
-        />
-      </div>
-    );
-  } else if (!isAuthenticated && !wasLoggedIn) {
-    return (
-      <div className="relative min-h-screen font-medium text-neutral-900 dark:text-white bg-white dark:bg-neutral-900">
-        <Navigate
-          to="/login"
-          state={{
-            wasLoggedIn: false,
+            logoutReason: logoutReason,
           }}
         />
       </div>
@@ -52,8 +35,24 @@ const Settings = () => {
   }
 
   const tabList = [
-    { icon: "edit--v1", name: "Personal Info", component: <PersonalInfo /> },
-    { icon: "lock--v1", name: "Security", component: <Security /> },
+    {
+      icon: "edit--v1",
+      name: "Personal Info",
+      component: (
+        <PersonalInfo
+          name={userDetails?.name}
+          avatar={userDetails?.avatar}
+          location={userDetails?.location}
+          gender={userDetails?.gender}
+          birthDate={userDetails?.birthDate}
+        />
+      ),
+    },
+    {
+      icon: "lock--v1",
+      name: "Security",
+      component: <Security email={userDetails?.email} />,
+    },
     { icon: "user", name: "Account", component: <Account /> },
   ];
 
