@@ -101,4 +101,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 select {
   background-position-x: calc(100% - 24px);
   background-position-y: 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }

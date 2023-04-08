@@ -82,8 +82,11 @@ const MovieHero = ({ movie, director }) => {
   useEffect(() => {
     if (isAuthenticated) {
       checkMovie(movie.id);
+    } else {
+      setIsInFavoriteList(false);
+      setIsInWatchlist(false);
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const addToFavoriteList = async () => {
     try {
@@ -343,7 +346,7 @@ const MovieHero = ({ movie, director }) => {
                 <span className="font-semibold">User Score</span>
               </div>
               <div className="flex gap-4 items-center justify-center lg:justify-start">
-                {isInFavoriteList ? (
+                {isInFavoriteList === true ? (
                   <RoundedButton
                     onClick={
                       isAuthenticated
@@ -373,7 +376,7 @@ const MovieHero = ({ movie, director }) => {
                     }
                   />
                 )}
-                {isInWatchlist ? (
+                {isInWatchlist === true ? (
                   <RoundedButton
                     alt="Remove from watchlist"
                     onClick={
