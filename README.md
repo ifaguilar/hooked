@@ -1,7 +1,7 @@
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679857376/hooked/hooked-logo-white.png">
-        <img alt="Hooked" src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1679856139/hooked/hooked-logo-dark.png">
+        <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/ifaguilar/image/upload/v1679857376/hooked/hooked-logo-white.png">
+        <img alt="Hooked" src="https://res.cloudinary.com/ifaguilar/image/upload/v1679856139/hooked/hooked-logo-dark.png">
     </picture>
     <br>
     <br>
@@ -37,13 +37,13 @@ You can check out the live version of the app [here](https://hooked-app.netlify.
 
 ## Screenshots
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680810888/hooked/screenshot-1.png" alt="Homepage" />
+<img src="https://res.cloudinary.com/ifaguilar/image/upload/v1680810888/hooked/screenshot-1.png" alt="Homepage" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680810887/hooked/screenshot-2.png" alt="Movie Details" />
+<img src="https://res.cloudinary.com/ifaguilar/image/upload/v1680810887/hooked/screenshot-2.png" alt="Movie Details" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680810883/hooked/screenshot-3.png" alt="Top Cast" />
+<img src="https://res.cloudinary.com/ifaguilar/image/upload/v1680810883/hooked/screenshot-3.png" alt="Top Cast" />
 
-<img src="https://res.cloudinary.com/dz0brhzsu/image/upload/v1680810886/hooked/screenshot-4.png" alt="Search" />
+<img src="https://res.cloudinary.com/ifaguilar/image/upload/v1680810886/hooked/screenshot-4.png" alt="Search" />
 
 ## Dependencies
 
