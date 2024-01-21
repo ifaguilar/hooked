@@ -43,17 +43,17 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <HomePage />,
-          loader: popularMovies,
+          loader: () => popularMovies(1),
         },
         {
           path: "/top-rated",
           element: <HomePage />,
-          loader: topRatedMovies,
+          loader: () => topRatedMovies(1),
         },
         {
           path: "/upcoming",
           element: <HomePage />,
-          loader: upcomingMovies,
+          loader: () => upcomingMovies(1),
         },
         {
           path: "/search",
