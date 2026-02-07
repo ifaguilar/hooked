@@ -41,6 +41,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@netlify/vite-plugin-tanstack-start':
         specifier: ^1.2.9
