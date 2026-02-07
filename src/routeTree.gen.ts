@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TvShowsTopRatedRouteImport } from './routes/tv-shows/top-rated'
+import { Route as TvShowsPopularRouteImport } from './routes/tv-shows/popular'
+import { Route as TvShowsTvShowIdRouteImport } from './routes/tv-shows/$tvShowId'
+import { Route as MoviesUpcomingRouteImport } from './routes/movies/upcoming'
+import { Route as MoviesTopRatedRouteImport } from './routes/movies/top-rated'
+import { Route as MoviesPopularRouteImport } from './routes/movies/popular'
+import { Route as MoviesNowPlayingRouteImport } from './routes/movies/now-playing'
+import { Route as MoviesMovieIdRouteImport } from './routes/movies/$movieId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TvShowsTopRatedRoute = TvShowsTopRatedRouteImport.update({
+  id: '/tv-shows/top-rated',
+  path: '/tv-shows/top-rated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TvShowsPopularRoute = TvShowsPopularRouteImport.update({
+  id: '/tv-shows/popular',
+  path: '/tv-shows/popular',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TvShowsTvShowIdRoute = TvShowsTvShowIdRouteImport.update({
+  id: '/tv-shows/$tvShowId',
+  path: '/tv-shows/$tvShowId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoviesUpcomingRoute = MoviesUpcomingRouteImport.update({
+  id: '/movies/upcoming',
+  path: '/movies/upcoming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoviesTopRatedRoute = MoviesTopRatedRouteImport.update({
+  id: '/movies/top-rated',
+  path: '/movies/top-rated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoviesPopularRoute = MoviesPopularRouteImport.update({
+  id: '/movies/popular',
+  path: '/movies/popular',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoviesNowPlayingRoute = MoviesNowPlayingRouteImport.update({
+  id: '/movies/now-playing',
+  path: '/movies/now-playing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoviesMovieIdRoute = MoviesMovieIdRouteImport.update({
+  id: '/movies/$movieId',
+  path: '/movies/$movieId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/movies/$movieId': typeof MoviesMovieIdRoute
+  '/movies/now-playing': typeof MoviesNowPlayingRoute
+  '/movies/popular': typeof MoviesPopularRoute
+  '/movies/top-rated': typeof MoviesTopRatedRoute
+  '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
+  '/tv-shows/popular': typeof TvShowsPopularRoute
+  '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/movies/$movieId': typeof MoviesMovieIdRoute
+  '/movies/now-playing': typeof MoviesNowPlayingRoute
+  '/movies/popular': typeof MoviesPopularRoute
+  '/movies/top-rated': typeof MoviesTopRatedRoute
+  '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
+  '/tv-shows/popular': typeof TvShowsPopularRoute
+  '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/movies/$movieId': typeof MoviesMovieIdRoute
+  '/movies/now-playing': typeof MoviesNowPlayingRoute
+  '/movies/popular': typeof MoviesPopularRoute
+  '/movies/top-rated': typeof MoviesTopRatedRoute
+  '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
+  '/tv-shows/popular': typeof TvShowsPopularRoute
+  '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/movies/$movieId'
+    | '/movies/now-playing'
+    | '/movies/popular'
+    | '/movies/top-rated'
+    | '/movies/upcoming'
+    | '/tv-shows/$tvShowId'
+    | '/tv-shows/popular'
+    | '/tv-shows/top-rated'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/movies/$movieId'
+    | '/movies/now-playing'
+    | '/movies/popular'
+    | '/movies/top-rated'
+    | '/movies/upcoming'
+    | '/tv-shows/$tvShowId'
+    | '/tv-shows/popular'
+    | '/tv-shows/top-rated'
+  id:
+    | '__root__'
+    | '/'
+    | '/movies/$movieId'
+    | '/movies/now-playing'
+    | '/movies/popular'
+    | '/movies/top-rated'
+    | '/movies/upcoming'
+    | '/tv-shows/$tvShowId'
+    | '/tv-shows/popular'
+    | '/tv-shows/top-rated'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MoviesMovieIdRoute: typeof MoviesMovieIdRoute
+  MoviesNowPlayingRoute: typeof MoviesNowPlayingRoute
+  MoviesPopularRoute: typeof MoviesPopularRoute
+  MoviesTopRatedRoute: typeof MoviesTopRatedRoute
+  MoviesUpcomingRoute: typeof MoviesUpcomingRoute
+  TvShowsTvShowIdRoute: typeof TvShowsTvShowIdRoute
+  TvShowsPopularRoute: typeof TvShowsPopularRoute
+  TvShowsTopRatedRoute: typeof TvShowsTopRatedRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tv-shows/top-rated': {
+      id: '/tv-shows/top-rated'
+      path: '/tv-shows/top-rated'
+      fullPath: '/tv-shows/top-rated'
+      preLoaderRoute: typeof TvShowsTopRatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tv-shows/popular': {
+      id: '/tv-shows/popular'
+      path: '/tv-shows/popular'
+      fullPath: '/tv-shows/popular'
+      preLoaderRoute: typeof TvShowsPopularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tv-shows/$tvShowId': {
+      id: '/tv-shows/$tvShowId'
+      path: '/tv-shows/$tvShowId'
+      fullPath: '/tv-shows/$tvShowId'
+      preLoaderRoute: typeof TvShowsTvShowIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movies/upcoming': {
+      id: '/movies/upcoming'
+      path: '/movies/upcoming'
+      fullPath: '/movies/upcoming'
+      preLoaderRoute: typeof MoviesUpcomingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movies/top-rated': {
+      id: '/movies/top-rated'
+      path: '/movies/top-rated'
+      fullPath: '/movies/top-rated'
+      preLoaderRoute: typeof MoviesTopRatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movies/popular': {
+      id: '/movies/popular'
+      path: '/movies/popular'
+      fullPath: '/movies/popular'
+      preLoaderRoute: typeof MoviesPopularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movies/now-playing': {
+      id: '/movies/now-playing'
+      path: '/movies/now-playing'
+      fullPath: '/movies/now-playing'
+      preLoaderRoute: typeof MoviesNowPlayingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movies/$movieId': {
+      id: '/movies/$movieId'
+      path: '/movies/$movieId'
+      fullPath: '/movies/$movieId'
+      preLoaderRoute: typeof MoviesMovieIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MoviesMovieIdRoute: MoviesMovieIdRoute,
+  MoviesNowPlayingRoute: MoviesNowPlayingRoute,
+  MoviesPopularRoute: MoviesPopularRoute,
+  MoviesTopRatedRoute: MoviesTopRatedRoute,
+  MoviesUpcomingRoute: MoviesUpcomingRoute,
+  TvShowsTvShowIdRoute: TvShowsTvShowIdRoute,
+  TvShowsPopularRoute: TvShowsPopularRoute,
+  TvShowsTopRatedRoute: TvShowsTopRatedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
