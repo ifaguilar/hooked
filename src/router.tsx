@@ -1,5 +1,5 @@
-import { ErrorComponent } from "@/lib/tanstack-router/components/error-component";
-import { NotFoundComponent } from "@/lib/tanstack-router/components/not-found-component";
+import { ErrorComponent } from "@/components/shared/error-component";
+import { NotFoundComponent } from "@/components/shared/not-found-component";
 import { routeTree } from "@/routeTree.gen";
 import { createRouter } from "@tanstack/react-router";
 

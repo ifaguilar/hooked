@@ -1,10 +1,14 @@
 /// <reference types="vite/client" />
-import { devtoolsConfig } from "@/lib/tanstack-devtools/utils/devtools-config";
-import { devtoolsPlugins } from "@/lib/tanstack-devtools/utils/devtools-plugins";
-import { RootDocument } from "@/lib/tanstack-router/components/root-document";
+import { devtoolsConfig } from "@/lib/tanstack-devtools/devtools-config";
+import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
 import styles from "@/styles.css?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+} from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,9 +31,15 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <RootDocument>
-      <Outlet />
-      <TanStackDevtools config={devtoolsConfig} plugins={devtoolsPlugins} />
-    </RootDocument>
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <Outlet />
+        <TanStackDevtools config={devtoolsConfig} plugins={devtoolsPlugins} />
+        <Scripts />
+      </body>
+    </html>
   );
 }

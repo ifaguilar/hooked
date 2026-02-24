@@ -1,8 +1,7 @@
-import * as React from "react";
+import { cn } from "@/utils/cn";
+import { ComponentProps } from "react";
 
-import { cn } from "@/lib/shadcn/utils/cn";
-
-function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
+export function Textarea({ className, ...props }: ComponentProps<"textarea">) {
   return (
     <textarea
       data-slot="textarea"
@@ -14,5 +13,3 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     />
   );
 }
-
-export { Textarea };
