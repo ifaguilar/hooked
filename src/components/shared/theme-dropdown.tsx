@@ -35,7 +35,7 @@ export function ThemeDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" aria-label="Toggle theme">
+        <Button variant="ghost" size="icon" aria-label="Toggle theme">
           <ActiveIcon />
           <span className="sr-only">Toggle theme</span>
         </Button>
