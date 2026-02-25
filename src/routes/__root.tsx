@@ -1,7 +1,4 @@
 /// <reference types="vite/client" />
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
-import { PageWrapper } from "@/components/layout/page-wrapper";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { devtoolsConfig } from "@/lib/tanstack-devtools/devtools-config";
 import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
@@ -45,13 +42,8 @@ function RootComponent() {
       </head>
       <body>
         <ThemeProvider activeTheme={activeTheme}>
-          <Navbar />
-          <PageWrapper>
-            <Outlet />
-          </PageWrapper>
-          <Footer />
+          <Outlet />
         </ThemeProvider>
-
         <TanStackDevtools config={devtoolsConfig} plugins={devtoolsPlugins} />
         <Scripts />
       </body>
