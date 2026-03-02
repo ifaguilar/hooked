@@ -6,7 +6,12 @@ import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
 import styles from "@/styles.css?url";
 import { getThemeServerFn } from "@/utils/theme";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+} from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   head: () => ({

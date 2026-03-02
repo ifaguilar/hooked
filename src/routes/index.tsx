@@ -1,3 +1,4 @@
+import { PageContainer } from "@/components/shared/page-container";
 import { TypographyH2 } from "@/components/ui/typography";
 import { getNowPlayingMovies } from "@/features/movies/api/get-now-playing-movies";
 import { getPopularMovies } from "@/features/movies/api/get-popular-movies";
@@ -24,10 +25,11 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { popularMovies, topRatedMovies, upcomingMovies, nowPlayingMovies } = Route.useLoaderData();
+  const { popularMovies, topRatedMovies, upcomingMovies, nowPlayingMovies } =
+    Route.useLoaderData();
 
   return (
-    <div className="container mx-auto p-4 flex flex-col gap-12">
+    <PageContainer>
       <section className="flex flex-col gap-4">
         <TypographyH2>Popular Movies</TypographyH2>
         <MovieCarousel movies={popularMovies.results} />
@@ -47,6 +49,6 @@ function HomePage() {
         <TypographyH2>Now Playing Movies</TypographyH2>
         <MovieCarousel movies={nowPlayingMovies.results} />
       </section>
-    </div>
+    </PageContainer>
   );
 }

@@ -1,3 +1,4 @@
+import { PageContainer } from "@/components/shared/page-container";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/tv-shows/$tvShowId")({
@@ -5,5 +6,5 @@ export const Route = createFileRoute("/tv-shows/$tvShowId")({
 });
 
 function RouteComponent() {
-  return <div>Hello "/tv-shows/$tvShowId"!</div>;
+  return <PageContainer>Hello "/tv-shows/$tvShowId"!</PageContainer>;
 }
