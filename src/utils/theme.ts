@@ -1,14 +1,25 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, setCookie } from "@tanstack/react-start/server";
+import { LucideIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import z from "zod";
+
+export type ThemeValue = "light" | "dark" | "system";
+
+export type ThemeOption = {
+  value: ThemeValue;
+  label: string;
+  icon: LucideIcon;
+};
+
+export const THEME_OPTIONS: readonly ThemeOption[] = [
+  { value: "light", label: "Light", icon: SunIcon },
+  { value: "dark", label: "Dark", icon: MoonIcon },
+  { value: "system", label: "System", icon: MonitorIcon },
+];
 
 export const THEME_STORAGE_KEY = "theme";
 
-export const THEME_VALUES = ["light", "dark", "system"] as const;
-
-export const themeSchema = z.enum(THEME_VALUES);
-
-export type Theme = z.infer<typeof themeSchema>;
+export const themeSchema = z.enum(THEME_OPTIONS.map((theme) => theme.value));
 
 export const getThemeServerFn = createServerFn().handler(() => {
   const parsed = themeSchema.safeParse(getCookie(THEME_STORAGE_KEY));
@@ -17,4 +28,4 @@ export const getThemeServerFn = createServerFn().handler(() => {
 
 export const setThemeServerFn = createServerFn()
   .inputValidator(themeSchema)
-  .handler(({ data }) => setCookie(THEME_STORAGE_KEY, data));
+  .handler(({ data: newTheme }) => setCookie(THEME_STORAGE_KEY, newTheme));
