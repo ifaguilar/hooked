@@ -1,7 +1,9 @@
 /// <reference types="vite/client" />
 
 // Client-side environment variables
-interface ImportMetaEnv {}
+interface ImportMetaEnv {
+  readonly VITE_TMDB_IMAGE_BASE_URL: string;
+}
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;

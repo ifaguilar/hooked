@@ -6,7 +6,9 @@ const serverEnvSchema = z.object({
   TMDB_API_KEY: z.string(),
 });
 
-const clientEnvSchema = z.object({});
+const clientEnvSchema = z.object({
+  VITE_TMDB_IMAGE_BASE_URL: z.url(),
+});
 
 export const serverEnv = serverEnvSchema.parse(process.env);
 
