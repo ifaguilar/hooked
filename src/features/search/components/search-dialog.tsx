@@ -21,9 +21,7 @@ export function SearchDialog() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Search</DialogTitle>
-          <DialogDescription className="sr-only">
-            Search for a movie or TV show
-          </DialogDescription>
+          <DialogDescription className="sr-only">Search for a movie or TV show</DialogDescription>
         </DialogHeader>
       </DialogContent>
     </Dialog>
