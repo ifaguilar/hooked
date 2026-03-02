@@ -7,6 +7,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { SearchIcon } from "lucide-react";
 
 export function SearchDialog() {
@@ -18,11 +23,19 @@ export function SearchDialog() {
           <span className="sr-only">Search</span>
         </Button>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className="sr-only">Search</DialogTitle>
-          <DialogDescription className="sr-only">Search for a movie or TV show</DialogDescription>
+      <DialogContent showCloseButton={false}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>Search</DialogTitle>
+          <DialogDescription>Search for a movie or TV show</DialogDescription>
         </DialogHeader>
+        <div>
+          <InputGroup>
+            <InputGroupInput placeholder="Search for a movie or TV show..." />
+            <InputGroupAddon>
+              <SearchIcon />
+            </InputGroupAddon>
+          </InputGroup>
+        </div>
       </DialogContent>
     </Dialog>
   );

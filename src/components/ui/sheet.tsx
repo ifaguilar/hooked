@@ -3,19 +3,27 @@ import { XIcon } from "lucide-react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
 
-export function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
+export function Sheet({
+  ...props
+}: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-export function SheetTrigger({ ...props }: ComponentProps<typeof SheetPrimitive.Trigger>) {
+export function SheetTrigger({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Trigger>) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-export function SheetClose({ ...props }: ComponentProps<typeof SheetPrimitive.Close>) {
+export function SheetClose({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Close>) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-export function SheetPortal({ ...props }: ComponentProps<typeof SheetPrimitive.Portal>) {
+export function SheetPortal({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
@@ -27,7 +35,7 @@ export function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        "backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
         className,
       )}
       {...props}
@@ -96,7 +104,10 @@ export function SheetFooter({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
+export function SheetTitle({
+  className,
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"

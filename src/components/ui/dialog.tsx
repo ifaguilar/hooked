@@ -4,19 +4,27 @@ import { XIcon } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
 
-export function Dialog({ ...props }: ComponentProps<typeof DialogPrimitive.Root>) {
+export function Dialog({
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
-export function DialogTrigger({ ...props }: ComponentProps<typeof DialogPrimitive.Trigger>) {
+export function DialogTrigger({
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Trigger>) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
-export function DialogPortal({ ...props }: ComponentProps<typeof DialogPrimitive.Portal>) {
+export function DialogPortal({
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Portal>) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
-export function DialogClose({ ...props }: ComponentProps<typeof DialogPrimitive.Close>) {
+export function DialogClose({
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Close>) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
@@ -28,7 +36,7 @@ export function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        "backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
         className,
       )}
       {...props}
@@ -91,7 +99,10 @@ export function DialogFooter({
   return (
     <div
       data-slot="dialog-footer"
-      className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)}
+      className={cn(
+        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -104,7 +115,10 @@ export function DialogFooter({
   );
 }
 
-export function DialogTitle({ className, ...props }: ComponentProps<typeof DialogPrimitive.Title>) {
+export function DialogTitle({
+  className,
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"

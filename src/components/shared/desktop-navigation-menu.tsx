@@ -24,7 +24,7 @@ export function DesktopNavigationMenu() {
                   {ItemIcon ? <ItemIcon className="mr-2 size-4" /> : null}
                   <span>{item.title}</span>
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="flex min-w-32 flex-col gap-1">
+                <NavigationMenuContent className="flex min-w-40 flex-col gap-1">
                   {item.items.map((subItem) => (
                     <NavigationMenuLink key={subItem.href} asChild>
                       <Link
@@ -45,7 +45,10 @@ export function DesktopNavigationMenu() {
           if (item.href) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
                   <Link
                     to={item.href}
                     activeProps={{
