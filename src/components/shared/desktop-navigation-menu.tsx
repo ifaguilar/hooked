@@ -45,10 +45,7 @@ export function DesktopNavigationMenu() {
           if (item.href) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuLink
-                  asChild
-                  className={navigationMenuTriggerStyle()}
-                >
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link
                     to={item.href}
                     activeProps={{

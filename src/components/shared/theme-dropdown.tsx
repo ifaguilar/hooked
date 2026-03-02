@@ -5,32 +5,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "@/hooks/use-theme";
-import { THEME_VALUES, type Theme } from "@/utils/theme";
-import { LucideIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
-
-const THEME_LABEL: Record<Theme, string> = {
-  light: "Light",
-  dark: "Dark",
-  system: "System",
-};
-
-const THEME_ICONS: Record<Theme, LucideIcon> = {
-  light: SunIcon,
-  dark: MoonIcon,
-  system: MonitorIcon,
-};
-
-const THEMES = THEME_VALUES.map((value) => ({
-  value,
-  label: THEME_LABEL[value],
-  icon: THEME_ICONS[value],
-}));
+import { setThemeServerFn, THEME_OPTIONS, ThemeValue } from "@/utils/theme";
+import { useLoaderData, useRouter } from "@tanstack/react-router";
 
 export function ThemeDropdown() {
-  const { activeTheme, setTheme } = useTheme();
+  const router = useRouter();
 
-  const ActiveIcon = THEME_ICONS[activeTheme];
+  const activeTheme = useLoaderData({
+    from: "__root__",
+  });
+
+  const ActiveIcon =
+    THEME_OPTIONS.find((t) => t.value === activeTheme)?.icon || THEME_OPTIONS[0].icon;
+
+  async function handleThemeChange(theme: ThemeValue) {
+    await setThemeServerFn({ data: theme });
+    router.invalidate();
+  }
 
   return (
     <DropdownMenu>
@@ -41,14 +32,11 @@ export function ThemeDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {THEMES.map((theme) => {
+        {THEME_OPTIONS.map((theme) => {
           const ThemeIcon = theme.icon;
 
           return (
-            <DropdownMenuItem
-              key={theme.value}
-              onClick={() => setTheme(theme.value)}
-            >
+            <DropdownMenuItem key={theme.value} onClick={() => handleThemeChange(theme.value)}>
               <ThemeIcon />
               <span>{theme.label}</span>
             </DropdownMenuItem>

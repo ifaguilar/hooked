@@ -3,29 +3,20 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
 
-export function DropdownMenu({
-  ...props
-}: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
+export function DropdownMenu({ ...props }: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 }
 
 export function DropdownMenuPortal({
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
-  return (
-    <DropdownMenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
-  );
+  return <DropdownMenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />;
 }
 
 export function DropdownMenuTrigger({
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
-  return (
-    <DropdownMenuPrimitive.Trigger
-      data-slot="dropdown-menu-trigger"
-      {...props}
-    />
-  );
+  return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
 }
 
 export function DropdownMenuContent({
@@ -51,9 +42,7 @@ export function DropdownMenuContent({
 export function DropdownMenuGroup({
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Group>) {
-  return (
-    <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
-  );
+  return <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />;
 }
 
 export function DropdownMenuItem({
@@ -108,12 +97,7 @@ export function DropdownMenuCheckboxItem({
 export function DropdownMenuRadioGroup({
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
-  return (
-    <DropdownMenuPrimitive.RadioGroup
-      data-slot="dropdown-menu-radio-group"
-      {...props}
-    />
-  );
+  return <DropdownMenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />;
 }
 
 export function DropdownMenuRadioItem({
@@ -151,10 +135,7 @@ export function DropdownMenuLabel({
     <DropdownMenuPrimitive.Label
       data-slot="dropdown-menu-label"
       data-inset={inset}
-      className={cn(
-        "px-2 py-1.5 text-sm font-medium data-inset:pl-8",
-        className,
-      )}
+      className={cn("px-2 py-1.5 text-sm font-medium data-inset:pl-8", className)}
       {...props}
     />
   );
@@ -173,25 +154,17 @@ export function DropdownMenuSeparator({
   );
 }
 
-export function DropdownMenuShortcut({
-  className,
-  ...props
-}: ComponentProps<"span">) {
+export function DropdownMenuShortcut({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      className={cn(
-        "text-muted-foreground ml-auto text-xs tracking-widest",
-        className,
-      )}
+      className={cn("text-muted-foreground ml-auto text-xs tracking-widest", className)}
       {...props}
     />
   );
 }
 
-export function DropdownMenuSub({
-  ...props
-}: ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
+export function DropdownMenuSub({ ...props }: ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
   return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
 }
 

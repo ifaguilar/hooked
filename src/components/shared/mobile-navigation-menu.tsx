@@ -1,4 +1,4 @@
-import hookedLogo from "@/assets/hooked-logo.svg";
+import { HookedLogo } from "@/components/shared/hooked-logo";
 import {
   Accordion,
   AccordionContent,
@@ -25,9 +25,7 @@ export function MobileNavigationMenu() {
   const location = useLocation();
 
   const activeItem = navItems.find((item) =>
-    item.items?.some(
-      (subItem) => subItem.href && location.pathname.startsWith(subItem.href),
-    ),
+    item.items?.some((subItem) => subItem.href && location.pathname.startsWith(subItem.href)),
   );
 
   return (
@@ -41,12 +39,10 @@ export function MobileNavigationMenu() {
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-          <SheetDescription className="sr-only">
-            Navigation menu for the website
-          </SheetDescription>
+          <SheetDescription className="sr-only">Navigation menu for the website</SheetDescription>
 
-          <Link to="/" className="w-fit" onClick={() => setIsOpen(false)}>
-            <img src={hookedLogo} alt="Hooked" className="h-8" />
+          <Link to="/" onClick={() => setIsOpen(false)}>
+            <HookedLogo className="h-8 w-auto text-foreground" />
           </Link>
         </SheetHeader>
 
@@ -79,7 +75,7 @@ export function MobileNavigationMenu() {
                             onClick={() => setIsOpen(false)}
                             className="py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                             activeProps={{
-                              className: "text-white font-semibold",
+                              className: "text-foreground font-semibold",
                             }}
                           >
                             {subItem.title}
@@ -111,11 +107,7 @@ export function MobileNavigationMenu() {
                 );
               }
 
-              return (
-                <Fragment key={item.title}>
-                  {showSeparator ? <Separator /> : null}
-                </Fragment>
-              );
+              return <Fragment key={item.title}>{showSeparator ? <Separator /> : null}</Fragment>;
             })}
           </Accordion>
         </div>

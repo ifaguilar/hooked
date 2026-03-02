@@ -22,10 +22,7 @@ export function Avatar({
   );
 }
 
-export function AvatarImage({
-  className,
-  ...props
-}: ComponentProps<typeof AvatarPrimitive.Image>) {
+export function AvatarImage({ className, ...props }: ComponentProps<typeof AvatarPrimitive.Image>) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
@@ -80,10 +77,7 @@ export function AvatarGroup({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function AvatarGroupCount({
-  className,
-  ...props
-}: ComponentProps<"div">) {
+export function AvatarGroupCount({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="avatar-group-count"

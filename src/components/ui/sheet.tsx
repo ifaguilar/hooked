@@ -3,27 +3,19 @@ import { XIcon } from "lucide-react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
 
-export function Sheet({
-  ...props
-}: React.ComponentProps<typeof SheetPrimitive.Root>) {
+export function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-export function SheetTrigger({
-  ...props
-}: ComponentProps<typeof SheetPrimitive.Trigger>) {
+export function SheetTrigger({ ...props }: ComponentProps<typeof SheetPrimitive.Trigger>) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-export function SheetClose({
-  ...props
-}: ComponentProps<typeof SheetPrimitive.Close>) {
+export function SheetClose({ ...props }: ComponentProps<typeof SheetPrimitive.Close>) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-export function SheetPortal({
-  ...props
-}: ComponentProps<typeof SheetPrimitive.Portal>) {
+export function SheetPortal({ ...props }: ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
@@ -104,10 +96,7 @@ export function SheetFooter({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function SheetTitle({
-  className,
-  ...props
-}: ComponentProps<typeof SheetPrimitive.Title>) {
+export function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
