@@ -6,14 +6,17 @@ import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
 import styles from "@/styles.css?url";
 import { getThemeServerFn } from "@/utils/theme";
 import { TanStackDevtools } from "@tanstack/react-devtools";
+import type { QueryClient } from "@tanstack/react-query";
 import {
-  createRootRoute,
+  createRootRouteWithContext,
   HeadContent,
   Outlet,
   Scripts,
 } from "@tanstack/react-router";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       {

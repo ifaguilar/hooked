@@ -1,3 +1,8 @@
+import { MovieListParamsSchema } from "@/features/movies/utils/schemas";
+import { z } from "zod";
+
+export type MovieListParams = z.infer<typeof MovieListParamsSchema>;
+
 export type Dates = {
   maximum: string;
   minimum: string;
