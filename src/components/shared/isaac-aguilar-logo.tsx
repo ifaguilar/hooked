@@ -27,8 +27,8 @@ export function IsaacAguilarLogo(props: ComponentProps<"svg">) {
           y2="60.2713"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00ADFF" />
-          <stop offset="1" stop-color="#0066FF" />
+          <stop stopColor="#00ADFF" />
+          <stop offset="1" stopColor="#0066FF" />
         </linearGradient>
       </defs>
     </svg>
