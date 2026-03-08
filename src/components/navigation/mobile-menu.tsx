@@ -1,4 +1,4 @@
-import { HookedLogo } from "@/components/shared/hooked-logo";
+import { HookedLogo } from "@/components/branding/hooked-logo";
 import {
   Accordion,
   AccordionContent,
@@ -20,12 +20,14 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { MenuIcon } from "lucide-react";
 import { Fragment, useState } from "react";
 
-export function MobileNavigationMenu() {
+export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const activeItem = navItems.find((item) =>
-    item.items?.some((subItem) => subItem.href && location.pathname.startsWith(subItem.href)),
+    item.items?.some(
+      (subItem) => subItem.href && location.pathname.startsWith(subItem.href),
+    ),
   );
 
   return (
@@ -39,7 +41,9 @@ export function MobileNavigationMenu() {
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-          <SheetDescription className="sr-only">Navigation menu for the website</SheetDescription>
+          <SheetDescription className="sr-only">
+            Navigation menu for the website
+          </SheetDescription>
 
           <Link to="/" onClick={() => setIsOpen(false)}>
             <HookedLogo className="h-8 w-auto text-foreground" />
@@ -107,7 +111,11 @@ export function MobileNavigationMenu() {
                 );
               }
 
-              return <Fragment key={item.title}>{showSeparator ? <Separator /> : null}</Fragment>;
+              return (
+                <Fragment key={item.title}>
+                  {showSeparator ? <Separator /> : null}
+                </Fragment>
+              );
             })}
           </Accordion>
         </div>

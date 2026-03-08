@@ -10,7 +10,7 @@ import {
 import { navItems } from "@/utils/nav-items";
 import { Link } from "@tanstack/react-router";
 
-export function DesktopNavigationMenu() {
+export function DesktopMenu() {
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
@@ -45,7 +45,10 @@ export function DesktopNavigationMenu() {
           if (item.href) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
                   <Link
                     to={item.href}
                     activeProps={{
