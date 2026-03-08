@@ -1,4 +1,4 @@
-import { PageContainer } from "@/components/shared/page-container";
+import { PageContainer } from "@/components/layout/page-container";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/people/popular")({

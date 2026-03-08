@@ -1,10 +1,10 @@
 /// <reference types="vite/client" />
-import { Footer } from "@/components/shared/footer";
-import { Header } from "@/components/shared/header";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { getTheme } from "@/features/theme/utils/theme";
 import { devtoolsConfig } from "@/lib/tanstack-devtools/devtools-config";
 import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
 import styles from "@/styles.css?url";
-import { getThemeServerFn } from "@/utils/theme";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
@@ -63,7 +63,7 @@ export const Route = createRootRouteWithContext<{
       { rel: "icon", href: "/favicon.ico" },
     ],
   }),
-  loader: () => getThemeServerFn(),
+  loader: () => getTheme(),
   component: RootComponent,
 });
 

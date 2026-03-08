@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TvShowsTopRatedRouteImport } from './routes/tv-shows/top-rated'
 import { Route as TvShowsPopularRouteImport } from './routes/tv-shows/popular'
-import { Route as TvShowsOnTvRouteImport } from './routes/tv-shows/on-tv'
+import { Route as TvShowsOnTheAirRouteImport } from './routes/tv-shows/on-the-air'
 import { Route as TvShowsAiringTodayRouteImport } from './routes/tv-shows/airing-today'
 import { Route as TvShowsTvShowIdRouteImport } from './routes/tv-shows/$tvShowId'
 import { Route as PeoplePopularRouteImport } from './routes/people/popular'
@@ -37,9 +37,9 @@ const TvShowsPopularRoute = TvShowsPopularRouteImport.update({
   path: '/tv-shows/popular',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TvShowsOnTvRoute = TvShowsOnTvRouteImport.update({
-  id: '/tv-shows/on-tv',
-  path: '/tv-shows/on-tv',
+const TvShowsOnTheAirRoute = TvShowsOnTheAirRouteImport.update({
+  id: '/tv-shows/on-the-air',
+  path: '/tv-shows/on-the-air',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TvShowsAiringTodayRoute = TvShowsAiringTodayRouteImport.update({
@@ -93,7 +93,7 @@ export interface FileRoutesByFullPath {
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
-  '/tv-shows/on-tv': typeof TvShowsOnTvRoute
+  '/tv-shows/on-the-air': typeof TvShowsOnTheAirRoute
   '/tv-shows/popular': typeof TvShowsPopularRoute
   '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
@@ -107,7 +107,7 @@ export interface FileRoutesByTo {
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
-  '/tv-shows/on-tv': typeof TvShowsOnTvRoute
+  '/tv-shows/on-the-air': typeof TvShowsOnTheAirRoute
   '/tv-shows/popular': typeof TvShowsPopularRoute
   '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
@@ -122,7 +122,7 @@ export interface FileRoutesById {
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
-  '/tv-shows/on-tv': typeof TvShowsOnTvRoute
+  '/tv-shows/on-the-air': typeof TvShowsOnTheAirRoute
   '/tv-shows/popular': typeof TvShowsPopularRoute
   '/tv-shows/top-rated': typeof TvShowsTopRatedRoute
 }
@@ -138,7 +138,7 @@ export interface FileRouteTypes {
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
-    | '/tv-shows/on-tv'
+    | '/tv-shows/on-the-air'
     | '/tv-shows/popular'
     | '/tv-shows/top-rated'
   fileRoutesByTo: FileRoutesByTo
@@ -152,7 +152,7 @@ export interface FileRouteTypes {
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
-    | '/tv-shows/on-tv'
+    | '/tv-shows/on-the-air'
     | '/tv-shows/popular'
     | '/tv-shows/top-rated'
   id:
@@ -166,7 +166,7 @@ export interface FileRouteTypes {
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
-    | '/tv-shows/on-tv'
+    | '/tv-shows/on-the-air'
     | '/tv-shows/popular'
     | '/tv-shows/top-rated'
   fileRoutesById: FileRoutesById
@@ -181,7 +181,7 @@ export interface RootRouteChildren {
   PeoplePopularRoute: typeof PeoplePopularRoute
   TvShowsTvShowIdRoute: typeof TvShowsTvShowIdRoute
   TvShowsAiringTodayRoute: typeof TvShowsAiringTodayRoute
-  TvShowsOnTvRoute: typeof TvShowsOnTvRoute
+  TvShowsOnTheAirRoute: typeof TvShowsOnTheAirRoute
   TvShowsPopularRoute: typeof TvShowsPopularRoute
   TvShowsTopRatedRoute: typeof TvShowsTopRatedRoute
 }
@@ -209,11 +209,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TvShowsPopularRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tv-shows/on-tv': {
-      id: '/tv-shows/on-tv'
-      path: '/tv-shows/on-tv'
-      fullPath: '/tv-shows/on-tv'
-      preLoaderRoute: typeof TvShowsOnTvRouteImport
+    '/tv-shows/on-the-air': {
+      id: '/tv-shows/on-the-air'
+      path: '/tv-shows/on-the-air'
+      fullPath: '/tv-shows/on-the-air'
+      preLoaderRoute: typeof TvShowsOnTheAirRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tv-shows/airing-today': {
@@ -285,7 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   PeoplePopularRoute: PeoplePopularRoute,
   TvShowsTvShowIdRoute: TvShowsTvShowIdRoute,
   TvShowsAiringTodayRoute: TvShowsAiringTodayRoute,
-  TvShowsOnTvRoute: TvShowsOnTvRoute,
+  TvShowsOnTheAirRoute: TvShowsOnTheAirRoute,
   TvShowsPopularRoute: TvShowsPopularRoute,
   TvShowsTopRatedRoute: TvShowsTopRatedRoute,
 }

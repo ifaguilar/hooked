@@ -1,92 +1,55 @@
-import { PageContainer } from "@/components/shared/page-container";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
-  MovieCard,
-  MovieCardSkeleton,
-} from "@/features/movies/components/movie-card";
-import { getNowPlayingMoviesQueryOptions } from "@/features/movies/utils/query-options";
-import { MovieListParamsSchema } from "@/features/movies/utils/schemas";
+import { MediaCard } from "@/components/layout/media-card";
+import { MediaGrid, MediaGridSkeleton } from "@/components/layout/media-grid";
+import { MediaPagination } from "@/components/layout/media-pagination";
+import { PageContainer } from "@/components/layout/page-container";
+import { PageSection } from "@/components/layout/page-section";
+import { TypographyH2 } from "@/components/ui/typography";
+import { movieQueries } from "@/features/movies/api/queries";
+import { TMDBListParamsSchema } from "@/schemas/tmdb";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 
 export const Route = createFileRoute("/movies/now-playing")({
-  component: RouteComponent,
-  validateSearch: MovieListParamsSchema,
+  component: NowPlayingMoviesPage,
+  validateSearch: TMDBListParamsSchema,
   loaderDeps: ({ search }) => ({
     page: search.page,
   }),
   loader: ({ context, deps }) => {
-    context.queryClient.prefetchQuery(getNowPlayingMoviesQueryOptions(deps));
+    context.queryClient.prefetchQuery(movieQueries.nowPlaying(deps));
   },
 });
 
-function RouteComponent() {
+function NowPlayingMoviesPage() {
   return (
     <PageContainer>
-      <Suspense fallback={<MovieGridSkeleton />}>
-        <MovieGrid />
-        <MovieGridPagination />
-      </Suspense>
+      <PageSection>
+        <TypographyH2>Now Playing</TypographyH2>
+        <Suspense fallback={<MediaGridSkeleton />}>
+          <NowPlayingMoviesList />
+        </Suspense>
+      </PageSection>
     </PageContainer>
   );
 }
 
-export function MovieGrid() {
+function NowPlayingMoviesList() {
   const search = Route.useSearch();
-
-  const { data } = useSuspenseQuery(getNowPlayingMoviesQueryOptions(search));
+  const { data } = useSuspenseQuery(movieQueries.nowPlaying(search));
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {data.results.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </div>
-  );
-}
-
-export function MovieGridSkeleton() {
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {Array.from({ length: 20 }).map((_, index) => (
-        <MovieCardSkeleton key={index} />
-      ))}
-    </div>
-  );
-}
-
-export function MovieGridPagination() {
-  return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
+    <>
+      <MediaGrid>
+        {data.results.map((movie) => (
+          <MediaCard key={movie.id} media={movie} type="movie" />
+        ))}
+      </MediaGrid>
+      <MediaPagination
+        currentPage={data.page}
+        totalPages={data.total_pages}
+        from={Route.fullPath}
+      />
+    </>
   );
 }

@@ -4,45 +4,45 @@ import { MediaPagination } from "@/components/layout/media-pagination";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
 import { TypographyH2 } from "@/components/ui/typography";
-import { movieQueries } from "@/features/movies/api/queries";
+import { tvShowQueries } from "@/features/tv-shows/api/queries";
 import { TMDBListParamsSchema } from "@/schemas/tmdb";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 
-export const Route = createFileRoute("/movies/popular")({
-  component: PopularMoviesPage,
+export const Route = createFileRoute("/tv-shows/on-the-air")({
+  component: OnTheAirTvShowsPage,
   validateSearch: TMDBListParamsSchema,
   loaderDeps: ({ search }) => ({
     page: search.page,
   }),
   loader: ({ context, deps }) => {
-    context.queryClient.prefetchQuery(movieQueries.popular(deps));
+    context.queryClient.prefetchQuery(tvShowQueries.onTheAir(deps));
   },
 });
 
-function PopularMoviesPage() {
+function OnTheAirTvShowsPage() {
   return (
     <PageContainer>
       <PageSection>
-        <TypographyH2>Popular</TypographyH2>
+        <TypographyH2>On The Air</TypographyH2>
         <Suspense fallback={<MediaGridSkeleton />}>
-          <PopularMoviesList />
+          <OnTheAirTvShowsList />
         </Suspense>
       </PageSection>
     </PageContainer>
   );
 }
 
-function PopularMoviesList() {
+function OnTheAirTvShowsList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(movieQueries.popular(search));
+  const { data } = useSuspenseQuery(tvShowQueries.onTheAir(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((movie) => (
-          <MediaCard key={movie.id} media={movie} type="movie" />
+        {data.results.map((tvShow) => (
+          <MediaCard key={tvShow.id} media={tvShow} type="tv" />
         ))}
       </MediaGrid>
       <MediaPagination
