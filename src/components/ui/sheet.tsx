@@ -3,19 +3,27 @@ import { XIcon } from "lucide-react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
 
-export function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
+export function Sheet({
+  ...props
+}: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-export function SheetTrigger({ ...props }: ComponentProps<typeof SheetPrimitive.Trigger>) {
+export function SheetTrigger({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Trigger>) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-export function SheetClose({ ...props }: ComponentProps<typeof SheetPrimitive.Close>) {
+export function SheetClose({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Close>) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-export function SheetPortal({ ...props }: ComponentProps<typeof SheetPrimitive.Portal>) {
+export function SheetPortal({
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
@@ -66,7 +74,7 @@ export function SheetContent({
       >
         {children}
         {showCloseButton && (
-          <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
+          <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
             <XIcon className="size-4" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
@@ -96,7 +104,10 @@ export function SheetFooter({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
+export function SheetTitle({
+  className,
+  ...props
+}: ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
