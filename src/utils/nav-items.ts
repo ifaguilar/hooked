@@ -25,7 +25,7 @@ export const navItems: readonly NavItem[] = [
     items: [
       { title: "Popular", href: "/tv-shows/popular" },
       { title: "Airing Today", href: "/tv-shows/airing-today" },
-      { title: "On TV", href: "/tv-shows/on-tv" },
+      { title: "On The Air", href: "/tv-shows/on-the-air" },
       { title: "Top Rated", href: "/tv-shows/top-rated" },
     ],
   },
