@@ -21,11 +21,11 @@ export const THEME_STORAGE_KEY = "theme";
 
 export const themeSchema = z.enum(THEME_OPTIONS.map((theme) => theme.value));
 
-export const getThemeServerFn = createServerFn().handler(() => {
+export const getTheme = createServerFn().handler(() => {
   const parsed = themeSchema.safeParse(getCookie(THEME_STORAGE_KEY));
   return parsed.success ? parsed.data : themeSchema.enum.system;
 });
 
-export const setThemeServerFn = createServerFn()
+export const setTheme = createServerFn()
   .inputValidator(themeSchema)
   .handler(({ data: newTheme }) => setCookie(THEME_STORAGE_KEY, newTheme));
