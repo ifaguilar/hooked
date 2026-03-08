@@ -1,5 +1,5 @@
-import { Error } from "@/components/shared/error";
-import { NotFound } from "@/components/shared/not-found";
+import { RouterError } from "@/components/router-states/router-error";
+import { RouterNotFound } from "@/components/router-states/router-not-found";
 import { queryClient } from "@/lib/tanstack-query/query-client";
 import { routeTree } from "@/routeTree.gen";
 import { createRouter } from "@tanstack/react-router";
@@ -11,8 +11,9 @@ export function getRouter() {
     context: { queryClient },
     defaultPreload: "intent",
     scrollRestoration: true,
-    defaultErrorComponent: Error,
-    defaultNotFoundComponent: NotFound,
+    defaultErrorComponent: RouterError,
+    defaultNotFoundComponent: RouterNotFound,
+    defaultViewTransition: true,
   });
 
   setupRouterSsrQueryIntegration({
