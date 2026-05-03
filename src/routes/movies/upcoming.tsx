@@ -37,18 +37,18 @@ function UpcomingMoviesPage() {
 
 function UpcomingMoviesList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(movieQueries.upcoming(search));
+  const { data: upcomingMovies } = useSuspenseQuery(movieQueries.upcoming(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((movie) => (
+        {upcomingMovies.results.map((movie) => (
           <MediaCard key={movie.id} media={movie} type="movie" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={upcomingMovies.page}
+        totalPages={upcomingMovies.total_pages}
         from={Route.fullPath}
       />
     </>

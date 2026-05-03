@@ -37,18 +37,18 @@ function TopRatedTvShowsPage() {
 
 function TopRatedTvShowsList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(tvShowQueries.topRated(search));
+  const { data: topRatedTvShows } = useSuspenseQuery(tvShowQueries.topRated(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((tvShow) => (
+        {topRatedTvShows.results.map((tvShow) => (
           <MediaCard key={tvShow.id} media={tvShow} type="tv" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={topRatedTvShows.page}
+        totalPages={topRatedTvShows.total_pages}
         from={Route.fullPath}
       />
     </>

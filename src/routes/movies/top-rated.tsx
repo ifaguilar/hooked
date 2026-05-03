@@ -37,18 +37,18 @@ function TopRatedMoviesPage() {
 
 function TopRatedMoviesList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(movieQueries.topRated(search));
+  const { data: topRatedMovies } = useSuspenseQuery(movieQueries.topRated(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((movie) => (
+        {topRatedMovies.results.map((movie) => (
           <MediaCard key={movie.id} media={movie} type="movie" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={topRatedMovies.page}
+        totalPages={topRatedMovies.total_pages}
         from={Route.fullPath}
       />
     </>

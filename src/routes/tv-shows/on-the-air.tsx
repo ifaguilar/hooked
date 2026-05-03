@@ -37,18 +37,18 @@ function OnTheAirTvShowsPage() {
 
 function OnTheAirTvShowsList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(tvShowQueries.onTheAir(search));
+  const { data: onTheAirTvShows } = useSuspenseQuery(tvShowQueries.onTheAir(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((tvShow) => (
+        {onTheAirTvShows.results.map((tvShow) => (
           <MediaCard key={tvShow.id} media={tvShow} type="tv" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={onTheAirTvShows.page}
+        totalPages={onTheAirTvShows.total_pages}
         from={Route.fullPath}
       />
     </>

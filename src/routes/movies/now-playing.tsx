@@ -37,18 +37,18 @@ function NowPlayingMoviesPage() {
 
 function NowPlayingMoviesList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(movieQueries.nowPlaying(search));
+  const { data: nowPlayingMovies } = useSuspenseQuery(movieQueries.nowPlaying(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((movie) => (
+        {nowPlayingMovies.results.map((movie) => (
           <MediaCard key={movie.id} media={movie} type="movie" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={nowPlayingMovies.page}
+        totalPages={nowPlayingMovies.total_pages}
         from={Route.fullPath}
       />
     </>

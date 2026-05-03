@@ -37,18 +37,18 @@ function PopularMoviesPage() {
 
 function PopularMoviesList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(movieQueries.popular(search));
+  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((movie) => (
+        {popularMovies.results.map((movie) => (
           <MediaCard key={movie.id} media={movie} type="movie" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={popularMovies.page}
+        totalPages={popularMovies.total_pages}
         from={Route.fullPath}
       />
     </>

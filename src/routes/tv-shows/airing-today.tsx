@@ -37,18 +37,18 @@ function AiringTodayTvShowsPage() {
 
 function AiringTodayTvShowsList() {
   const search = Route.useSearch();
-  const { data } = useSuspenseQuery(tvShowQueries.airingToday(search));
+  const { data: airingTodayTvShows } = useSuspenseQuery(tvShowQueries.airingToday(search));
 
   return (
     <>
       <MediaGrid>
-        {data.results.map((tvShow) => (
+        {airingTodayTvShows.results.map((tvShow) => (
           <MediaCard key={tvShow.id} media={tvShow} type="tv" />
         ))}
       </MediaGrid>
       <MediaPagination
-        currentPage={data.page}
-        totalPages={data.total_pages}
+        currentPage={airingTodayTvShows.page}
+        totalPages={airingTodayTvShows.total_pages}
         from={Route.fullPath}
       />
     </>
