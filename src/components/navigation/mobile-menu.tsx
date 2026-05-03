@@ -1,3 +1,7 @@
+import { Link, useLocation } from "@tanstack/react-router";
+import { MenuIcon } from "lucide-react";
+import { Fragment, useState } from "react";
+
 import { HookedLogo } from "@/components/branding/hooked-logo";
 import {
   Accordion,
@@ -16,18 +20,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navItems } from "@/utils/nav-items";
-import { Link, useLocation } from "@tanstack/react-router";
-import { MenuIcon } from "lucide-react";
-import { Fragment, useState } from "react";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const activeItem = navItems.find((item) =>
-    item.items?.some(
-      (subItem) => subItem.href && location.pathname.startsWith(subItem.href),
-    ),
+    item.items?.some((subItem) => subItem.href && location.pathname.startsWith(subItem.href)),
   );
 
   return (
@@ -41,20 +40,18 @@ export function MobileMenu() {
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-          <SheetDescription className="sr-only">
-            Navigation menu for the website
-          </SheetDescription>
+          <SheetDescription className="sr-only">Navigation menu for the website</SheetDescription>
 
           <Link to="/" onClick={() => setIsOpen(false)}>
-            <HookedLogo className="h-8 w-auto text-foreground" />
+            <HookedLogo className="text-foreground h-8 w-auto" />
           </Link>
         </SheetHeader>
 
-        <div className="px-4 flex flex-col gap-2">
+        <div className="flex flex-col gap-2 px-4">
           <Accordion
             type="single"
             collapsible
-            className="w-full flex flex-col gap-2"
+            className="flex w-full flex-col gap-2"
             defaultValue={activeItem?.title}
           >
             {navItems.map((item, index) => {
@@ -65,7 +62,7 @@ export function MobileMenu() {
                 return (
                   <Fragment key={item.title}>
                     <AccordionItem value={item.title} className="border-b-0">
-                      <AccordionTrigger className="text-base font-semibold hover:no-underline py-3">
+                      <AccordionTrigger className="py-3 text-base font-semibold hover:no-underline">
                         <div className="flex items-center gap-2">
                           {ItemIcon ? <ItemIcon className="size-5" /> : null}
                           <span>{item.title}</span>
@@ -77,7 +74,7 @@ export function MobileMenu() {
                             key={subItem.href}
                             to={subItem.href!}
                             onClick={() => setIsOpen(false)}
-                            className="py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                            className="text-muted-foreground hover:text-foreground py-1.5 text-sm font-medium transition-colors"
                             activeProps={{
                               className: "text-foreground font-semibold",
                             }}
@@ -98,7 +95,7 @@ export function MobileMenu() {
                     <Link
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex w-full items-center gap-2 py-3 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground/80"
+                      className="text-muted-foreground hover:text-foreground/80 flex w-full items-center gap-2 py-3 text-base font-semibold transition-colors"
                       activeProps={{
                         className: "text-foreground",
                       }}
@@ -111,11 +108,7 @@ export function MobileMenu() {
                 );
               }
 
-              return (
-                <Fragment key={item.title}>
-                  {showSeparator ? <Separator /> : null}
-                </Fragment>
-              );
+              return <Fragment key={item.title}>{showSeparator ? <Separator /> : null}</Fragment>;
             })}
           </Accordion>
         </div>

@@ -1,3 +1,5 @@
+import { queryOptions } from "@tanstack/react-query";
+
 import {
   getNowPlayingMovies,
   getPopularMovies,
@@ -6,7 +8,6 @@ import {
 } from "@/features/movies/api/functions";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
 import { TMDBListParams } from "@/types/tmdb";
-import { queryOptions } from "@tanstack/react-query";
 
 export const movieQueries = {
   nowPlaying: (params: TMDBListParams) =>

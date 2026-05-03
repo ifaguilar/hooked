@@ -1,20 +1,13 @@
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
 import { z } from "zod";
+
+import { TMDBListParamsSchema } from "@/schemas/tmdb";
 
 export type Dates = {
   maximum: string;
   minimum: string;
 };
 
-export type OriginalLanguage =
-  | "en"
-  | "es"
-  | "it"
-  | "ja"
-  | "ko"
-  | "fr"
-  | "ru"
-  | "zh";
+export type OriginalLanguage = "en" | "es" | "it" | "ja" | "ko" | "fr" | "ru" | "zh";
 
 export type KnownForDepartment = "Acting";
 

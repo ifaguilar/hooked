@@ -1,3 +1,7 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
+import { Suspense } from "react";
+
 import { MediaCard } from "@/components/layout/media-card";
 import { MediaGrid, MediaGridSkeleton } from "@/components/layout/media-grid";
 import { MediaPagination } from "@/components/layout/media-pagination";
@@ -6,9 +10,6 @@ import { PageSection } from "@/components/layout/page-section";
 import { TypographyH2 } from "@/components/ui/typography";
 import { movieQueries } from "@/features/movies/api/queries";
 import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { Suspense } from "react";
 
 export const Route = createFileRoute("/movies/upcoming")({
   component: UpcomingMoviesPage,

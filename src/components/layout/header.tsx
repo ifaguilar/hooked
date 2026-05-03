@@ -1,20 +1,21 @@
+import { Link } from "@tanstack/react-router";
+import { ComponentProps } from "react";
+
 import { HookedLogo } from "@/components/branding/hooked-logo";
 import { DesktopMenu } from "@/components/navigation/desktop-menu";
 import { MobileMenu } from "@/components/navigation/mobile-menu";
 import { SearchDialog } from "@/features/search/components/search-dialog";
 import { ThemeDropdown } from "@/features/theme/components/theme-dropdown";
-import { Link } from "@tanstack/react-router";
-import { ComponentProps } from "react";
 
 export function Header(props: ComponentProps<"header">) {
   return (
     <header
       {...props}
-      className="sticky top-0 inset-x-0 z-50 border-b border-border/10 shadow-sm bg-background"
+      className="border-border/10 bg-background sticky inset-x-0 top-0 z-50 border-b shadow-sm"
     >
-      <div className="flex px-4 py-2 justify-between container mx-auto">
+      <div className="container mx-auto flex justify-between px-4 py-2">
         <Link to="/">
-          <HookedLogo className="h-8 w-auto text-foreground" />
+          <HookedLogo className="text-foreground h-8 w-auto" />
         </Link>
 
         <div className="hidden lg:block">

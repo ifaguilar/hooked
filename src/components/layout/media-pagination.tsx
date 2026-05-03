@@ -31,33 +31,13 @@ function getPaginationItems(currentPage: number, totalPages: number) {
   }
 
   if (currentPage >= maxPages - 3) {
-    return [
-      1,
-      "ellipsis",
-      maxPages - 4,
-      maxPages - 3,
-      maxPages - 2,
-      maxPages - 1,
-      maxPages,
-    ];
+    return [1, "ellipsis", maxPages - 4, maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
   }
 
-  return [
-    1,
-    "ellipsis",
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    "ellipsis",
-    maxPages,
-  ];
+  return [1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", maxPages];
 }
 
-export function MediaPagination({
-  currentPage,
-  totalPages,
-  from,
-}: MediaPaginationProps) {
+export function MediaPagination({ currentPage, totalPages, from }: MediaPaginationProps) {
   const maxPages = Math.min(totalPages, 500);
   const items = getPaginationItems(currentPage, totalPages);
 
@@ -108,9 +88,7 @@ export function MediaPagination({
             })}
             aria-disabled={currentPage >= maxPages}
             disabled={currentPage >= maxPages}
-            className={
-              currentPage >= maxPages ? "pointer-events-none opacity-50" : ""
-            }
+            className={currentPage >= maxPages ? "pointer-events-none opacity-50" : ""}
           />
         </PaginationItem>
       </PaginationContent>

@@ -1,12 +1,9 @@
+import { createLink } from "@tanstack/react-router";
+import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
+import { ComponentProps } from "react";
+
 import { buttonVariants, type Button } from "@/components/ui/button";
 import { cn } from "@/utils/cn";
-import { createLink } from "@tanstack/react-router";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react";
-import { ComponentProps } from "react";
 
 export function Pagination({ className, ...props }: ComponentProps<"nav">) {
   return (
@@ -20,10 +17,7 @@ export function Pagination({ className, ...props }: ComponentProps<"nav">) {
   );
 }
 
-export function PaginationContent({
-  className,
-  ...props
-}: ComponentProps<"ul">) {
+export function PaginationContent({ className, ...props }: ComponentProps<"ul">) {
   return (
     <ul
       data-slot="pagination-content"
@@ -83,26 +77,21 @@ export const PaginationPrevious = createLink(
   },
 );
 
-export const PaginationNext = createLink(
-  ({ className, ...props }: BasicPaginationLinkProps) => {
-    return (
-      <BasicPaginationLink
-        aria-label="Go to next page"
-        size="default"
-        className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
-        {...props}
-      >
-        <span className="hidden sm:block">Next</span>
-        <ChevronRightIcon />
-      </BasicPaginationLink>
-    );
-  },
-);
+export const PaginationNext = createLink(({ className, ...props }: BasicPaginationLinkProps) => {
+  return (
+    <BasicPaginationLink
+      aria-label="Go to next page"
+      size="default"
+      className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
+      {...props}
+    >
+      <span className="hidden sm:block">Next</span>
+      <ChevronRightIcon />
+    </BasicPaginationLink>
+  );
+});
 
-export function PaginationEllipsis({
-  className,
-  ...props
-}: ComponentProps<"span">) {
+export function PaginationEllipsis({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
       aria-hidden

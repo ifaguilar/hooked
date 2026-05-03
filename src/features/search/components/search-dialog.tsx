@@ -1,3 +1,5 @@
+import { SearchIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,7 +10,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
-import { SearchIcon } from "lucide-react";
 
 export function SearchDialog() {
   return (

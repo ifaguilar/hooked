@@ -1,5 +1,6 @@
-import type { FileRouteTypes } from "@/routeTree.gen";
 import { Film, Tv, Users, type LucideIcon } from "lucide-react";
+
+import type { FileRouteTypes } from "@/routeTree.gen";
 
 export type NavItem = {
   title: string;

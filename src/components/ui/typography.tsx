@@ -1,5 +1,6 @@
-import { cn } from "@/utils/cn";
 import { ComponentProps } from "react";
+
+import { cn } from "@/utils/cn";
 
 export function TypographyH1({ children, className }: ComponentProps<"h1">) {
   return (

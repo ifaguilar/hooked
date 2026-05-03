@@ -1,18 +1,15 @@
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import type { QueryClient } from "@tanstack/react-query";
+import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+
 /// <reference types="vite/client" />
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { getTheme } from "@/features/theme/utils/theme";
 import { devtoolsConfig } from "@/lib/tanstack-devtools/devtools-config";
 import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
+
 import styles from "@/styles.css?url";
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import type { QueryClient } from "@tanstack/react-query";
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Outlet,
-  Scripts,
-} from "@tanstack/react-router";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -76,7 +73,7 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body>
-        <div className="flex flex-col min-h-svh">
+        <div className="flex min-h-svh flex-col">
           <Header />
           <main className="flex-1">
             <Outlet />

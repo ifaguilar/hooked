@@ -1,3 +1,6 @@
+import { useLoaderData, useRouter } from "@tanstack/react-router";
+import { ComponentProps } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -5,13 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  setTheme,
-  THEME_OPTIONS,
-  ThemeValue,
-} from "@/features/theme/utils/theme";
-import { useLoaderData, useRouter } from "@tanstack/react-router";
-import { ComponentProps } from "react";
+import { setTheme, THEME_OPTIONS, ThemeValue } from "@/features/theme/utils/theme";
 
 export function ThemeDropdown(props: ComponentProps<typeof DropdownMenu>) {
   const router = useRouter();
@@ -21,8 +18,7 @@ export function ThemeDropdown(props: ComponentProps<typeof DropdownMenu>) {
   });
 
   const ActiveIcon =
-    THEME_OPTIONS.find((t) => t.value === activeTheme)?.icon ||
-    THEME_OPTIONS[0].icon;
+    THEME_OPTIONS.find((t) => t.value === activeTheme)?.icon || THEME_OPTIONS[0].icon;
 
   async function handleThemeChange(theme: ThemeValue) {
     await setTheme({ data: theme });
@@ -42,10 +38,7 @@ export function ThemeDropdown(props: ComponentProps<typeof DropdownMenu>) {
           const ThemeIcon = theme.icon;
 
           return (
-            <DropdownMenuItem
-              key={theme.value}
-              onClick={() => handleThemeChange(theme.value)}
-            >
+            <DropdownMenuItem key={theme.value} onClick={() => handleThemeChange(theme.value)}>
               <ThemeIcon />
               <span>{theme.label}</span>
             </DropdownMenuItem>

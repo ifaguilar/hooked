@@ -1,3 +1,5 @@
+import { queryOptions } from "@tanstack/react-query";
+
 import {
   getAiringTodayTvShows,
   getOnTheAirTvShows,
@@ -6,7 +8,6 @@ import {
 } from "@/features/tv-shows/api/functions";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
 import { TMDBListParams } from "@/types/tmdb";
-import { queryOptions } from "@tanstack/react-query";
 
 export const tvShowQueries = {
   popular: (params: TMDBListParams) =>

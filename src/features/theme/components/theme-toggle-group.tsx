@@ -1,4 +1,5 @@
 import { ComponentProps } from "react";
+
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function ThemeToggle(props: ComponentProps<typeof ToggleGroup>) {

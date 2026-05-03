@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,7 +10,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { navItems } from "@/utils/nav-items";
-import { Link } from "@tanstack/react-router";
 
 export function DesktopMenu() {
   return (
@@ -45,10 +46,7 @@ export function DesktopMenu() {
           if (item.href) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuLink
-                  asChild
-                  className={navigationMenuTriggerStyle()}
-                >
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link
                     to={item.href}
                     activeProps={{

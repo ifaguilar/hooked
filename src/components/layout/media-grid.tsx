@@ -1,13 +1,10 @@
-import { MediaCardSkeleton } from "@/components/layout/media-card";
-import { RESULTS_PER_PAGE } from "@/utils/constants";
 import { ComponentProps } from "react";
 
+import { MediaCardSkeleton } from "@/components/layout/media-card";
+import { RESULTS_PER_PAGE } from "@/utils/constants";
+
 export function MediaGrid({ children }: ComponentProps<"div">) {
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {children}
-    </div>
-  );
+  return <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">{children}</div>;
 }
 
 export function MediaGridSkeleton() {

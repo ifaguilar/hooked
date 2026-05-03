@@ -1,7 +1,8 @@
-import {
-  MediaCarousel,
-  MediaCarouselSkeleton,
-} from "@/components/layout/media-carousel";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Suspense } from "react";
+
+import { MediaCarousel, MediaCarouselSkeleton } from "@/components/layout/media-carousel";
 import { MediaHero, MediaHeroSkeleton } from "@/components/layout/media-hero";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
@@ -11,19 +12,12 @@ import { movieQueries } from "@/features/movies/api/queries";
 import { tvShowQueries } from "@/features/tv-shows/api/queries";
 import { cn } from "@/utils/cn";
 import { FIRST_PAGE } from "@/utils/constants";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Suspense } from "react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
   loader: ({ context }) => {
-    context.queryClient.prefetchQuery(
-      movieQueries.popular({ page: FIRST_PAGE }),
-    );
-    context.queryClient.prefetchQuery(
-      tvShowQueries.popular({ page: FIRST_PAGE }),
-    );
+    context.queryClient.prefetchQuery(movieQueries.popular({ page: FIRST_PAGE }));
+    context.queryClient.prefetchQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
   },
 });
 
@@ -97,9 +91,7 @@ function TrendingMovies() {
 }
 
 function TrendingTvShows() {
-  const { data } = useSuspenseQuery(
-    tvShowQueries.popular({ page: FIRST_PAGE }),
-  );
+  const { data } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
 
   return <MediaCarousel items={data.results} type="tv" />;
 }

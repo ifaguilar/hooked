@@ -1,8 +1,9 @@
+import { createServerFn } from "@tanstack/react-start";
+
 import { Movie } from "@/features/movies/types/model";
 import { tmdbFetch } from "@/lib/tmdb/tmdb-fetch";
-import { TMDBListResponse } from "@/types/tmdb";
 import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { createServerFn } from "@tanstack/react-start";
+import { TMDBListResponse } from "@/types/tmdb";
 
 export const getNowPlayingMovies = createServerFn()
   .inputValidator(TMDBListParamsSchema)

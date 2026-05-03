@@ -1,5 +1,6 @@
-import { cn } from "@/utils/cn";
 import { ComponentProps } from "react";
+
+import { cn } from "@/utils/cn";
 
 export function Card({ className, ...props }: ComponentProps<"div">) {
   return (
@@ -37,10 +38,7 @@ export function CardTitle({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function CardDescription({
-  className,
-  ...props
-}: ComponentProps<"div">) {
+export function CardDescription({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
@@ -54,23 +52,14 @@ export function CardAction({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-action"
-      className={cn(
-        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className,
-      )}
+      className={cn("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className)}
       {...props}
     />
   );
 }
 
 export function CardContent({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-content"
-      className={cn("px-6", className)}
-      {...props}
-    />
-  );
+  return <div data-slot="card-content" className={cn("px-6", className)} {...props} />;
 }
 
 export function CardFooter({ className, ...props }: ComponentProps<"div">) {

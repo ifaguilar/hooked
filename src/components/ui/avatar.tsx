@@ -1,6 +1,7 @@
-import { cn } from "@/utils/cn";
 import { Avatar as AvatarPrimitive } from "radix-ui";
 import { ComponentProps } from "react";
+
+import { cn } from "@/utils/cn";
 
 export function Avatar({
   className,
