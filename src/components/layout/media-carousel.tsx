@@ -7,8 +7,7 @@ import {
   CarouselOptions,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import type { Movie } from "@/features/movies/types/model";
-import type { TvShow } from "@/features/tv-shows/types/model";
+import type { Movie, TvShow } from "@/types/tmdb";
 import { RESULTS_PER_PAGE, SLIDES_TO_SCROLL } from "@/utils/constants";
 
 type MediaCarouselProps = { type: "movie"; items: Movie[] } | { type: "tv"; items: TvShow[] };

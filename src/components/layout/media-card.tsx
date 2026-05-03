@@ -4,25 +4,19 @@ import { StarIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Movie } from "@/features/movies/types/model";
-import { TvShow } from "@/features/tv-shows/types/model";
 import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
+import type { MediaItem } from "@/types/media";
 import { formatMediaYear, formatVoteAverage } from "@/utils/format";
+import { getMediaDetails } from "@/utils/media";
 
-type MediaCardProps = { type: "movie"; media: Movie } | { type: "tv"; media: TvShow };
+export function MediaCard(props: MediaItem) {
+  const { media } = props;
 
-export function MediaCard(props: MediaCardProps) {
-  const { media, type } = props;
-  const isMovie = type === "movie";
-
-  const title = isMovie ? props.media.title : props.media.name;
-  const date = isMovie ? props.media.release_date : props.media.first_air_date;
+  const { title, date, linkProps } = getMediaDetails(props);
   const year = formatMediaYear(date);
-  const linkTo = isMovie ? "/movies/$movieId" : "/tv-shows/$tvShowId";
-  const params = isMovie ? { movieId: String(media.id) } : { tvShowId: String(media.id) };
 
   return (
-    <Link to={linkTo} params={params} className="group">
+    <Link {...linkProps} className="group">
       <Card className="border-border/10 bg-card/50 relative h-full overflow-hidden pt-0 shadow-sm backdrop-blur-sm hover:shadow-md">
         <div className="relative aspect-2/3 overflow-hidden">
           <img

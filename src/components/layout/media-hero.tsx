@@ -5,25 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TypographyH1 } from "@/components/ui/typography";
-import { Movie } from "@/features/movies/types/model";
-import { TvShow } from "@/features/tv-shows/types/model";
 import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
+import type { MediaItem } from "@/types/media";
 import { cn } from "@/utils/cn";
 import { formatMediaYear, formatVoteAverage } from "@/utils/format";
+import { getMediaDetails } from "@/utils/media";
 
-type MediaHeroProps = { type: "movie"; media: Movie } | { type: "tv"; media: TvShow };
+export function MediaHero(props: MediaItem) {
+  const { media } = props;
 
-export function MediaHero(props: MediaHeroProps) {
-  const { media, type } = props;
-  const isMovie = type === "movie";
-
-  const title = isMovie ? media.title : media.name;
-  const date = isMovie ? media.release_date : media.first_air_date;
+  const { title, date, linkProps } = getMediaDetails(props);
   const year = formatMediaYear(date);
   const rating = formatVoteAverage(media.vote_average);
-
-  const linkTo = isMovie ? "/movies/$movieId" : "/tv-shows/$tvShowId";
-  const params = isMovie ? { movieId: String(media.id) } : { tvShowId: String(media.id) };
 
   return (
     <div className="bg-muted relative h-[80svh] w-full overflow-hidden">
@@ -59,8 +52,7 @@ export function MediaHero(props: MediaHeroProps) {
         </p>
 
         <Link
-          to={linkTo}
-          params={params}
+          {...linkProps}
           className={cn(
             buttonVariants({
               size: "lg",

@@ -1,9 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import { TvShow } from "@/features/tv-shows/types/model";
 import { tmdbFetch } from "@/lib/tmdb/tmdb-fetch";
 import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { TMDBListResponse } from "@/types/tmdb";
+import { type TMDBListResponse, type TvShow } from "@/types/tmdb";
 
 export const getPopularTvShows = createServerFn()
   .inputValidator(TMDBListParamsSchema)

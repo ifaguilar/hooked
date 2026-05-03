@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
   loader: ({ context }) => {
     context.queryClient.prefetchQuery(movieQueries.popular({ page: FIRST_PAGE }));
     context.queryClient.prefetchQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
+
+    return { randomMediaSeed: Math.random() };
   },
 });
 
@@ -73,25 +75,40 @@ function HomePage() {
 }
 
 function FeaturedHero() {
-  const { data } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
-  const results = data.results;
+  const { randomMediaSeed } = Route.useLoaderData();
 
-  if (!results.length) return null;
+  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
 
-  const randomIndex = Math.floor(Math.random() * results.length);
-  const featured = results[randomIndex];
+  const { data: popularTvShows } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
 
-  return <MediaHero type="movie" media={featured} />;
+  const movies = popularMovies.results.map((media) => ({
+    type: "movie" as const,
+    media,
+  }));
+
+  const tvShows = popularTvShows.results.map((media) => ({
+    type: "tv" as const,
+    media,
+  }));
+
+  const allMedia = [...movies, ...tvShows];
+
+  if (allMedia.length === 0) return null;
+
+  const randomIndex = Math.floor(randomMediaSeed * allMedia.length);
+  const featured = allMedia[randomIndex];
+
+  return <MediaHero {...featured} />;
 }
 
 function TrendingMovies() {
-  const { data } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
 
-  return <MediaCarousel items={data.results} type="movie" />;
+  return <MediaCarousel items={popularMovies.results} type="movie" />;
 }
 
 function TrendingTvShows() {
-  const { data } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularTvShows } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
 
-  return <MediaCarousel items={data.results} type="tv" />;
+  return <MediaCarousel items={popularTvShows.results} type="tv" />;
 }
