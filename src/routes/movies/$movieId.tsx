@@ -5,5 +5,6 @@ export const Route = createFileRoute("/movies/$movieId")({
 });
 
 function RouteComponent() {
+  /* TODO: Fetch Movie Data */
   return <div>Hello "/movies/$movieId"!</div>;
 }

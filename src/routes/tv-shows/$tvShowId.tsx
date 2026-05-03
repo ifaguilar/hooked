@@ -7,5 +7,6 @@ export const Route = createFileRoute("/tv-shows/$tvShowId")({
 });
 
 function RouteComponent() {
+  /* TODO: Fetch TV Show Data */
   return <PageContainer>Hello "/tv-shows/$tvShowId"!</PageContainer>;
 }
