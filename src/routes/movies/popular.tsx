@@ -2,9 +2,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 
+import { CardGrid, CardGridSkeleton } from "@/components/layout/card-grid";
+import { ListPagination } from "@/components/layout/list-pagination";
 import { MediaCard } from "@/components/layout/media-card";
-import { MediaGrid, MediaGridSkeleton } from "@/components/layout/media-grid";
-import { MediaPagination } from "@/components/layout/media-pagination";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
 import { TypographyH2 } from "@/components/ui/typography";
@@ -27,7 +27,7 @@ function PopularMoviesPage() {
     <PageContainer>
       <PageSection>
         <TypographyH2>Popular</TypographyH2>
-        <Suspense fallback={<MediaGridSkeleton />}>
+        <Suspense fallback={<CardGridSkeleton />}>
           <PopularMoviesList />
         </Suspense>
       </PageSection>
@@ -41,12 +41,12 @@ function PopularMoviesList() {
 
   return (
     <>
-      <MediaGrid>
+      <CardGrid>
         {popularMovies.results.map((movie) => (
           <MediaCard key={movie.id} media={movie} type="movie" />
         ))}
-      </MediaGrid>
-      <MediaPagination
+      </CardGrid>
+      <ListPagination
         currentPage={popularMovies.page}
         totalPages={popularMovies.total_pages}
         from={Route.fullPath}

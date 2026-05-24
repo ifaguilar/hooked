@@ -16,6 +16,7 @@ import { Route as TvShowsOnTheAirRouteImport } from './routes/tv-shows/on-the-ai
 import { Route as TvShowsAiringTodayRouteImport } from './routes/tv-shows/airing-today'
 import { Route as TvShowsTvShowIdRouteImport } from './routes/tv-shows/$tvShowId'
 import { Route as PeoplePopularRouteImport } from './routes/people/popular'
+import { Route as PeoplePersonIdRouteImport } from './routes/people/$personId'
 import { Route as MoviesUpcomingRouteImport } from './routes/movies/upcoming'
 import { Route as MoviesTopRatedRouteImport } from './routes/movies/top-rated'
 import { Route as MoviesPopularRouteImport } from './routes/movies/popular'
@@ -57,6 +58,11 @@ const PeoplePopularRoute = PeoplePopularRouteImport.update({
   path: '/people/popular',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PeoplePersonIdRoute = PeoplePersonIdRouteImport.update({
+  id: '/people/$personId',
+  path: '/people/$personId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoviesUpcomingRoute = MoviesUpcomingRouteImport.update({
   id: '/movies/upcoming',
   path: '/movies/upcoming',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/movies/popular': typeof MoviesPopularRoute
   '/movies/top-rated': typeof MoviesTopRatedRoute
   '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/people/$personId': typeof PeoplePersonIdRoute
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/movies/popular': typeof MoviesPopularRoute
   '/movies/top-rated': typeof MoviesTopRatedRoute
   '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/people/$personId': typeof PeoplePersonIdRoute
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/movies/popular': typeof MoviesPopularRoute
   '/movies/top-rated': typeof MoviesTopRatedRoute
   '/movies/upcoming': typeof MoviesUpcomingRoute
+  '/people/$personId': typeof PeoplePersonIdRoute
   '/people/popular': typeof PeoplePopularRoute
   '/tv-shows/$tvShowId': typeof TvShowsTvShowIdRoute
   '/tv-shows/airing-today': typeof TvShowsAiringTodayRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/movies/popular'
     | '/movies/top-rated'
     | '/movies/upcoming'
+    | '/people/$personId'
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/movies/popular'
     | '/movies/top-rated'
     | '/movies/upcoming'
+    | '/people/$personId'
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/movies/popular'
     | '/movies/top-rated'
     | '/movies/upcoming'
+    | '/people/$personId'
     | '/people/popular'
     | '/tv-shows/$tvShowId'
     | '/tv-shows/airing-today'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   MoviesPopularRoute: typeof MoviesPopularRoute
   MoviesTopRatedRoute: typeof MoviesTopRatedRoute
   MoviesUpcomingRoute: typeof MoviesUpcomingRoute
+  PeoplePersonIdRoute: typeof PeoplePersonIdRoute
   PeoplePopularRoute: typeof PeoplePopularRoute
   TvShowsTvShowIdRoute: typeof TvShowsTvShowIdRoute
   TvShowsAiringTodayRoute: typeof TvShowsAiringTodayRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PeoplePopularRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/people/$personId': {
+      id: '/people/$personId'
+      path: '/people/$personId'
+      fullPath: '/people/$personId'
+      preLoaderRoute: typeof PeoplePersonIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/movies/upcoming': {
       id: '/movies/upcoming'
       path: '/movies/upcoming'
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoviesPopularRoute: MoviesPopularRoute,
   MoviesTopRatedRoute: MoviesTopRatedRoute,
   MoviesUpcomingRoute: MoviesUpcomingRoute,
+  PeoplePersonIdRoute: PeoplePersonIdRoute,
   PeoplePopularRoute: PeoplePopularRoute,
   TvShowsTvShowIdRoute: TvShowsTvShowIdRoute,
   TvShowsAiringTodayRoute: TvShowsAiringTodayRoute,

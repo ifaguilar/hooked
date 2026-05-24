@@ -8,8 +8,8 @@ import { TypographyH1 } from "@/components/ui/typography";
 import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
 import type { MediaItem } from "@/types/media";
 import { cn } from "@/utils/cn";
+import { getMediaDetails } from "@/utils/details";
 import { formatMediaYear, formatVoteAverage } from "@/utils/format";
-import { getMediaDetails } from "@/utils/media";
 
 export function MediaHero(props: MediaItem) {
   const { media } = props;
@@ -32,12 +32,12 @@ export function MediaHero(props: MediaItem) {
 
       <div className="absolute inset-0 container mx-auto flex w-full flex-col justify-end gap-4 p-6 md:p-12 lg:p-16">
         <div className="flex items-center gap-3">
-          {/* TODO: Check for repeated classes */}
           <Badge
             variant="secondary"
-            className="bg-background/60 gap-1.5 border border-white/10 px-3 py-1.5 text-sm font-semibold shadow-sm backdrop-blur-xl"
+            size="lg"
+            className="bg-background/60 border border-white/10 font-semibold shadow-sm backdrop-blur-xl"
           >
-            <StarIcon className="fill-primary text-primary size-4" />
+            <StarIcon className="fill-primary text-primary" />
             <span>{rating}</span>
           </Badge>
           <span className="text-muted-foreground">•</span>

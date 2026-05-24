@@ -14,12 +14,15 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/in
 export function SearchDialog() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Search">
-          <SearchIcon />
-          <span className="sr-only">Search</span>
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <Button variant="ghost" size="icon" aria-label="Search">
+            <SearchIcon />
+            <span className="sr-only">Search</span>
+          </Button>
+        }
+      />
+
       <DialogContent showCloseButton={false}>
         <DialogHeader className="sr-only">
           <DialogTitle>Search</DialogTitle>

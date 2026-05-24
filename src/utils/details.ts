@@ -1,4 +1,5 @@
 import type { MediaItem, MediaDetails } from "@/types/media";
+import { Person } from "@/types/tmdb";
 
 export function getMediaDetails(item: MediaItem): MediaDetails {
   const isTvShow = item.type === "tv";
@@ -20,6 +21,24 @@ export function getMediaDetails(item: MediaItem): MediaDetails {
     linkProps: {
       to: "/movies/$movieId",
       params: { movieId: String(item.media.id) },
+    },
+  };
+}
+
+// TODO: improve this
+export function getPersonDetails(person: Person) {
+  // Format known-for works
+  const knownFor = person.known_for
+    ?.map((work) => work.title || work.name)
+    .filter(Boolean)
+    .slice(0, 3)
+    .join(", ");
+
+  return {
+    knownFor,
+    linkProps: {
+      to: "/people/$personId",
+      params: { movieId: String(person.id) },
     },
   };
 }

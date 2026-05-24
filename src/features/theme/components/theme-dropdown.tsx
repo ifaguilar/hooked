@@ -27,12 +27,14 @@ export function ThemeDropdown(props: ComponentProps<typeof DropdownMenu>) {
 
   return (
     <DropdownMenu {...props} modal={false}>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Toggle theme">
-          <ActiveIcon />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger
+        render={
+          <Button variant="ghost" size="icon" aria-label="Toggle theme">
+            <ActiveIcon />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        }
+      />
       <DropdownMenuContent>
         {THEME_OPTIONS.map((theme) => {
           const ThemeIcon = theme.icon;

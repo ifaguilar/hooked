@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 
 import { BrandLogo } from "@/components/branding/brand-logo";
+import { clientEnv } from "@/config/env";
 
 export function Footer(props: ComponentProps<"footer">) {
   return (
@@ -11,9 +12,8 @@ export function Footer(props: ComponentProps<"footer">) {
       <span className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase opacity-50">
         Built by
       </span>
-      {/* TODO: Add environment variable */}
       <a
-        href="https://ifaguilar-personal-portfolio.vercel.app"
+        href={clientEnv.VITE_PORTFOLIO_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="transition-transform duration-300 hover:scale-110 active:scale-95"

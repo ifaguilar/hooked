@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/pagination";
 import type { FileRouteTypes } from "@/routeTree.gen";
 
-interface MediaPaginationProps {
+interface ListPaginationProps {
   currentPage: number;
   totalPages: number;
   from: FileRouteTypes["fullPaths"];
@@ -37,7 +37,7 @@ function getPaginationItems(currentPage: number, totalPages: number) {
   return [1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", maxPages];
 }
 
-export function MediaPagination({ currentPage, totalPages, from }: MediaPaginationProps) {
+export function ListPagination({ currentPage, totalPages, from }: ListPaginationProps) {
   const maxPages = Math.min(totalPages, 500);
   const items = getPaginationItems(currentPage, totalPages);
 
