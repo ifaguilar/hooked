@@ -13,7 +13,7 @@ import { navItems } from "@/utils/nav-items";
 
 export function DesktopMenu() {
   return (
-    <NavigationMenu viewport={false}>
+    <NavigationMenu>
       <NavigationMenuList>
         {navItems.map((item) => {
           const ItemIcon = item.icon;
@@ -27,16 +27,19 @@ export function DesktopMenu() {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="flex min-w-40 flex-col gap-1">
                   {item.items.map((subItem) => (
-                    <NavigationMenuLink key={subItem.href} asChild>
-                      <Link
-                        to={subItem.href!}
-                        activeProps={{
-                          "data-active": true,
-                        }}
-                      >
-                        {subItem.title}
-                      </Link>
-                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                      key={subItem.href}
+                      render={
+                        <Link
+                          to={subItem.href!}
+                          activeProps={{
+                            "data-active": true,
+                          }}
+                        >
+                          {subItem.title}
+                        </Link>
+                      }
+                    />
                   ))}
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -46,17 +49,20 @@ export function DesktopMenu() {
           if (item.href) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link
-                    to={item.href}
-                    activeProps={{
-                      "data-active": true,
-                    }}
-                  >
-                    {ItemIcon ? <ItemIcon className="mr-2 size-4" /> : null}
-                    <span>{item.title}</span>
-                  </Link>
-                </NavigationMenuLink>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle()}
+                  render={
+                    <Link
+                      to={item.href}
+                      activeProps={{
+                        "data-active": true,
+                      }}
+                    >
+                      {ItemIcon ? <ItemIcon className="mr-2 size-4" /> : null}
+                      <span>{item.title}</span>
+                    </Link>
+                  }
+                />
               </NavigationMenuItem>
             );
           }
