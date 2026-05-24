@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 
 import { BrandLogo } from "@/components/branding/brand-logo";
-import { clientEnv } from "@/config/env";
+import { clientEnv } from "@/config/client-env";
 
 export function Footer(props: ComponentProps<"footer">) {
   return (

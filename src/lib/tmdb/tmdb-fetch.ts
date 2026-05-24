@@ -1,5 +1,6 @@
 import { createServerOnlyFn } from "@tanstack/react-start";
 
+import { serverEnv } from "@/config/server-env";
 import { DEFAULT_TMDB_PARAMS } from "@/utils/constants";
 
 export interface TMDBFetchOptions extends RequestInit {
@@ -10,7 +11,7 @@ export const tmdbFetch = createServerOnlyFn(
   async <T>(path: string, options: TMDBFetchOptions = {}): Promise<T> => {
     const { params, ...requestOptions } = options;
 
-    const url = new URL(`${process.env.TMDB_API_BASE_URL}${path}`);
+    const url = new URL(`${serverEnv.TMDB_API_BASE_URL}${path}`);
 
     const mergedParams = {
       ...DEFAULT_TMDB_PARAMS,
@@ -27,7 +28,7 @@ export const tmdbFetch = createServerOnlyFn(
       ...requestOptions,
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+        Authorization: `Bearer ${serverEnv.TMDB_API_KEY}`,
         ...requestOptions.headers,
       },
     });
