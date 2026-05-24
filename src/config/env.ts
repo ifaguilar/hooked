@@ -11,6 +11,14 @@ const clientEnvSchema = z.object({
   VITE_PORTFOLIO_URL: z.url(),
 });
 
-export const serverEnv = serverEnvSchema.safeParse(process.env);
+const parsedServerEnv = serverEnvSchema.safeParse(process.env);
 
-export const clientEnv = clientEnvSchema.safeParse(import.meta.env);
+const parsedClientEnv = clientEnvSchema.safeParse(import.meta.env);
+
+if (parsedServerEnv.error || parsedClientEnv.error) {
+  throw Error(""); // TODO: add error
+}
+
+export const serverEnv = parsedServerEnv.data;
+
+export const clientEnv = parsedClientEnv.data;
