@@ -1,13 +1,14 @@
 import { queryOptions } from "@tanstack/react-query";
 
 import {
+  getMovieDetails,
   getNowPlayingMovies,
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
 } from "@/features/movies/api/functions";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
-import { TMDBListParams } from "@/types/tmdb";
+import type { TMDBListParams } from "@/lib/tmdb/types/api";
 
 export const movieQueries = {
   nowPlaying: (params: TMDBListParams) =>
@@ -32,5 +33,12 @@ export const movieQueries = {
     queryOptions({
       queryKey: [...queryKeys.UPCOMING_MOVIES, params],
       queryFn: () => getUpcomingMovies({ data: params }),
+    }),
+
+  /* TODO: change type? */
+  details: (movieId: string) =>
+    queryOptions({
+      queryKey: [...queryKeys.MOVIE_DETAILS, movieId],
+      queryFn: () => getMovieDetails({ data: { movieId } }),
     }),
 };

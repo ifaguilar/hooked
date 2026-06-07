@@ -1,7 +1,3 @@
-import { z } from "zod";
-
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
-
 export type Dates = {
   maximum: string;
   minimum: string;
@@ -12,16 +8,6 @@ export type OriginalLanguage = "en" | "es" | "it" | "ja" | "ko" | "fr" | "ru" | 
 export type KnownForDepartment = "Acting";
 
 export type MediaType = "movie" | "tv";
-
-export type TMDBListParams = z.infer<typeof TMDBListParamsSchema>;
-
-export interface TMDBListResponse<T> {
-  dates?: Dates;
-  page: number;
-  results: T[];
-  total_pages: number;
-  total_results: number;
-}
 
 export interface Movie {
   adult: boolean;
@@ -89,4 +75,74 @@ export interface Person {
   popularity: number;
   profile_path: string;
   known_for: KnownFor[];
+}
+
+// ── Detail models ─────────────────────────────────────────────────────────────
+/* TODO: Check this AI generated types */
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface ProductionCompany {
+  id: number;
+  name: string;
+  logo_path: string | null;
+  origin_country: string;
+}
+
+export interface CastMember {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string | null;
+  order: number;
+}
+
+export interface VideoResult {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official: boolean;
+  published_at: string;
+}
+
+export interface MovieDetails extends Movie {
+  genres: Genre[];
+  runtime: number | null;
+  status: string;
+  tagline: string;
+  homepage: string;
+  production_companies: ProductionCompany[];
+  credits: {
+    cast: CastMember[];
+  };
+  videos: {
+    results: VideoResult[];
+  };
+  similar: {
+    results: Movie[];
+  };
+}
+
+export interface TvShowDetails extends TvShow {
+  genres: Genre[];
+  episode_run_time: number[];
+  number_of_seasons: number;
+  number_of_episodes: number;
+  status: string;
+  tagline: string;
+  homepage: string;
+  production_companies: ProductionCompany[];
+  credits: {
+    cast: CastMember[];
+  };
+  videos: {
+    results: VideoResult[];
+  };
+  similar: {
+    results: TvShow[];
+  };
 }

@@ -1,5 +1,4 @@
-import { CardSkeleton } from "@/components/layout/card-grid";
-import { MediaCard } from "@/components/layout/media-card";
+import { CardSkeleton } from "@/components/layout/card-skeleton";
 import {
   Carousel,
   CarouselContent,
@@ -8,10 +7,12 @@ import {
   type CarouselOptions,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import type { MediaItem } from "@/types/media";
-import type { Movie, TvShow } from "@/types/tmdb";
+import { MediaCard } from "@/features/media/components/media-card";
+import type { MediaItem } from "@/features/media/types";
+import { Movie, TvShow } from "@/lib/tmdb/types/model";
 import { RESULTS_PER_PAGE, SLIDES_TO_SCROLL } from "@/utils/constants";
 
+// TODO: Check repeated type
 type MediaCarouselProps = { type: "movie"; items: Movie[] } | { type: "tv"; items: TvShow[] };
 
 const carouselOptions: Partial<CarouselOptions> = {
@@ -37,8 +38,8 @@ export function MediaCarousel(props: MediaCarouselProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden lg:flex" />
-      <CarouselNext className="hidden lg:flex" />
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }
@@ -53,8 +54,8 @@ export function MediaCarouselSkeleton() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden lg:flex" />
-      <CarouselNext className="hidden lg:flex" />
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }

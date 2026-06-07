@@ -1,8 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 
-import { tmdbFetch } from "@/lib/tmdb/tmdb-fetch";
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { type TMDBListResponse, type TvShow } from "@/types/tmdb";
+import { TMDBListResponse } from "@/lib/tmdb/types/api";
+import { TvShow, TvShowDetails } from "@/lib/tmdb/types/model";
+import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
+import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 
 export const getPopularTvShows = createServerFn()
   .inputValidator(TMDBListParamsSchema)
@@ -33,5 +35,14 @@ export const getTopRatedTvShows = createServerFn()
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<TvShow>>("/3/tv/top_rated", {
       params: data,
+    });
+  });
+
+/* TODO: Check return type, zod schema and params */
+export const getTvShowDetails = createServerFn()
+  .inputValidator(z.object({ tvShowId: z.string() }))
+  .handler(async ({ data }) => {
+    return tmdbFetch<TvShowDetails>(`/3/tv/${data.tvShowId}`, {
+      params: { append_to_response: "credits,videos,similar" },
     });
   });

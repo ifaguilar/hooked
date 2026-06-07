@@ -3,19 +3,19 @@ import { StarIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
-import type { MediaItem } from "@/types/media";
-import { getMediaDetails } from "@/utils/details";
+import type { MediaItem } from "@/features/media/types";
+import { getMediaDetails } from "@/features/media/utils/details";
+import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";
 import { formatMediaYear, formatVoteAverage } from "@/utils/format";
 
 export function MediaCard(props: MediaItem) {
   const { media } = props;
 
-  const { title, date, linkProps } = getMediaDetails(props);
+  const { title, date, linkOptions } = getMediaDetails(props);
   const year = formatMediaYear(date);
 
   return (
-    <Link {...linkProps} className="group">
+    <Link {...linkOptions} className="group">
       <Card className="border-border/10 bg-card/50 relative h-full overflow-hidden pt-0 shadow-sm backdrop-blur-sm hover:shadow-md">
         <div className="relative aspect-2/3 overflow-hidden">
           <img

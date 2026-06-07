@@ -1,14 +1,18 @@
-import { z } from "zod";
+import z from "zod";
 
-const clientEnvSchema = z.object({
-  VITE_TMDB_IMAGE_BASE_URL: z.url(),
-  VITE_PORTFOLIO_URL: z.url(),
-});
+function getClientEnv() {
+  const clientEnvSchema = z.object({
+    VITE_TMDB_IMAGE_BASE_URL: z.url(),
+    VITE_PORTFOLIO_URL: z.url(),
+  });
 
-const parsedClientEnv = clientEnvSchema.safeParse(import.meta.env);
+  const parsedClientEnv = clientEnvSchema.safeParse(import.meta.env);
 
-if (!parsedClientEnv.success) {
-  throw new Error("Invalid environment variables");
+  if (!parsedClientEnv.success) {
+    throw new Error("Missing environment variables");
+  }
+
+  return parsedClientEnv.data;
 }
 
-export const clientEnv = parsedClientEnv.data;
+export const clientEnv = getClientEnv();

@@ -3,9 +3,9 @@ import { TrendingUp, User } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
-import type { Person } from "@/types/tmdb";
-import { getPersonDetails } from "@/utils/details";
+import { getPersonDetails } from "@/features/people/utils/details";
+import type { Person } from "@/lib/tmdb/types/images";
+import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";
 
 interface PersonCardProps {
   person: Person;
@@ -14,10 +14,10 @@ interface PersonCardProps {
 export function PersonCard({ person }: PersonCardProps) {
   const imageUrl = getTMDBImageUrl(person.profile_path, "h632");
 
-  const { knownFor, linkProps } = getPersonDetails(person);
+  const { knownFor, linkOptions } = getPersonDetails(person);
 
   return (
-    <Link {...linkProps} className="group">
+    <Link {...linkOptions} className="group">
       <Card className="border-border/10 bg-card/50 relative h-full overflow-hidden pt-0 shadow-sm backdrop-blur-sm hover:shadow-md">
         <div className="relative aspect-2/3 overflow-hidden">
           {imageUrl ? (
@@ -50,9 +50,6 @@ export function PersonCard({ person }: PersonCardProps) {
             {person.name}
           </CardTitle>
           <CardDescription className="line-clamp-2 min-h-10 text-xs">
-            <span className="text-muted-foreground/85 mb-1 block text-[10px] font-semibold tracking-wider uppercase">
-              {person.known_for_department}
-            </span>
             {knownFor ? (
               <span className="line-clamp-1 block" title={knownFor}>
                 Known for: {knownFor}

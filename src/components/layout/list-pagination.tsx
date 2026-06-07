@@ -8,6 +8,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import type { FileRouteTypes } from "@/routeTree.gen";
+import { FIRST_PAGE, MAX_PAGES } from "@/utils/constants";
 
 interface ListPaginationProps {
   currentPage: number;
@@ -19,27 +20,41 @@ function isEllipsis(item: number | string): item is "ellipsis" {
   return item === "ellipsis";
 }
 
-function getPaginationItems(currentPage: number, totalPages: number) {
-  const maxPages = Math.min(totalPages, 500);
-
+function getPaginationItems(currentPage: number, maxPages: number) {
   if (maxPages <= 7) {
-    return Array.from({ length: maxPages }).map((_, i) => i + 1);
+    return Array.from({ length: maxPages }).map((_, index) => index + 1);
   }
 
   if (currentPage <= 4) {
-    return [1, 2, 3, 4, 5, "ellipsis", maxPages];
+    return [FIRST_PAGE, 2, 3, 4, 5, "ellipsis", maxPages];
   }
 
   if (currentPage >= maxPages - 3) {
-    return [1, "ellipsis", maxPages - 4, maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+    return [
+      FIRST_PAGE,
+      "ellipsis",
+      maxPages - 4,
+      maxPages - 3,
+      maxPages - 2,
+      maxPages - 1,
+      maxPages,
+    ];
   }
 
-  return [1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", maxPages];
+  return [
+    FIRST_PAGE,
+    "ellipsis",
+    currentPage - 1,
+    currentPage,
+    currentPage + 1,
+    "ellipsis",
+    maxPages,
+  ];
 }
 
 export function ListPagination({ currentPage, totalPages, from }: ListPaginationProps) {
-  const maxPages = Math.min(totalPages, 500);
-  const items = getPaginationItems(currentPage, totalPages);
+  const maxPages = Math.min(totalPages, MAX_PAGES);
+  const items = getPaginationItems(currentPage, maxPages);
 
   return (
     <Pagination>
@@ -50,11 +65,11 @@ export function ListPagination({ currentPage, totalPages, from }: ListPagination
             to="."
             search={(prev) => ({
               ...prev,
-              page: Math.max(1, currentPage - 1),
+              page: Math.max(FIRST_PAGE, currentPage - 1),
             })}
-            aria-disabled={currentPage <= 1}
-            disabled={currentPage <= 1}
-            className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
+            aria-disabled={currentPage <= FIRST_PAGE}
+            disabled={currentPage <= FIRST_PAGE}
+            className={currentPage <= FIRST_PAGE ? "pointer-events-none opacity-50" : ""}
           />
         </PaginationItem>
 

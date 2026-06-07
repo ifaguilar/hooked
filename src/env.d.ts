@@ -3,6 +3,7 @@
 // Client-side environment variables
 interface ImportMetaEnv {
   readonly VITE_TMDB_IMAGE_BASE_URL: string;
+  readonly VITE_PORTFOLIO_URL: string;
 }
 
 interface ImportMeta {

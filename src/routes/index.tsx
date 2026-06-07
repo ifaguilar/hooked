@@ -1,13 +1,14 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRightIcon } from "lucide-react";
 import { Suspense } from "react";
 
-import { MediaCarousel, MediaCarouselSkeleton } from "@/components/layout/media-carousel";
-import { MediaHero, MediaHeroSkeleton } from "@/components/layout/media-hero";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
 import { buttonVariants } from "@/components/ui/button";
 import { TypographyH2 } from "@/components/ui/typography";
+import { MediaCarousel, MediaCarouselSkeleton } from "@/features/media/components/media-carousel";
+import { MediaHero, MediaHeroSkeleton } from "@/features/media/components/media-hero";
 import { movieQueries } from "@/features/movies/api/queries";
 import { tvShowQueries } from "@/features/tv-shows/api/queries";
 import { cn } from "@/utils/cn";
@@ -42,7 +43,8 @@ function HomePage() {
                 }),
               )}
             >
-              View all
+              <span>View all</span>
+              <ArrowRightIcon />
             </Link>
           </div>
           <Suspense fallback={<MediaCarouselSkeleton />}>
@@ -62,7 +64,8 @@ function HomePage() {
                 }),
               )}
             >
-              View all
+              <span>View all</span>
+              <ArrowRightIcon />
             </Link>
           </div>
           <Suspense fallback={<MediaCarouselSkeleton />}>

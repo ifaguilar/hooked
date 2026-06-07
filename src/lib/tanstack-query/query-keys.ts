@@ -4,11 +4,13 @@ export const queryKeys = {
   POPULAR_MOVIES: ["movies", "popular"],
   TOP_RATED_MOVIES: ["movies", "top-rated"],
   UPCOMING_MOVIES: ["movies", "upcoming"],
+  MOVIE_DETAILS: ["movies", "details"],
   TV_SHOWS: ["tv-shows"],
   AIRING_TODAY_TV_SHOWS: ["tv-shows", "airing-today"],
   ON_THE_AIR_TV_SHOWS: ["tv-shows", "on-the-air"],
   POPULAR_TV_SHOWS: ["tv-shows", "popular"],
   TOP_RATED_TV_SHOWS: ["tv-shows", "top-rated"],
+  TV_SHOW_DETAILS: ["tv-shows", "details"],
   PEOPLE: ["people"],
   POPULAR_PEOPLE: ["people", "popular"],
 } as const;

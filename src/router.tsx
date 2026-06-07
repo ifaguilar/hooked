@@ -12,9 +12,9 @@ export function getRouter() {
     context: { queryClient },
     defaultPreload: "intent",
     scrollRestoration: true,
+    defaultViewTransition: true,
     defaultErrorComponent: RouterError,
     defaultNotFoundComponent: RouterNotFound,
-    defaultViewTransition: true,
   });
 
   setupRouterSsrQueryIntegration({

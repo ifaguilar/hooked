@@ -1,8 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 
-import { tmdbFetch } from "@/lib/tmdb/tmdb-fetch";
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { type Movie, type TMDBListResponse } from "@/types/tmdb";
+import { TMDBListResponse } from "@/lib/tmdb/types/api";
+import { Movie, MovieDetails } from "@/lib/tmdb/types/model";
+import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
+import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 
 export const getNowPlayingMovies = createServerFn()
   .inputValidator(TMDBListParamsSchema)
@@ -33,5 +35,14 @@ export const getUpcomingMovies = createServerFn()
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Movie>>("/3/movie/upcoming", {
       params: data,
+    });
+  });
+
+/* TODO: Check return type, zod schema and params */
+export const getMovieDetails = createServerFn()
+  .inputValidator(z.object({ movieId: z.string() }))
+  .handler(async ({ data }) => {
+    return tmdbFetch<MovieDetails>(`/3/movie/${data.movieId}`, {
+      params: { append_to_response: "credits,videos,similar" },
     });
   });

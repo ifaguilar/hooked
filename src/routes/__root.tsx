@@ -1,8 +1,7 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
-import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 
-/// <reference types="vite/client" />
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { getTheme } from "@/features/theme/utils/theme";

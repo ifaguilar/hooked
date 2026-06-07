@@ -6,10 +6,10 @@ import { CardGrid, CardGridSkeleton } from "@/components/layout/card-grid";
 import { ListPagination } from "@/components/layout/list-pagination";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
-import { PersonCard } from "@/components/layout/person-card";
 import { TypographyH2 } from "@/components/ui/typography";
 import { personQueries } from "@/features/people/api/queries";
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
+import { PersonCard } from "@/features/people/components/person-card";
+import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
 
 export const Route = createFileRoute("/people/popular")({
   component: PopularPeoplePage,

@@ -4,7 +4,7 @@ import type { FileRouteTypes } from "@/routeTree.gen";
 
 export type NavItem = {
   title: string;
-  href?: FileRouteTypes["to"];
+  href?: FileRouteTypes["fullPaths"];
   items?: NavItem[];
   icon?: LucideIcon;
 };

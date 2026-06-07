@@ -5,16 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TypographyH1 } from "@/components/ui/typography";
-import { getTMDBImageUrl } from "@/lib/tmdb/tmdb-images";
-import type { MediaItem } from "@/types/media";
+import type { MediaItem } from "@/features/media/types";
+import { getMediaDetails } from "@/features/media/utils/details";
+import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";
 import { cn } from "@/utils/cn";
-import { getMediaDetails } from "@/utils/details";
 import { formatMediaYear, formatVoteAverage } from "@/utils/format";
 
 export function MediaHero(props: MediaItem) {
   const { media } = props;
 
-  const { title, date, linkProps } = getMediaDetails(props);
+  const { title, date, linkOptions } = getMediaDetails(props);
   const year = formatMediaYear(date);
   const rating = formatVoteAverage(media.vote_average);
 
@@ -52,7 +52,7 @@ export function MediaHero(props: MediaItem) {
         </p>
 
         <Link
-          {...linkProps}
+          {...linkOptions}
           className={cn(
             buttonVariants({
               size: "lg",

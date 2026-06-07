@@ -5,9 +5,10 @@ import {
   getOnTheAirTvShows,
   getPopularTvShows,
   getTopRatedTvShows,
+  getTvShowDetails,
 } from "@/features/tv-shows/api/functions";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
-import { TMDBListParams } from "@/types/tmdb";
+import type { TMDBListParams } from "@/lib/tmdb/types/api";
 
 export const tvShowQueries = {
   popular: (params: TMDBListParams) =>
@@ -32,5 +33,12 @@ export const tvShowQueries = {
     queryOptions({
       queryKey: [...queryKeys.TOP_RATED_TV_SHOWS, params],
       queryFn: () => getTopRatedTvShows({ data: params }),
+    }),
+
+  /* TODO: change type? */
+  details: (tvShowId: string) =>
+    queryOptions({
+      queryKey: [...queryKeys.TV_SHOW_DETAILS, tvShowId],
+      queryFn: () => getTvShowDetails({ data: { tvShowId } }),
     }),
 };

@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import { tmdbFetch } from "@/lib/tmdb/tmdb-fetch";
-import { TMDBListParamsSchema } from "@/schemas/tmdb";
-import { type Person, type TMDBListResponse } from "@/types/tmdb";
+import { type Person, type TMDBListResponse } from "@/lib/tmdb/types/images";
+import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
+import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 
 export const getPopularPeople = createServerFn()
   .inputValidator(TMDBListParamsSchema)
