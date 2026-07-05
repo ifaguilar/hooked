@@ -1,4 +1,6 @@
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import {
   ComponentProps,
@@ -114,7 +116,8 @@ export function Carousel({
         carouselRef,
         api: api,
         opts,
-        orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+        orientation:
+          orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
         scrollPrev,
         scrollNext,
         canScrollPrev,
@@ -135,11 +138,18 @@ export function Carousel({
   );
 }
 
-export function CarouselContent({ className, ...props }: ComponentProps<"div">) {
+export function CarouselContent({
+  className,
+  ...props
+}: ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
+    <div
+      ref={carouselRef}
+      className="overflow-hidden"
+      data-slot="carousel-content"
+    >
       <div
         className={cn(
           "flex p-1",
@@ -228,7 +238,10 @@ export function CarouselNext({
         data-slot="carousel-next"
         variant={variant}
         size={size}
-        className={cn("touch-manipulation rounded-full hidden lg:flex", className)}
+        className={cn(
+          "touch-manipulation rounded-full hidden lg:flex",
+          className,
+        )}
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}

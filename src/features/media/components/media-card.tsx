@@ -2,7 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { StarIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import type { MediaItem } from "@/features/media/types";
 import { getMediaDetails } from "@/features/media/utils/details";
 import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";

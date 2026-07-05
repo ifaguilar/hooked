@@ -37,7 +37,9 @@ function UpcomingMoviesPage() {
 
 function UpcomingMoviesList() {
   const search = Route.useSearch();
-  const { data: upcomingMovies } = useSuspenseQuery(movieQueries.upcoming(search));
+  const { data: upcomingMovies } = useSuspenseQuery(
+    movieQueries.upcoming(search),
+  );
 
   return (
     <>

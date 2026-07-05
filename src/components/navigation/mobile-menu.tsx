@@ -26,14 +26,20 @@ export function MobileMenu() {
   const location = useLocation();
 
   const activeItem = navItems.find((item) =>
-    item.items?.some((subItem) => subItem.href && location.pathname.startsWith(subItem.href)),
+    item.items?.some(
+      (subItem) => subItem.href && location.pathname.startsWith(subItem.href),
+    ),
   );
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger
         render={
-          <Button variant="outline" size="icon" aria-label="Open navigation menu">
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Open navigation menu"
+          >
             <MenuIcon />
             <span className="sr-only">Open navigation menu</span>
           </Button>
@@ -43,7 +49,9 @@ export function MobileMenu() {
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-          <SheetDescription className="sr-only">Navigation menu for the website</SheetDescription>
+          <SheetDescription className="sr-only">
+            Navigation menu for the website
+          </SheetDescription>
 
           <Link to="/" onClick={() => setIsOpen(false)}>
             <HookedLogo className="text-foreground h-8 w-auto" />
@@ -51,7 +59,10 @@ export function MobileMenu() {
         </SheetHeader>
 
         <div className="flex flex-col gap-2 px-4">
-          <Accordion className="flex w-full flex-col gap-2" defaultValue={[activeItem?.title]}>
+          <Accordion
+            className="flex w-full flex-col gap-2"
+            defaultValue={[activeItem?.title]}
+          >
             {navItems.map((item, index) => {
               const showSeparator = index < navItems.length - 1;
               const ItemIcon = item.icon;
@@ -106,7 +117,11 @@ export function MobileMenu() {
                 );
               }
 
-              return <Fragment key={item.title}>{showSeparator ? <Separator /> : null}</Fragment>;
+              return (
+                <Fragment key={item.title}>
+                  {showSeparator ? <Separator /> : null}
+                </Fragment>
+              );
             })}
           </Accordion>
         </div>

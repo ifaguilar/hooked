@@ -5,7 +5,7 @@ import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
 import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 
 export const getPopularPeople = createServerFn()
-  .inputValidator(TMDBListParamsSchema)
+  .validator(TMDBListParamsSchema)
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Person>>("/3/person/popular", {
       params: data,

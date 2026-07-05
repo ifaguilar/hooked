@@ -37,7 +37,9 @@ function TopRatedMoviesPage() {
 
 function TopRatedMoviesList() {
   const search = Route.useSearch();
-  const { data: topRatedMovies } = useSuspenseQuery(movieQueries.topRated(search));
+  const { data: topRatedMovies } = useSuspenseQuery(
+    movieQueries.topRated(search),
+  );
 
   return (
     <>

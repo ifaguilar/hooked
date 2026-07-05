@@ -1,5 +1,9 @@
 import { Link, LinkOptions } from "@tanstack/react-router";
-import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from "lucide-react";
 import { ComponentProps, ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +21,10 @@ export function Pagination({ className, ...props }: ComponentProps<"nav">) {
   );
 }
 
-export function PaginationContent({ className, ...props }: ComponentProps<"ul">) {
+export function PaginationContent({
+  className,
+  ...props
+}: ComponentProps<"ul">) {
   return (
     <ul
       data-slot="pagination-content"
@@ -98,7 +105,10 @@ export function PaginationNext({
   );
 }
 
-export function PaginationEllipsis({ className, ...props }: ComponentProps<"span">) {
+export function PaginationEllipsis({
+  className,
+  ...props
+}: ComponentProps<"span">) {
   return (
     <span
       aria-hidden

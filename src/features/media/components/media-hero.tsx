@@ -41,7 +41,9 @@ export function MediaHero(props: MediaItem) {
             <span>{rating}</span>
           </Badge>
           <span className="text-muted-foreground">•</span>
-          <span className="text-muted-foreground font-semibold tracking-wide">{year}</span>
+          <span className="text-muted-foreground font-semibold tracking-wide">
+            {year}
+          </span>
         </div>
 
         {/* TODO: set responsive typography */}

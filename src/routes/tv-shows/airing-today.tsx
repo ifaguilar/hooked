@@ -37,7 +37,9 @@ function AiringTodayTvShowsPage() {
 
 function AiringTodayTvShowsList() {
   const search = Route.useSearch();
-  const { data: airingTodayTvShows } = useSuspenseQuery(tvShowQueries.airingToday(search));
+  const { data: airingTodayTvShows } = useSuspenseQuery(
+    tvShowQueries.airingToday(search),
+  );
 
   return (
     <>

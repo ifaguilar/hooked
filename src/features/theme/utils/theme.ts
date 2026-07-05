@@ -27,5 +27,5 @@ export const getTheme = createServerFn().handler(() => {
 });
 
 export const setTheme = createServerFn()
-  .inputValidator(themeSchema)
+  .validator(themeSchema)
   .handler(({ data: newTheme }) => setCookie(THEME_STORAGE_KEY, newTheme));

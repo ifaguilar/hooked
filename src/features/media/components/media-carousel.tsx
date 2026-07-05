@@ -13,7 +13,9 @@ import { Movie, TvShow } from "@/lib/tmdb/types/model";
 import { RESULTS_PER_PAGE, SLIDES_TO_SCROLL } from "@/utils/constants";
 
 // TODO: Check repeated type
-type MediaCarouselProps = { type: "movie"; items: Movie[] } | { type: "tv"; items: TvShow[] };
+type MediaCarouselProps =
+  | { type: "movie"; items: Movie[] }
+  | { type: "tv"; items: TvShow[] };
 
 const carouselOptions: Partial<CarouselOptions> = {
   align: "start",

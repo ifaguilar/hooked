@@ -21,7 +21,10 @@ export function SheetPortal({ ...props }: SheetPrimitive.Portal.Props) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
-export function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
+export function SheetOverlay({
+  className,
+  ...props
+}: SheetPrimitive.Backdrop.Props) {
   return (
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
@@ -60,7 +63,13 @@ export function SheetContent({
         {showCloseButton ? (
           <SheetPrimitive.Close
             data-slot="sheet-close"
-            render={<Button variant="ghost" className="absolute top-4 right-4" size="icon-sm" />}
+            render={
+              <Button
+                variant="ghost"
+                className="absolute top-4 right-4"
+                size="icon-sm"
+              />
+            }
           >
             <XIcon />
             <span className="sr-only">Close</span>
@@ -91,17 +100,26 @@ export function SheetFooter({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
+export function SheetTitle({
+  className,
+  ...props
+}: SheetPrimitive.Title.Props) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
-      className={cn("font-heading text-base font-medium text-foreground", className)}
+      className={cn(
+        "font-heading text-base font-medium text-foreground",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-export function SheetDescription({ className, ...props }: SheetPrimitive.Description.Props) {
+export function SheetDescription({
+  className,
+  ...props
+}: SheetPrimitive.Description.Props) {
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"

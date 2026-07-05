@@ -37,7 +37,9 @@ function PopularPeoplePage() {
 
 function PopularPeopleList() {
   const search = Route.useSearch();
-  const { data: popularPeople } = useSuspenseQuery(personQueries.popular(search));
+  const { data: popularPeople } = useSuspenseQuery(
+    personQueries.popular(search),
+  );
 
   return (
     <>

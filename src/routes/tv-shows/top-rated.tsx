@@ -37,7 +37,9 @@ function TopRatedTvShowsPage() {
 
 function TopRatedTvShowsList() {
   const search = Route.useSearch();
-  const { data: topRatedTvShows } = useSuspenseQuery(tvShowQueries.topRated(search));
+  const { data: topRatedTvShows } = useSuspenseQuery(
+    tvShowQueries.topRated(search),
+  );
 
   return (
     <>

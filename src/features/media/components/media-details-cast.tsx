@@ -55,7 +55,11 @@ function CastCard({ member }: { member: CastMember }) {
     <div className="flex flex-col items-center gap-2 text-center">
       <div className="bg-muted border-border/20 relative size-16 overflow-hidden rounded-full border-2 shadow-md sm:size-20 lg:size-24">
         {imageUrl ? (
-          <img src={imageUrl} alt={member.name} className="size-full object-cover object-top" />
+          <img
+            src={imageUrl}
+            alt={member.name}
+            className="size-full object-cover object-top"
+          />
         ) : (
           <div className="text-muted-foreground flex size-full items-center justify-center">
             <UserCircle2 className="size-10 opacity-40" />
@@ -63,8 +67,12 @@ function CastCard({ member }: { member: CastMember }) {
         )}
       </div>
       <div className="w-full">
-        <p className="truncate text-xs leading-tight font-semibold sm:text-sm">{member.name}</p>
-        <p className="text-muted-foreground truncate text-xs leading-tight">{member.character}</p>
+        <p className="truncate text-xs leading-tight font-semibold sm:text-sm">
+          {member.name}
+        </p>
+        <p className="text-muted-foreground truncate text-xs leading-tight">
+          {member.character}
+        </p>
       </div>
     </div>
   );

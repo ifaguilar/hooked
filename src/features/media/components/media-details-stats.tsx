@@ -43,7 +43,9 @@ export function MediaDetailsStats({
       <Separator orientation="vertical" className="hidden h-8 sm:block" />
 
       <StatItem label="Original Language">
-        <span className="font-semibold">{formatLanguage(originalLanguage)}</span>
+        <span className="font-semibold">
+          {formatLanguage(originalLanguage)}
+        </span>
       </StatItem>
 
       <Separator orientation="vertical" className="hidden h-8 sm:block" />
@@ -72,7 +74,13 @@ export function MediaDetailsStats({
   );
 }
 
-function StatItem({ label, children }: { label: string; children: React.ReactNode }) {
+function StatItem({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col gap-1">
       <dt className="text-muted-foreground text-xs font-medium tracking-wider uppercase">

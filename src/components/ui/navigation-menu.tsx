@@ -9,7 +9,8 @@ export function NavigationMenu({
   className,
   children,
   ...props
-}: NavigationMenuPrimitive.Root.Props & Pick<NavigationMenuPrimitive.Positioner.Props, "align">) {
+}: NavigationMenuPrimitive.Root.Props &
+  Pick<NavigationMenuPrimitive.Positioner.Props, "align">) {
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
@@ -32,7 +33,10 @@ export function NavigationMenuList({
   return (
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
-      className={cn("group flex flex-1 list-none items-center justify-center gap-0", className)}
+      className={cn(
+        "group flex flex-1 list-none items-center justify-center gap-0",
+        className,
+      )}
       {...props}
     />
   );
@@ -120,7 +124,10 @@ export function NavigationMenuPositioner({
   );
 }
 
-export function NavigationMenuLink({ className, ...props }: NavigationMenuPrimitive.Link.Props) {
+export function NavigationMenuLink({
+  className,
+  ...props
+}: NavigationMenuPrimitive.Link.Props) {
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"

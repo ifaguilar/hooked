@@ -2,7 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { TrendingUp, User } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { getPersonDetails } from "@/features/people/utils/details";
 import type { Person } from "@/lib/tmdb/types/images";
 import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";

@@ -25,8 +25,10 @@ export const inputGroupAddonVariants = cva(
   {
     variants: {
       align: {
-        "inline-start": "order-first pl-3 has-[>button]:-ml-1 has-[>kbd]:ml-[-0.15rem]",
-        "inline-end": "order-last pr-3 has-[>button]:-mr-1 has-[>kbd]:mr-[-0.15rem]",
+        "inline-start":
+          "order-first pl-3 has-[>button]:-ml-1 has-[>kbd]:ml-[-0.15rem]",
+        "inline-end":
+          "order-last pr-3 has-[>button]:-mr-1 has-[>kbd]:mr-[-0.15rem]",
         "block-start":
           "order-first w-full justify-start px-3 pt-3 group-has-[>input]/input-group:pt-3 [.border-b]:pb-3",
         "block-end":
@@ -61,19 +63,22 @@ export function InputGroupAddon({
   );
 }
 
-const inputGroupButtonVariants = cva("flex items-center gap-2 rounded-4xl text-sm shadow-none", {
-  variants: {
-    size: {
-      xs: "h-6 gap-1 px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
-      sm: "",
-      "icon-xs": "size-6 p-0 has-[>svg]:p-0",
-      "icon-sm": "size-8 p-0 has-[>svg]:p-0",
+const inputGroupButtonVariants = cva(
+  "flex items-center gap-2 rounded-4xl text-sm shadow-none",
+  {
+    variants: {
+      size: {
+        xs: "h-6 gap-1 px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
+        sm: "",
+        "icon-xs": "size-6 p-0 has-[>svg]:p-0",
+        "icon-sm": "size-8 p-0 has-[>svg]:p-0",
+      },
+    },
+    defaultVariants: {
+      size: "xs",
     },
   },
-  defaultVariants: {
-    size: "xs",
-  },
-});
+);
 
 export function InputGroupButton({
   className,
@@ -96,7 +101,10 @@ export function InputGroupButton({
   );
 }
 
-export function InputGroupText({ className, ...props }: ComponentProps<"span">) {
+export function InputGroupText({
+  className,
+  ...props
+}: ComponentProps<"span">) {
   return (
     <span
       className={cn(
@@ -108,7 +116,10 @@ export function InputGroupText({ className, ...props }: ComponentProps<"span">) 
   );
 }
 
-export function InputGroupInput({ className, ...props }: ComponentProps<"input">) {
+export function InputGroupInput({
+  className,
+  ...props
+}: ComponentProps<"input">) {
   return (
     <Input
       data-slot="input-group-control"
@@ -121,7 +132,10 @@ export function InputGroupInput({ className, ...props }: ComponentProps<"input">
   );
 }
 
-export function InputGroupTextarea({ className, ...props }: ComponentProps<"textarea">) {
+export function InputGroupTextarea({
+  className,
+  ...props
+}: ComponentProps<"textarea">) {
   return (
     <Textarea
       data-slot="input-group-control"

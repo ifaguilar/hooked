@@ -37,7 +37,9 @@ function NowPlayingMoviesPage() {
 
 function NowPlayingMoviesList() {
   const search = Route.useSearch();
-  const { data: nowPlayingMovies } = useSuspenseQuery(movieQueries.nowPlaying(search));
+  const { data: nowPlayingMovies } = useSuspenseQuery(
+    movieQueries.nowPlaying(search),
+  );
 
   return (
     <>

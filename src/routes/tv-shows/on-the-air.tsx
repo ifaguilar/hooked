@@ -37,7 +37,9 @@ function OnTheAirTvShowsPage() {
 
 function OnTheAirTvShowsList() {
   const search = Route.useSearch();
-  const { data: onTheAirTvShows } = useSuspenseQuery(tvShowQueries.onTheAir(search));
+  const { data: onTheAirTvShows } = useSuspenseQuery(
+    tvShowQueries.onTheAir(search),
+  );
 
   return (
     <>

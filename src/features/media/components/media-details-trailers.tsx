@@ -58,7 +58,9 @@ function TrailerCard({ trailer }: { trailer: VideoResult }) {
           className="size-full"
         />
       </div>
-      <p className="text-muted-foreground truncate text-sm font-medium">{trailer.name}</p>
+      <p className="text-muted-foreground truncate text-sm font-medium">
+        {trailer.name}
+      </p>
     </div>
   );
 }
@@ -68,7 +70,10 @@ export function MediaDetailsTrailersSkeleton() {
     <Carousel opts={carouselOptions}>
       <CarouselContent className="-ml-4">
         {Array.from({ length: 3 }).map((_, i) => (
-          <CarouselItem key={i} className="basis-full pl-4 sm:basis-4/5 md:basis-3/5 lg:basis-2/5">
+          <CarouselItem
+            key={i}
+            className="basis-full pl-4 sm:basis-4/5 md:basis-3/5 lg:basis-2/5"
+          >
             <div className="flex flex-col gap-2">
               <Skeleton className="aspect-video w-full rounded-2xl" />
               <Skeleton className="h-4 w-3/4" />

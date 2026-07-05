@@ -37,7 +37,9 @@ function PopularMoviesPage() {
 
 function PopularMoviesList() {
   const search = Route.useSearch();
-  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular(search));
+  const { data: popularMovies } = useSuspenseQuery(
+    movieQueries.popular(search),
+  );
 
   return (
     <>

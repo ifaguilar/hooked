@@ -23,17 +23,26 @@ export function Avatar({
   );
 }
 
-export function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
+export function AvatarImage({
+  className,
+  ...props
+}: AvatarPrimitive.Image.Props) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
-      className={cn("aspect-square size-full rounded-full object-cover", className)}
+      className={cn(
+        "aspect-square size-full rounded-full object-cover",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-export function AvatarFallback({ className, ...props }: AvatarPrimitive.Fallback.Props) {
+export function AvatarFallback({
+  className,
+  ...props
+}: AvatarPrimitive.Fallback.Props) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
@@ -75,7 +84,10 @@ export function AvatarGroup({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function AvatarGroupCount({ className, ...props }: ComponentProps<"div">) {
+export function AvatarGroupCount({
+  className,
+  ...props
+}: ComponentProps<"div">) {
   return (
     <div
       data-slot="avatar-group-count"

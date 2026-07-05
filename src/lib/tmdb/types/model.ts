@@ -3,7 +3,15 @@ export type Dates = {
   minimum: string;
 };
 
-export type OriginalLanguage = "en" | "es" | "it" | "ja" | "ko" | "fr" | "ru" | "zh";
+export type OriginalLanguage =
+  | "en"
+  | "es"
+  | "it"
+  | "ja"
+  | "ko"
+  | "fr"
+  | "ru"
+  | "zh";
 
 export type KnownForDepartment = "Acting";
 

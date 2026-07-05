@@ -37,7 +37,9 @@ function PopularTvShowsPage() {
 
 function PopularTvShowsList() {
   const search = Route.useSearch();
-  const { data: popularTvShows } = useSuspenseQuery(tvShowQueries.popular(search));
+  const { data: popularTvShows } = useSuspenseQuery(
+    tvShowQueries.popular(search),
+  );
 
   return (
     <>

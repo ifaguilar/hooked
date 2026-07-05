@@ -52,7 +52,11 @@ function getPaginationItems(currentPage: number, maxPages: number) {
   ];
 }
 
-export function ListPagination({ currentPage, totalPages, from }: ListPaginationProps) {
+export function ListPagination({
+  currentPage,
+  totalPages,
+  from,
+}: ListPaginationProps) {
   const maxPages = Math.min(totalPages, MAX_PAGES);
   const items = getPaginationItems(currentPage, maxPages);
 
@@ -69,7 +73,9 @@ export function ListPagination({ currentPage, totalPages, from }: ListPagination
             })}
             aria-disabled={currentPage <= FIRST_PAGE}
             disabled={currentPage <= FIRST_PAGE}
-            className={currentPage <= FIRST_PAGE ? "pointer-events-none opacity-50" : ""}
+            className={
+              currentPage <= FIRST_PAGE ? "pointer-events-none opacity-50" : ""
+            }
           />
         </PaginationItem>
 
@@ -103,7 +109,9 @@ export function ListPagination({ currentPage, totalPages, from }: ListPagination
             })}
             aria-disabled={currentPage >= maxPages}
             disabled={currentPage >= maxPages}
-            className={currentPage >= maxPages ? "pointer-events-none opacity-50" : ""}
+            className={
+              currentPage >= maxPages ? "pointer-events-none opacity-50" : ""
+            }
           />
         </PaginationItem>
       </PaginationContent>

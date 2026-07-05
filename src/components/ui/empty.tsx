@@ -60,7 +60,10 @@ export function EmptyTitle({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="empty-title"
-      className={cn("font-heading text-lg font-medium tracking-tight", className)}
+      className={cn(
+        "font-heading text-lg font-medium tracking-tight",
+        className,
+      )}
       {...props}
     />
   );

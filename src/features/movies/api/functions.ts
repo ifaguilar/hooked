@@ -7,7 +7,7 @@ import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
 import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 
 export const getNowPlayingMovies = createServerFn()
-  .inputValidator(TMDBListParamsSchema)
+  .validator(TMDBListParamsSchema)
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Movie>>("/3/movie/now_playing", {
       params: data,
@@ -15,7 +15,7 @@ export const getNowPlayingMovies = createServerFn()
   });
 
 export const getPopularMovies = createServerFn()
-  .inputValidator(TMDBListParamsSchema)
+  .validator(TMDBListParamsSchema)
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Movie>>("/3/movie/popular", {
       params: data,
@@ -23,7 +23,7 @@ export const getPopularMovies = createServerFn()
   });
 
 export const getTopRatedMovies = createServerFn()
-  .inputValidator(TMDBListParamsSchema)
+  .validator(TMDBListParamsSchema)
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Movie>>("/3/movie/top_rated", {
       params: data,
@@ -31,7 +31,7 @@ export const getTopRatedMovies = createServerFn()
   });
 
 export const getUpcomingMovies = createServerFn()
-  .inputValidator(TMDBListParamsSchema)
+  .validator(TMDBListParamsSchema)
   .handler(async ({ data }) => {
     return tmdbFetch<TMDBListResponse<Movie>>("/3/movie/upcoming", {
       params: data,
@@ -40,7 +40,7 @@ export const getUpcomingMovies = createServerFn()
 
 /* TODO: Check return type, zod schema and params */
 export const getMovieDetails = createServerFn()
-  .inputValidator(z.object({ movieId: z.string() }))
+  .validator(z.object({ movieId: z.string() }))
   .handler(async ({ data }) => {
     return tmdbFetch<MovieDetails>(`/3/movie/${data.movieId}`, {
       params: { append_to_response: "credits,videos,similar" },

@@ -15,7 +15,10 @@ type MediaDetailsHeroProps =
 function getHeroDetails(props: MediaDetailsHeroProps) {
   if (props.type === "tv") {
     const { media } = props;
-    const runtime = media.episode_run_time.length > 0 ? `${media.episode_run_time[0]}m / ep` : null;
+    const runtime =
+      media.episode_run_time.length > 0
+        ? `${media.episode_run_time[0]}m / ep`
+        : null;
     const seasons =
       media.number_of_seasons > 0
         ? `${media.number_of_seasons} Season${media.number_of_seasons > 1 ? "s" : ""}`
@@ -85,7 +88,9 @@ export function MediaDetailsHero(props: MediaDetailsHeroProps) {
               {year && (
                 <>
                   <span className="text-muted-foreground">•</span>
-                  <span className="text-muted-foreground font-semibold tracking-wide">{year}</span>
+                  <span className="text-muted-foreground font-semibold tracking-wide">
+                    {year}
+                  </span>
                 </>
               )}
               {runtimeLabel && (
@@ -107,7 +112,9 @@ export function MediaDetailsHero(props: MediaDetailsHeroProps) {
             </div>
 
             {/* Title */}
-            <TypographyH1 className="text-4xl md:text-5xl lg:text-6xl">{title}</TypographyH1>
+            <TypographyH1 className="text-4xl md:text-5xl lg:text-6xl">
+              {title}
+            </TypographyH1>
 
             {/* Tagline */}
             {media.tagline && (

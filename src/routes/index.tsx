@@ -7,8 +7,14 @@ import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
 import { buttonVariants } from "@/components/ui/button";
 import { TypographyH2 } from "@/components/ui/typography";
-import { MediaCarousel, MediaCarouselSkeleton } from "@/features/media/components/media-carousel";
-import { MediaHero, MediaHeroSkeleton } from "@/features/media/components/media-hero";
+import {
+  MediaCarousel,
+  MediaCarouselSkeleton,
+} from "@/features/media/components/media-carousel";
+import {
+  MediaHero,
+  MediaHeroSkeleton,
+} from "@/features/media/components/media-hero";
 import { movieQueries } from "@/features/movies/api/queries";
 import { tvShowQueries } from "@/features/tv-shows/api/queries";
 import { cn } from "@/utils/cn";
@@ -17,8 +23,12 @@ import { FIRST_PAGE } from "@/utils/constants";
 export const Route = createFileRoute("/")({
   component: HomePage,
   loader: ({ context }) => {
-    context.queryClient.prefetchQuery(movieQueries.popular({ page: FIRST_PAGE }));
-    context.queryClient.prefetchQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
+    context.queryClient.prefetchQuery(
+      movieQueries.popular({ page: FIRST_PAGE }),
+    );
+    context.queryClient.prefetchQuery(
+      tvShowQueries.popular({ page: FIRST_PAGE }),
+    );
 
     return { randomMediaSeed: Math.random() };
   },
@@ -80,9 +90,13 @@ function HomePage() {
 function FeaturedHero() {
   const { randomMediaSeed } = Route.useLoaderData();
 
-  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularMovies } = useSuspenseQuery(
+    movieQueries.popular({ page: FIRST_PAGE }),
+  );
 
-  const { data: popularTvShows } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularTvShows } = useSuspenseQuery(
+    tvShowQueries.popular({ page: FIRST_PAGE }),
+  );
 
   const movies = popularMovies.results.map((media) => ({
     type: "movie" as const,
@@ -105,13 +119,17 @@ function FeaturedHero() {
 }
 
 function TrendingMovies() {
-  const { data: popularMovies } = useSuspenseQuery(movieQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularMovies } = useSuspenseQuery(
+    movieQueries.popular({ page: FIRST_PAGE }),
+  );
 
   return <MediaCarousel items={popularMovies.results} type="movie" />;
 }
 
 function TrendingTvShows() {
-  const { data: popularTvShows } = useSuspenseQuery(tvShowQueries.popular({ page: FIRST_PAGE }));
+  const { data: popularTvShows } = useSuspenseQuery(
+    tvShowQueries.popular({ page: FIRST_PAGE }),
+  );
 
   return <MediaCarousel items={popularTvShows.results} type="tv" />;
 }

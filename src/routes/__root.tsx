@@ -1,6 +1,11 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
-import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  Outlet,
+  createRootRouteWithContext,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -31,12 +36,14 @@ export const Route = createRootRouteWithContext<{
         name: "keywords",
         content: "",
       },
+
       // Open Graph
       { property: "og:title", content: "" },
       { property: "og:description", content: "" },
       { property: "og:image", content: "" },
       { property: "og:type", content: "website" },
-      // Twitter
+
+      // X (Twitter)
       { name: "twitter:title", content: "" },
       { name: "twitter:description", content: "" },
       { name: "twitter:image", content: "" },

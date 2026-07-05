@@ -24,7 +24,10 @@ export function DropdownMenuContent({
   className,
   ...props
 }: MenuPrimitive.Popup.Props &
-  Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
+  Pick<
+    MenuPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset"
+  >) {
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
@@ -62,7 +65,10 @@ export function DropdownMenuLabel({
     <MenuPrimitive.GroupLabel
       data-slot="dropdown-menu-label"
       data-inset={inset}
-      className={cn("px-3 py-2.5 text-xs text-muted-foreground data-inset:pl-9.5", className)}
+      className={cn(
+        "px-3 py-2.5 text-xs text-muted-foreground data-inset:pl-9.5",
+        className,
+      )}
       {...props}
     />
   );
@@ -176,8 +182,15 @@ export function DropdownMenuCheckboxItem({
   );
 }
 
-export function DropdownMenuRadioGroup({ ...props }: MenuPrimitive.RadioGroup.Props) {
-  return <MenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />;
+export function DropdownMenuRadioGroup({
+  ...props
+}: MenuPrimitive.RadioGroup.Props) {
+  return (
+    <MenuPrimitive.RadioGroup
+      data-slot="dropdown-menu-radio-group"
+      {...props}
+    />
+  );
 }
 
 export function DropdownMenuRadioItem({
@@ -211,7 +224,10 @@ export function DropdownMenuRadioItem({
   );
 }
 
-export function DropdownMenuSeparator({ className, ...props }: MenuPrimitive.Separator.Props) {
+export function DropdownMenuSeparator({
+  className,
+  ...props
+}: MenuPrimitive.Separator.Props) {
   return (
     <MenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
@@ -221,7 +237,10 @@ export function DropdownMenuSeparator({ className, ...props }: MenuPrimitive.Sep
   );
 }
 
-export function DropdownMenuShortcut({ className, ...props }: ComponentProps<"span">) {
+export function DropdownMenuShortcut({
+  className,
+  ...props
+}: ComponentProps<"span">) {
   return (
     <span
       data-slot="dropdown-menu-shortcut"

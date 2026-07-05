@@ -3,17 +3,26 @@ import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 
-export function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
+export function Accordion({
+  className,
+  ...props
+}: AccordionPrimitive.Root.Props) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col overflow-hidden rounded-2xl border", className)}
+      className={cn(
+        "flex w-full flex-col overflow-hidden rounded-2xl border",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-export function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+export function AccordionItem({
+  className,
+  ...props
+}: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
