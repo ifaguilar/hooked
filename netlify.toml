@@ -1,6 +1,95 @@
 [build]
 command = "vite build"
 publish = "dist/client"
+
 [dev]
 command = "vite dev"
 port = 3000
+
+# ---------------------------------------------------------------------------
+# CDN response caching
+# Cache SSR responses at the CDN edge for 30 seconds with a 60-second
+# stale-while-revalidate window. Repeat requests within that window are
+# served from cache without invoking the SSR function or calling TMDB,
+# which dramatically limits the blast radius of a bot flood.
+# ---------------------------------------------------------------------------
+[[headers]]
+for = "/*"
+[headers.values]
+Cache-Control = "public, max-age=30, stale-while-revalidate=60"
+
+# ---------------------------------------------------------------------------
+# Bot probe path redirects
+# Common paths that vulnerability scanners and bots probe for. Returning a
+# static 404 here stops them at the CDN layer — the SSR function is never
+# invoked and no bandwidth is consumed beyond the redirect response itself.
+# ---------------------------------------------------------------------------
+
+# Environment / config file probes
+[[redirects]]
+from = "/.env"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/.env.local"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/.env.production"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/config.json"
+to = "/404.html"
+status = 404
+force = true
+
+# WordPress probes (extremely common even on non-WP sites)
+[[redirects]]
+from = "/wp-admin/*"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/wp-login.php"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/wp-content/*"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/xmlrpc.php"
+to = "/404.html"
+status = 404
+force = true
+
+# PHP / other CMS probes
+[[redirects]]
+from = "/phpmyadmin/*"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/admin/*"
+to = "/404.html"
+status = 404
+force = true
+
+[[redirects]]
+from = "/.git/*"
+to = "/404.html"
+status = 404
+force = true
