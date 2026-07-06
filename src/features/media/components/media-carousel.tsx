@@ -7,10 +7,10 @@ import {
   type CarouselOptions,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { RESULTS_PER_PAGE, SLIDES_TO_SCROLL } from "@/config/constants";
 import { MediaCard } from "@/features/media/components/media-card";
 import type { MediaItem } from "@/features/media/types";
-import { Movie, TvShow } from "@/lib/tmdb/types/model";
-import { RESULTS_PER_PAGE, SLIDES_TO_SCROLL } from "@/utils/constants";
+import type { Movie, TvShow } from "@/lib/tmdb/types/model";
 
 // TODO: Check repeated type
 type MediaCarouselProps =

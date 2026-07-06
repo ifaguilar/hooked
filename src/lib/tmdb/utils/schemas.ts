@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { FIRST_PAGE, MAX_PAGES } from "@/utils/constants";
+import { FIRST_PAGE, MAX_PAGES } from "@/config/constants";
 
 export const TMDBListParamsSchema = z.object({
   page: z

@@ -1,6 +1,6 @@
 import { useLoaderData } from "@tanstack/react-router";
 import { CheckIcon } from "lucide-react";
-import { ComponentProps, useState } from "react";
+import { type ComponentProps, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,7 @@ import {
 import {
   setTheme,
   THEME_OPTIONS,
-  ThemeValue,
+  type ThemeValue,
 } from "@/features/theme/utils/theme";
 
 export function ThemeDropdown(props: ComponentProps<typeof DropdownMenu>) {

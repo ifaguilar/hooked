@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 /* TODO: Improve this AI generated component */
 import { Skeleton } from "@/components/ui/skeleton";
-import { VideoResult } from "@/lib/tmdb/types/model";
+import type { VideoResult } from "@/lib/tmdb/types/model";
 
 const carouselOptions: Partial<CarouselOptions> = {
   align: "start",

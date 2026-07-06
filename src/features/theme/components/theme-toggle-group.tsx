@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 

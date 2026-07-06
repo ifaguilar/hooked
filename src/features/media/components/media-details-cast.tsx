@@ -11,7 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CastMember } from "@/lib/tmdb/types/model";
+import type { CastMember } from "@/lib/tmdb/types/model";
 import { getTMDBImageUrl } from "@/lib/tmdb/utils/get-tmdb-image-url";
 
 const carouselOptions: Partial<CarouselOptions> = {

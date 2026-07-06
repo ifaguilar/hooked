@@ -1,7 +1,7 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { CardSkeleton } from "@/components/layout/card-skeleton";
-import { RESULTS_PER_PAGE } from "@/utils/constants";
+import { RESULTS_PER_PAGE } from "@/config/constants";
 
 export function CardGrid({ children }: ComponentProps<"div">) {
   return (

@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/sheet";
 import { navItems } from "@/utils/nav-items";
 
-export function MobileMenu() {
+export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 

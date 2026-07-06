@@ -1,5 +1,5 @@
 import { Input as InputPrimitive } from "@base-ui/react/input";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { cn } from "@/utils/cn";
 

@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, setCookie } from "@tanstack/react-start/server";
-import { LucideIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
+import { type LucideIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import z from "zod";
 
 export type ThemeValue = "light" | "dark" | "system";

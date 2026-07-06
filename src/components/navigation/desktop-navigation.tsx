@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navItems } from "@/utils/nav-items";
 
-export function DesktopMenu() {
+export function DesktopNavigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList>

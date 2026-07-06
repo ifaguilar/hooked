@@ -7,6 +7,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { PageSection } from "@/components/layout/page-section";
 import { buttonVariants } from "@/components/ui/button";
 import { TypographyH2 } from "@/components/ui/typography";
+import { FIRST_PAGE } from "@/config/constants";
 import {
   MediaCarousel,
   MediaCarouselSkeleton,
@@ -18,7 +19,6 @@ import {
 import { movieQueries } from "@/features/movies/api/queries";
 import { tvShowQueries } from "@/features/tv-shows/api/queries";
 import { cn } from "@/utils/cn";
-import { FIRST_PAGE } from "@/utils/constants";
 
 export const Route = createFileRoute("/")({
   component: HomePage,

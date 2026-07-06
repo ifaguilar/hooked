@@ -7,8 +7,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { FIRST_PAGE, MAX_PAGES } from "@/config/constants";
 import type { FileRouteTypes } from "@/routeTree.gen";
-import { FIRST_PAGE, MAX_PAGES } from "@/utils/constants";
 
 interface ListPaginationProps {
   currentPage: number;

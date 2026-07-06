@@ -15,9 +15,11 @@ import { devtoolsPlugins } from "@/lib/tanstack-devtools/devtools-plugins";
 
 import styles from "@/styles.css?url";
 
-export const Route = createRootRouteWithContext<{
+interface RouterContext {
   queryClient: QueryClient;
-}>()({
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       {
@@ -67,7 +69,7 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   loader: () => getTheme(),
-  component: RootComponent,
+  shellComponent: RootComponent,
 });
 
 function RootComponent() {

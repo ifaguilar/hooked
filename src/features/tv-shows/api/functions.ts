@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-import { TMDBListResponse } from "@/lib/tmdb/types/api";
-import { TvShow, TvShowDetails } from "@/lib/tmdb/types/model";
+import type { TMDBListResponse } from "@/lib/tmdb/types/api";
+import type { TvShow, TvShowDetails } from "@/lib/tmdb/types/model";
 import { TMDBListParamsSchema } from "@/lib/tmdb/utils/schemas";
 import { tmdbFetch } from "@/lib/tmdb/utils/tmdb-fetch";
 

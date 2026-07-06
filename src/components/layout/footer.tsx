@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { BrandLogo } from "@/components/branding/brand-logo";
 import { clientEnv } from "@/config/client-env";

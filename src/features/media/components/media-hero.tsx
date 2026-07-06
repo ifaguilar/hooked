@@ -23,7 +23,7 @@ export function MediaHero(props: MediaItem) {
       <img
         src={getTMDBImageUrl(media.backdrop_path, "original")}
         alt={title}
-        className="absolute inset-0 size-full object-cover"
+        className="absolute inset-0 size-full object-cover object-top"
         loading="eager"
       />
 

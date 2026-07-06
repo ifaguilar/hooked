@@ -2,7 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 
 import { getPopularPeople } from "@/features/people/api/functions";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
-import { TMDBListParams } from "@/lib/tmdb/types/images";
+import type { TMDBListParams } from "@/lib/tmdb/types/api";
 
 export const personQueries = {
   popular: (params: TMDBListParams) =>

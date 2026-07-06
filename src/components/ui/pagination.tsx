@@ -1,10 +1,10 @@
-import { Link, LinkOptions } from "@tanstack/react-router";
+import { Link, type LinkOptions } from "@tanstack/react-router";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
 } from "lucide-react";
-import { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/utils/cn";

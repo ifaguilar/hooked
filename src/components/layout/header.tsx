@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { HookedLogo } from "@/components/branding/hooked-logo";
-import { DesktopMenu } from "@/components/navigation/desktop-menu";
-import { MobileMenu } from "@/components/navigation/mobile-menu";
+import { DesktopNavigation } from "@/components/navigation/desktop-navigation";
+import { MobileNavigation } from "@/components/navigation/mobile-navigation";
 import { SearchDialog } from "@/features/search/components/search-dialog";
 import { ThemeDropdown } from "@/features/theme/components/theme-dropdown";
 
@@ -19,14 +19,14 @@ export function Header(props: ComponentProps<"header">) {
         </Link>
 
         <div className="hidden lg:block">
-          <DesktopMenu />
+          <DesktopNavigation />
         </div>
 
         <div className="flex gap-2">
           <SearchDialog />
           <ThemeDropdown />
           <div className="lg:hidden">
-            <MobileMenu />
+            <MobileNavigation />
           </div>
         </div>
       </div>
