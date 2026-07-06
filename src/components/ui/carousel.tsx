@@ -3,9 +3,9 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import {
-  ComponentProps,
+  type ComponentProps,
   createContext,
-  KeyboardEvent,
+  type KeyboardEvent,
   useCallback,
   useContext,
   useEffect,
