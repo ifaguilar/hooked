@@ -1,13 +1,14 @@
 import { fileURLToPath, URL } from "url";
 
 import netlify from "@netlify/vite-plugin-tanstack-start";
+import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import react from "@vitejs/plugin-react";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-export default defineConfig({
+const config = defineConfig({
   server: {
     port: 3000,
   },
@@ -17,5 +18,14 @@ export default defineConfig({
     },
     tsconfigPaths: true,
   },
-  plugins: [devtools(), tanstackStart(), react(), tailwindcss(), netlify()],
+  plugins: [
+    devtools(),
+    tanstackStart(),
+    react(),
+    babel({ presets: [reactCompilerPreset()] }),
+    tailwindcss(),
+    netlify(),
+  ],
 });
+
+export default config;
